@@ -1,5 +1,13 @@
 {
-  "selection": "all",
+  "selection": ["all"],
+  "test": {
+    "selection": 0,
+    "options":["Hiragana","Katakana"]
+  },
+  "writing": {
+    "selection":1,
+    "options":["Romaji","Kana"]
+  },
   "syllabary_series": [
     {
       "id": 0,

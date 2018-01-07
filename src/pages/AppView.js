@@ -1,4 +1,11 @@
 import React, { Component } from 'react';
+import { withRouter, Switch } from 'react-router-dom';
+import Route from 'react-router-dom/Route';
+import NoMatch from './NoMatch';
+import Home from './Home';
+import Footer from '../components/Footer';
+import IconKatakanaKa from '../icons/IconKatakanaKa';
+import IconHiraganaKa from '../icons/IconHiraganaKa';
 
 export class AppView extends Component {
     constructor(props) {
@@ -8,12 +15,24 @@ export class AppView extends Component {
     render() {
         return (
             <div className='app-view'>
-                <div className='header'>Hiragana/Katakana Tester</div>
-                <div className='content'></div>
-                <div className='footer'>GrelaDesign (c) 2018</div>
+                <div className='header'><IconHiraganaKa />Hiragana/Katakana Tester <IconKatakanaKa /></div>
+                <div className='content'>
+                    <div className='left-column side'>
+
+                    </div>
+                    <div className='right-column main'>
+
+                        <Switch>
+                            <Route exact path="/" component={() => { return <Home /> }} />
+                            <Route component={NoMatch} />
+                        </Switch>
+
+                    </div>
+                </div>
+                <Footer />
             </div>
         )
     }
 }
 
-export default AppView;
+export default withRouter(AppView);
