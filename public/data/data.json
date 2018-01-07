@@ -1,0 +1,248 @@
+{
+  "selection": "all",
+  "syllabary_series": [
+    {
+      "id": 0,
+      "name": "Samogłoski あ",
+      "source": {
+        "romaji": ["a", "i", "u", "e", "o"],
+        "hiragana": ["あ", "い", "う", "え", "お"],
+        "katakana": ["ア", "イ", "ウ", "エ", "オ"]
+      }
+    },
+    {
+      "id": 1,
+      "name": "Seria K か",
+      "source": {
+        "romaji": ["ka", "ki", "ku", "ke", "ko"],
+        "hiragana": ["か", "き", "く", "け", "こ"],
+        "katakana": ["カ", "キ", "ク", "ケ", "コ"]
+      }
+    },
+    {
+      "id": 2,
+      "name": "Seria G ぎ",
+      "source": {
+        "romaji": ["ga", "gi", "gu", "ge", "go"],
+        "hiragana": ["が", "ぎ", "ぐ", "げ", "ご"],
+        "katakana": ["ガ", "ギ", "グ", "ゲ", "ゴ"]
+      }
+    },
+    {
+      "id": 3,
+      "name": "Seria S さ",
+      "source": {
+        "romaji": ["sa", "shi", "su", "se", "so"],
+        "hiragana": ["さ", "し", "す", "せ", "そ"],
+        "katakana": ["サ", "シ", "ス", "セ", "ソ"]
+      }
+    },
+    {
+      "id": 4,
+      "name": "Seria Z ざ",
+      "source": {
+        "romaji": ["za", "ji", "zu", "ze", "zo"],
+        "hiragana": ["ざ", "じ", "ず", "ぜ", "ぞ"],
+        "katakana": ["ザ", "ジ", "ズ", "ゼ", "ゾ"]
+      }
+    },
+    {
+      "id": 5,
+      "name": "Seria T た",
+      "source": {
+        "romaji": ["ta", "chi", "tsu", "te", "to"],
+        "hiragana": ["た", "ち", "つ", "て", "と"],
+        "katakana": ["タ", "チ", "ツ", "テ", "ト"]
+      }
+    },
+    {
+      "id": 6,
+      "name": "Seria D だ",
+      "source": {
+        "romaji": ["da", "(d)ji", "(d)zu", "de", "do"],
+        "hiragana": ["だ", "ぢ", "づ", "で", "ど"],
+        "katakana": ["ダ", "ヂ", "ヅ", "デ", "ド"]
+      }
+    },
+    {
+      "id": 7,
+      "name": "Seria N な",
+      "source": {
+        "romaji": ["na", "ni", "nu", "ne", "no"],
+        "hiragana": ["な", "に", "ぬ", "ね", "の"],
+        "katakana": ["ナ", "ニ", "ヌ", "ネ", "ノ"]
+      }
+    },
+    {
+      "id": 8,
+      "name": "Seria H は",
+      "source": {
+        "romaji": ["ha", "hi", "fu", "he", "ho"],
+        "hiragana": ["は", "ひ", "ふ", "へ", "ほ"],
+        "katakana": ["ハ", "ヒ", "フ", "ヘ", "ホ"]
+      }
+    },
+    {
+      "id": 9,
+      "name": "Seria P ぱ",
+      "source": {
+        "romaji": ["pa", "pi", "pu", "pe", "po"],
+        "hiragana": ["ぱ", "ぴ", "ぷ", "ぺ", "ぽ"],
+        "katakana": ["パ", "ピ", "プ", "ペ", "ポ"]
+      }
+    },
+    {
+      "id": 10,
+      "name": "Seria B ば",
+      "source": {
+        "romaji": ["ba", "bi", "bu", "be", "bo"],
+        "hiragana": ["ば", "び", "ぶ", "べ", "ぼ"],
+        "katakana": ["バ", "ビ", "ブ", "ベ", "ボ"]
+      }
+    },
+    {
+      "id": 11,
+      "name": "Seria M ま",
+      "source": {
+        "romaji": ["ma", "mi", "mu", "me", "mo"],
+        "hiragana": ["ま", "み", "む", "め", "も"],
+        "katakana": ["マ", "ミ", "ム", "メ", "モ"]
+      }
+    },
+    {
+      "id": 12,
+      "name": "Seria Y や",
+      "source": {
+        "romaji": ["ya", "yu", "yo"],
+        "hiragana": ["や", "ゆ", "よ"],
+        "katakana": ["ヤ", "ユ", "ヨ"]
+      }
+    },
+    {
+      "id": 13,
+      "name": "Seria R ら",
+      "source": {
+        "romaji": ["ra", "ri", "ru", "re", "ro"],
+        "hiragana": ["ら", "り", "る", "れ", "ろ"],
+        "katakana": ["ラ", "リ", "ル", "レ", "ロ"]
+      }
+    },
+    {
+      "id": 14,
+      "name": "Seria W わ",
+      "source": {
+        "romaji": ["wa", "(w)o"],
+        "hiragana": ["わ", "を"],
+        "katakana": ["ワ", "ヲ"]
+      }
+    },
+    {
+      "id": 15,
+      "name": "Spółgłoska N ん",
+      "source": {
+        "romaji": ["n"],
+        "hiragana": ["ん"],
+        "katakana": ["ン"]
+      }
+    },
+    {
+      "id": 16,
+      "name": "Seria KY きゃ",
+      "source": {
+        "romaji": ["kya", "kyu", "kyo"],
+        "hiragana": ["きゃ", "きゅ", "きょ"],
+        "katakana": ["キャ", "キュ", "キョ"]
+      }
+    },
+    {
+      "id": 17,
+      "name": "Seria SH しゃ",
+      "source": {
+        "romaji": ["sha", "shu", "sho"],
+        "hiragana": ["しゃ", "しゅ", "しょ"],
+        "katakana": ["シャ", "シュ", "ショ"]
+      }
+    },
+    {
+      "id": 18,
+      "name": "Seria CH ちゃ",
+      "source": {
+        "romaji": ["cha", "chu", "cho"],
+        "hiragana": ["ちゃ", "ちゅ", "ちょ"],
+        "katakana": ["チャ", "チュ", "チョ"]
+      }
+    },
+    {
+      "id": 19,
+      "name": "Seria NY にゃ",
+      "source": {
+        "romaji": ["nya", "nyu", "nyo"],
+        "hiragana": ["にゃ", "にゅ", "にょ"],
+        "katakana": ["ニャ", "ニュ", "ニョ"]
+      }
+    },
+    {
+      "id": 20,
+      "name": "Seria HY ひゃ",
+      "source": {
+        "romaji": ["hya", "hyu", "hyo"],
+        "hiragana": ["ひゃ", "ひゅ", "ひょ"],
+        "katakana": ["ヒャ", "ヒュ", "ヒョ"]
+      }
+    },
+    {
+      "id": 21,
+      "name": "Seria MY みゃ",
+      "source": {
+        "romaji": ["mya", "myu", "myo"],
+        "hiragana": ["みゃ", "みゅ", "みょ"],
+        "katakana": ["ミャ", "ミュ", "ミョ"]
+      }
+    },
+    {
+      "id": 22,
+      "name": "Seria RY りゃ",
+      "source": {
+        "romaji": ["rya", "ryu", "ryo"],
+        "hiragana": ["りゃ", "りゅ", "りょ"],
+        "katakana": ["リャ", "リュ", "リョ"]
+      }
+    },
+    {
+      "id": 23,
+      "name": "Seria GY ぎゃ",
+      "source": {
+        "romaji": ["gya", "gyu", "gyo"],
+        "hiragana": ["ぎゃ", "ぎゅ", "ぎょ"],
+        "katakana": ["ギャ", "ギュ", "ギョ"]
+      }
+    },
+    {
+      "id": 24,
+      "name": "Seria PY ぴゃ",
+      "source": {
+        "romaji": ["pya", "pyu", "pyo"],
+        "hiragana": ["ぴゃ", "ぴゅ", "ぴょ"],
+        "katakana": ["ピャ", "ピュ", "ピョ"]
+      }
+    },
+    {
+      "id": 25,
+      "name": "Seria BY びゃ",
+      "source": {
+        "romaji": ["bya", "byu", "byo"],
+        "hiragana": ["びゃ", "びゅ", "びょ"],
+        "katakana": ["ビャ", "ビュ", "ビョ"]
+      }
+    },
+    {
+      "id": 26,
+      "name": "Seria JY じゃ",
+      "source": {
+        "romaji": ["ja", "ju", "jo"],
+        "hiragana": ["じゃ", "じゅ", "じょ"],
+        "katakana": ["ジャ", "ジュ", "ジョ"]
+      }
+    }
+  ]
+}
