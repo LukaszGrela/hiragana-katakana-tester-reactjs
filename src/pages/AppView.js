@@ -6,6 +6,8 @@ import Home from './Home';
 import Footer from '../components/Footer';
 import IconKatakanaKa from '../icons/IconKatakanaKa';
 import IconHiraganaKa from '../icons/IconHiraganaKa';
+import Game from './Game';
+import Setup from './Setup';
 
 export class AppView extends Component {
     constructor(props) {
@@ -24,6 +26,8 @@ export class AppView extends Component {
 
                         <Switch>
                             <Route exact path="/" component={() => { return <Home /> }} />
+                            <Route exact path="/game" component={() => { return <Game /> }} />
+                            <Route exact path="/setup" component={() => { return <Setup /> }} />
                             <Route component={NoMatch} />
                         </Switch>
 
