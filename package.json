@@ -1,6 +1,6 @@
 {
   "name": "hiragana-katakana-tester-react",
-  "version": "0.0.1",
+  "version": "0.0.10",
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
