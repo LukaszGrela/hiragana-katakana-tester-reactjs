@@ -18,7 +18,8 @@
 import React, { Component } from 'react';
 import connect from 'react-redux/lib/connect/connect';
 import CheckboxSwitch from '../components/CheckboxSwitch';
-
+import { ListSeries } from '../components/ListSeries';
+import selectionChanged from "../actions/selectionChanged";
 
 import './css/Setup.css';
 
@@ -27,32 +28,14 @@ class Setup extends Component {
         super(props);
         console.log("Setup#constructor");
         this.state = {
-            syllabary_selection: !!this.props.syllabary_selection || false
+            syllabary_selection: (!!this.props.syllabary_selection && this.props.syllabary_selection === 1)
         }
 
     }
 
-    generateOptions() {
-        console.log(this.props);
-        const { data, selection } = this.props;
-        if (data && selection) {
-            const allSelected = selection.length > 0 && isNaN(parseInt(selection, 10));
-            return data.map((series) => {
-                const { id, name } = series;
-                let selected = allSelected || selection.indexOf(id) !== -1;
-                console.log(selected);
-                return <li
-                    key={id}
-                    className={'option' + (selected ? ' selected' : '')}
-                >
-                    <span className='label'>{name.label}</span>
-                    <span className='kana'>{name.kana}</span>
-                </li>
-            })
-        }
-        return null;
-    }
     render() {
+
+        const { data, selection, dispatch } = this.props;
         return (
             <div className='setup'>
                 <div className='wrapper'>
@@ -71,13 +54,39 @@ class Setup extends Component {
                             labelOff={this.props.writing_label_off}
                             isChecked={!!this.props.writing_selection} />
                     </div>
-                    <div className='row series-list'>
-                        <ul>
-                            {
-                                this.generateOptions()
-                            }
-                        </ul>
+                    <div className='row selection-buttons'>
+                        <button
+                            onClick={() => {
+                                if (selection.length === 0) {
+                                    //select all
+                                    dispatch(selectionChanged(this.props.fullSelection));
+                                } else {
+                                    //deselect all
+                                    dispatch(selectionChanged([]));
+                                }
+                            }}
+                        >{selection.length === 0 ? 'Select All' : 'Deselect All'}</button>
+                        {
+                            'Zaznaczono XXX kana z YYY serii.'
+                        }
                     </div>
+                    <ListSeries className='row series-list'
+                        data={data}
+                        selection={selection}
+                        onItemClicked={(id, selected) => {
+                            let newSelection = selection.concat();
+                            if (selected) {
+                                // deselect
+                                let index = newSelection.indexOf(parseInt(id, 10));
+                                if (index >= 0) {
+                                    newSelection.splice(index, 1);
+                                }
+                            } else {
+                                newSelection.push(parseInt(id, 10))
+                            }
+                            console.log('onItemClicked', id, selected);
+                            dispatch(selectionChanged(newSelection));
+                        }} />
                 </div>
             </div>
         )
@@ -86,11 +95,26 @@ class Setup extends Component {
 
 const mapStateToProps = (state) => {
     const { test, writing, selection, data } = state;
-
+    let _selection = selection;
+    let _fullSelection = [];
     console.log("mapStateToProps");
 
+    if (selection && selection.length === 1 && isNaN(selection[0])) {
+        //'all' - convert to list of ID's
+        _selection = data.map(item => item.id);
+    }
+    if (selection && selection.length > 0 && selection.length !== _selection.length) {
+        // all
+        _fullSelection = _selection.concat();
+    } else {
+        // create
+        _fullSelection = data.map(item => item.id);
+    }
+
+
     return {
-        selection: selection,
+        fullSelection: _fullSelection,
+        selection: _selection,
         data: data,
 
         "syllabary_label_on": test && test.options && test.options.length > 0 ? test.options[1] : '',

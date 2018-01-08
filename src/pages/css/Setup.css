@@ -21,3 +21,50 @@
 }
 .wrapper {}
 .row {}
+
+
+.series-list {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 200px;
+}
+ul {
+    list-style: none;
+}
+li.option {
+    margin-left:40px;
+    height: 40px;
+    position: relative;
+    cursor: pointer;
+}
+li.option:hover {
+    background-color: silver;
+}
+li.option .kana {
+    position: absolute;
+    top: 0;
+    right: 8px;
+    margin-top: 7px;
+}
+li.option .label {
+    position:absolute;
+    top:0;
+    margin-top: 12px;
+    left: 48px;
+}
+
+li.option svg {
+    display: none;
+    fill: #212121;
+
+    position: absolute;
+    top:0;
+    left: 4px;
+    width: 32px;
+    height: 32px;
+    margin-top: 4px;
+
+}
+li.option.selected svg {
+    display: inline-block;
+}
