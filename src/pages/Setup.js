@@ -33,6 +33,22 @@ class Setup extends Component {
 
     }
 
+    getSelectionHint() {
+
+        const { data, selection } = this.props;
+
+        let _nKanaLength = 0,
+            _nSeriesLength = 0,
+            _nListLength = data ? data.length : 0
+        for (let i = 0; i < _nListLength; i++) {
+            if (selection.indexOf(data[i].id) !== -1) {
+                _nSeriesLength++;
+                _nKanaLength += data[i].source.romaji.length;
+            }
+        }
+        return ("Wybrano " + _nKanaLength + " Kana z " + _nSeriesLength + " serii.");
+    }
+
     render() {
 
         const { data, selection, dispatch } = this.props;
@@ -67,7 +83,7 @@ class Setup extends Component {
                             }}
                         >{selection.length === 0 ? 'Select All' : 'Deselect All'}</button>
                         {
-                            'Zaznaczono XXX kana z YYY serii.'
+                            this.getSelectionHint()
                         }
                     </div>
                     <ListSeries className='row series-list'
