@@ -6,6 +6,7 @@ import { shuffle } from "../utils/math";
 class Game extends Component {
     constructor(props) {
         super(props);
+        console.log('Game#constructor', props);
         this.state = {
             questions: [],
             current: {},
@@ -17,17 +18,19 @@ class Game extends Component {
         this.generateQuestionPool();
     }
 
+    componentWillReceiveProps(nextProps) {
+        console.log('Game#componentWillReceiveProps', nextProps);
+    }
+
     generateQuestionPool() {
         const { selection, data, syllabary, writing } = this.props;
-        let pool = data.map((item) => {
-            if (selection.indexOf(item.id) !== -1) {
+        let pool = data.filter((item) => {
                 // test from which source:
                 // pytamy o kana czy romaji
                 // jak kana to z ktorego syllabariusza - romaji bedzie w opcjach odpowiedzi
                 // jak romaji to z ktorego syllabariusza wziasc odpowiedzi
-
-               return Object.assign({}, item); 
-            }
+                console.log(item.id, selection, selection.indexOf(item.id))
+               return selection.indexOf(item.id) !== -1; 
         });
         shuffle(pool);
         console.log(pool);
@@ -43,7 +46,7 @@ const mapStateToProps = (state) => {
     console.log('Game#mapStateToProps', state);
     const { syllabary, writing, selection, data } = state;
 
-    let _selection = [];
+    let _selection = selection;
 
 
     if (selection && selection.length === 1 && isNaN(selection[0])) {
