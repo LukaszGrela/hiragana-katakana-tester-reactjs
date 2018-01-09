@@ -25,7 +25,12 @@ import './css/Home.css';
 class Home extends Component {
     state = {};
 
+    componentWillReceiveProps(nextProps) {
+        console.log("Home#componentWillReceiveProps",nextProps);
+    }
+
     render() {
+        console.log('Home#render',this.props);
         const { data, selection, dispatch } = this.props;
         return (
             <div className='home'>
@@ -57,7 +62,7 @@ const mapStateToProps = (state) => {
     const { syllabary, writing, selection, data } = state;
     console.log(selection);
     let hasSelection = false,
-        _selection = [];
+        _selection = selection;
     if (selection && selection.length > 0) {
         hasSelection = true;
     }

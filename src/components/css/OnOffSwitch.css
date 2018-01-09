@@ -1,6 +1,7 @@
 .onoffswitch {
     position: relative;
-    width: 99px;
+    width: 150px;
+    margin: 0 auto;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -33,7 +34,7 @@
     width: 50%;
     height: 30px;
     padding: 0;
-    line-height: 30px;
+    line-height: 3.0rem;
     font-size: 1.5rem;
     color: white;
     font-family: Trebuchet, Arial, sans-serif;
@@ -42,32 +43,67 @@
 }
 
 .onoffswitch-inner .before {
-    /* content: "Kana"; */
-    padding-left: 12px;
-    background-color: #00AAFF;
+    background-color: #F57C00;
     color: #FFFFFF;
+    padding-left: 6px;
+    padding-right: 54px;
+    text-align: center;
 }
 
 .onoffswitch-inner .after {
-    /* content: "Romaji"; */
-    padding-right: 12px;
-    background-color: #00AAFF;
-    color: #FFFFFF;
-    text-align: right;
+    padding-right: 6px;
+    padding-left: 54px;
+    background-color: #CDDC39;
+    color: #212121;
+    text-align: center;
 }
 
 .onoffswitch-switch {
+    overflow: hidden;
     display: block;
-    width: 24px;
+    width: 48px;
     margin: 3px;
-    background: #A1A1A1;
+    background-color: #fff;
     position: absolute;
     top: 0;
     bottom: 0;
-    right: 65px;
-    border: 2px solid #999999;
+    right: 92px;
+    border: 2px solid #F57C00;
     border-radius: 20px;
     transition: all 0.3s ease-in 0s;
+}
+
+.onoffswitch-switch .before,
+.onoffswitch-switch .after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    line-height: 2.5rem;
+    font-size: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease-in 0s;
+}
+
+.onoffswitch-switch .before {
+    left: 0;
+}
+
+.onoffswitch-switch .after {
+    left: 300%;
+}
+
+.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch .before {
+    left: -300%
+}
+
+.onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch .after {
+    left: 0;
+}
+
+span.onoffswitch-switch {
+    overflow: hidden;
 }
 
 .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-inner {
@@ -76,5 +112,6 @@
 
 .onoffswitch-checkbox:checked+.onoffswitch-label .onoffswitch-switch {
     right: 0px;
-    background-color: #27A1CA;
+    background-color: #fff;
+    border-color: #CDDC39;
 }

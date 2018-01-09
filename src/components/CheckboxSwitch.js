@@ -36,7 +36,9 @@ class CheckboxSwitch extends Component {
                     <span className="onoffswitch-inner">
                         <span className="before">{this.props.labelOn || "ON"}</span><span className="after">{this.props.labelOff || "OFF"}</span>
                     </span>
-                    <span className="onoffswitch-switch"></span>
+                    <span className="onoffswitch-switch">
+                        <span className="before">{this.props.iconOn || "+"}</span><span className="after">{this.props.iconOff || "-"}</span>
+                    </span>
                 </label>
             </div>
         )

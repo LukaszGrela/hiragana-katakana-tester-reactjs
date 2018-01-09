@@ -52,6 +52,8 @@ class Setup extends Component {
                             id='test-what-switch'
                             labelOn={this.props.syllabary_label_on}
                             labelOff={this.props.syllabary_label_off}
+                            iconOn={'カ'}
+                            iconOff={'か'}
                             isChecked={!!this.props.syllabary_selection}
                             onChecked={(newState) => {
                                 dispatch(syllabaryChanged(newState ? 1 : 0));
@@ -64,6 +66,8 @@ class Setup extends Component {
                             id='writing-switch'
                             labelOn={this.props.writing_label_on}
                             labelOff={this.props.writing_label_off}
+                            iconOn={'仮名'}
+                            iconOff={'Ro'}
                             isChecked={!!this.props.writing_selection}
                             onChecked={(newState) => {
                                 dispatch(writingChanged(newState ? 1 : 0));
