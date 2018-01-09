@@ -18,22 +18,53 @@ class Game extends Component {
         this.generateQuestionPool();
     }
 
-    componentWillReceiveProps(nextProps) {
-        console.log('Game#componentWillReceiveProps', nextProps);
-    }
-
     generateQuestionPool() {
         const { selection, data, syllabary, writing } = this.props;
-        let pool = data.filter((item) => {
+
+        if (data && syllabary && writing) {
+            const whatToTest = writing.selection;//romaji-0
+            const romajiLabel = writing.options[0].toLowerCase();
+            const syllabaryChosen = syllabary.options[syllabary.selection].toLowerCase();
+
+
+            let questions = [];
+            let pool = data.filter((item) => {
                 // test from which source:
                 // pytamy o kana czy romaji
                 // jak kana to z ktorego syllabariusza - romaji bedzie w opcjach odpowiedzi
                 // jak romaji to z ktorego syllabariusza wziasc odpowiedzi
-                console.log(item.id, selection, selection.indexOf(item.id))
-               return selection.indexOf(item.id) !== -1; 
-        });
-        shuffle(pool);
-        console.log(pool);
+                if (selection.indexOf(item.id) !== -1) {
+                    console.log('whatToTest', whatToTest, 'whatToTestLabel', romajiLabel, 'syllabaryChosen', syllabaryChosen);
+                    if (whatToTest === 1) {
+                        // test kana
+                        item.source[romajiLabel].forEach((element, index) => {
+                            questions.push({
+                                // correct/distracters from romaji
+                                correct: element,
+                                // question from syllabary
+                                question: item.source[syllabaryChosen][index]
+                            });
+                        });
+                    } else {
+                        // test romaji
+                        item.source[syllabaryChosen].forEach((element, index) => {
+                            questions.push({
+                                // correct/distracters from kana
+                                correct: element,
+                                // question from romaji
+                                question: item.source[romajiLabel][index]
+                            });
+                        });
+                    }
+                    return true;
+                }
+                return false;
+            });
+
+
+            shuffle(questions);
+            console.log(questions);
+        }
     }
 
     render() {
@@ -56,9 +87,9 @@ const mapStateToProps = (state) => {
 
     return {
         selection: _selection,
-        data: data,
-        syllabary: syllabary && syllabary.options && syllabary.options.length > 0 ? syllabary.options[syllabary.selection] : '',
-        writing: writing && writing.options && writing.options.length > 0 ? writing.options[writing.selection] : '',
+        data,
+        syllabary,
+        writing,
     }
 }
 export default withRouter(connect(mapStateToProps)(Game))
