@@ -1,0 +1,30 @@
+.home {
+
+    width: 80%;
+    margin: 0 auto;
+    min-width: 320px;
+
+}
+/*
+.wrapper {}
+*/
+.selection-stats {
+    display: block;
+}
+
+.start-button {
+    display: block;
+    
+    margin: 30px auto;
+    width: 180px;
+    height: 140px;
+    border-radius: 10px;
+    border: 1px solid #cf80ff;
+}
+.start-button > * {
+    display: block;
+}
+
+.start-button .button-label {
+    font-size: 1.8rem;
+}

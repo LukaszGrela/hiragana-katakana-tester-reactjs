@@ -3,8 +3,8 @@ import axios from "axios";
 import connect from 'react-redux/lib/connect/connect';
 import dataAdded from '../actions/dataAdded';
 import selectionChanged from '../actions/selectionChanged';
-import testAdded from '../actions/testAdded';
-import testChanged from '../actions/testChanged';
+import syllabaryAdded from '../actions/syllabaryAdded';
+import syllabaryChanged from '../actions/syllabaryChanged';
 import writingAdded from '../actions/writingAdded';
 import writingChanged from '../actions/writingChanged';
 
@@ -22,7 +22,7 @@ class Splash extends Component {
             .then(res => {
 
                 const selection = res.data.selection;
-                const test = res.data.test;
+                const syllabary = res.data.syllabary;
                 const writing = res.data.writing;
                 const syllabary_series = res.data.syllabary_series.map(obj => {
                     return obj;
@@ -30,11 +30,11 @@ class Splash extends Component {
                 
                 // -------------------------
                 dispatch(dataAdded(syllabary_series));
-                dispatch(testAdded(test));
+                dispatch(syllabaryAdded(syllabary));
                 dispatch(writingAdded(writing));
-                dispatch(testChanged(1));
+                dispatch(syllabaryChanged(1));
                 dispatch(writingChanged(0));
-                dispatch(testChanged(test.selection));
+                dispatch(syllabaryChanged(syllabary.selection));
                 dispatch(writingChanged(writing.selection));
                 dispatch(selectionChanged(selection));
                 // -------------------------

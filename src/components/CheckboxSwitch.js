@@ -28,8 +28,8 @@ class CheckboxSwitch extends Component {
                     id={this.props.id}
                     checked={this.state.selected}
                     onChange={(e) => {
-
-                        this.setState({ selected: !this.state.selected });
+                        //this.setState({ selected: !this.state.selected });
+                        this.props.onChecked && this.props.onChecked(!this.state.selected);
                     }}
                 />
                 <label className="onoffswitch-label" htmlFor={this.props.id}>

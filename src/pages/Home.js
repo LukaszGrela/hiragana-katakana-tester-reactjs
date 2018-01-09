@@ -18,22 +18,34 @@
 import React, { Component } from 'react';
 import connect from 'react-redux/lib/connect/connect';
 import { withRouter } from 'react-router-dom';
+import SelectionHint from '../components/SelectionHint';
+
+import './css/Home.css';
 
 class Home extends Component {
     state = {};
 
     render() {
-        console.log(this.props);
+        const { data, selection, dispatch } = this.props;
         return (
             <div className='home'>
                 <div className='wrapper'>
-                    <button  disabled={!this.props.hasSelection}
-                    onClick={() => {
-                        this.props.onNavigation && this.props.onNavigation('game');
-                    }}>
+                    <SelectionHint
+                        selection={selection}
+                        data={data}
+                    />
+                    <button
+                        className='start-button'
+                        disabled={!this.props.hasSelection}
+                        onClick={() => {
+                            this.props.onNavigation && this.props.onNavigation('game');
+                        }}>
                         <span className='button-label'>START</span>
+                        <span className='selection-prefix'></span>
                         <span className='selection-syllabary'>{this.props.syllabary}</span>
+                        <span className='selection-connect'>with</span>
                         <span className='selection-writing'>{this.props.writing}</span>
+                        <span className='selection-sufix'>test</span>
                     </button>
                 </div>
             </div>
@@ -41,16 +53,24 @@ class Home extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    console.log('mapStateToProps', state);
-    const { test, writing, selection, data } = state;
+    console.log('Home#mapStateToProps', state);
+    const { syllabary, writing, selection, data } = state;
     console.log(selection);
-    let hasSelection = false
-    if(selection && selection.length > 0 && isNaN(parseInt(selection[0],10))) {
-        console.log("SELECT ALL");
+    let hasSelection = false,
+        _selection = [];
+    if (selection && selection.length > 0) {
         hasSelection = true;
     }
+
+    if (selection && selection.length === 1 && isNaN(selection[0])) {
+        //'all' - convert to list of ID's
+        _selection = data.map(item => item.id);
+    }
+
     return {
-        "syllabary": test && test.options && test.options.length > 0 ? test.options[test.selection] : '',
+        selection: _selection,
+        data: data,
+        "syllabary": syllabary && syllabary.options && syllabary.options.length > 0 ? syllabary.options[syllabary.selection] : '',
         "writing": writing && writing.options && writing.options.length > 0 ? writing.options[writing.selection] : '',
         hasSelection,
 

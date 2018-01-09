@@ -1,6 +1,6 @@
 {
   "selection": ["all"],
-  "test": {
+  "syllabary": {
     "selection": 0,
     "options":["Hiragana","Katakana"]
   },

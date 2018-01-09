@@ -40,6 +40,8 @@
 .app-title {
     width: 80%;
     margin: 0 auto;
+
+    font-size: 1.8rem;
 }
 .app-title > * {
     display: inline-block;
@@ -72,4 +74,5 @@
 
 .content {
     width: 100%;
+    margin-top: /* $margin-top */ 10px;
 }

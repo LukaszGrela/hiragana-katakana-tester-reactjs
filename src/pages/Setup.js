@@ -20,8 +20,11 @@ import connect from 'react-redux/lib/connect/connect';
 import CheckboxSwitch from '../components/CheckboxSwitch';
 import { ListSeries } from '../components/ListSeries';
 import selectionChanged from "../actions/selectionChanged";
+import syllabaryChanged from "../actions/syllabaryChanged";
+import writingChanged from "../actions/writingChanged";
 
 import './css/Setup.css';
+import SelectionHint from '../components/SelectionHint';
 
 class Setup extends Component {
     constructor(props) {
@@ -33,20 +36,8 @@ class Setup extends Component {
 
     }
 
-    getSelectionHint() {
-
-        const { data, selection } = this.props;
-
-        let _nKanaLength = 0,
-            _nSeriesLength = 0,
-            _nListLength = data ? data.length : 0
-        for (let i = 0; i < _nListLength; i++) {
-            if (selection.indexOf(data[i].id) !== -1) {
-                _nSeriesLength++;
-                _nKanaLength += data[i].source.romaji.length;
-            }
-        }
-        return ("Wybrano " + _nKanaLength + " Kana z " + _nSeriesLength + " serii.");
+    componentWillReceiveProps(nextProps) {
+        console.log("Setup#componentWillReceiveProps",nextProps);
     }
 
     render() {
@@ -56,22 +47,31 @@ class Setup extends Component {
             <div className='setup'>
                 <div className='wrapper'>
                     <div className='row test-what'>
+                        <span>Choose what syllabary option to test:</span>
                         <CheckboxSwitch
                             id='test-what-switch'
                             labelOn={this.props.syllabary_label_on}
                             labelOff={this.props.syllabary_label_off}
                             isChecked={!!this.props.syllabary_selection}
+                            onChecked={(newState) => {
+                                dispatch(syllabaryChanged(newState ? 1 : 0));
+                            }}
                         />
                     </div>
                     <div className='row writing'>
+                        <span>Choose what writing option to test:</span>
                         <CheckboxSwitch
                             id='writing-switch'
                             labelOn={this.props.writing_label_on}
                             labelOff={this.props.writing_label_off}
-                            isChecked={!!this.props.writing_selection} />
+                            isChecked={!!this.props.writing_selection}
+                            onChecked={(newState) => {
+                                dispatch(writingChanged(newState ? 1 : 0));
+                            }} />
                     </div>
-                    <div className='row selection-buttons'>
+                    <div className='row list-toolbar'>
                         <button
+                            className='selection-button'
                             onClick={() => {
                                 if (selection.length === 0) {
                                     //select all
@@ -82,9 +82,9 @@ class Setup extends Component {
                                 }
                             }}
                         >{selection.length === 0 ? 'Select All' : 'Deselect All'}</button>
-                        {
-                            this.getSelectionHint()
-                        }
+                        <SelectionHint
+                            selection={selection}
+                            data={data} />
                     </div>
                     <ListSeries className='row series-list'
                         data={data}
@@ -110,10 +110,10 @@ class Setup extends Component {
 }
 
 const mapStateToProps = (state) => {
-    const { test, writing, selection, data } = state;
+    const { syllabary, writing, selection, data } = state;
     let _selection = selection;
     let _fullSelection = [];
-    console.log("mapStateToProps");
+    console.log("Setup#mapStateToProps", state);
 
     if (selection && selection.length === 1 && isNaN(selection[0])) {
         //'all' - convert to list of ID's
@@ -133,9 +133,9 @@ const mapStateToProps = (state) => {
         selection: _selection,
         data: data,
 
-        "syllabary_label_on": test && test.options && test.options.length > 0 ? test.options[1] : '',
-        "syllabary_label_off": test && test.options && test.options.length > 0 ? test.options[0] : '',
-        "syllabary_selection": test && test.options && test.options.length > 0 ? test.selection : 0,
+        "syllabary_label_on": syllabary && syllabary.options && syllabary.options.length > 0 ? syllabary.options[1] : '',
+        "syllabary_label_off": syllabary && syllabary.options && syllabary.options.length > 0 ? syllabary.options[0] : '',
+        "syllabary_selection": syllabary && syllabary.options && syllabary.options.length > 0 ? syllabary.selection : 0,
         "writing_label_on": writing && writing.options && writing.options.length > 0 ? writing.options[1] : '',
         "writing_label_off": writing && writing.options && writing.options.length > 0 ? writing.options[0] : '',
         "writing_selection": writing && writing.options && writing.options.length > 0 ? writing.selection : 0,
