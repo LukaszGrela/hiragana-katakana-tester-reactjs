@@ -8,6 +8,11 @@ import IconReplay from "../icons/IconReplay";
 
 
 import './css/Game.css'
+import '../components/css/Popup.css'
+import '../components/css/Feedback.css'
+
+import CorrectFeedback from '../components/CorrectFeedback';
+import IncorrectFeedback from '../components/IncorrectFeedback';
 
 
 class Game extends Component {
@@ -170,7 +175,13 @@ class Game extends Component {
         } else {
             // 
             const copy = this.getNextQuestionData(questions[next]);
-            this.setState({ index: next, current: copy, correct: null, btnId: null, showPopup:false });
+            this.setState({
+                index: next,
+                current: copy,
+                correct: null,
+                btnId: null,
+                showPopup: false
+            });
 
 
         }
@@ -266,9 +277,12 @@ class Game extends Component {
                                 <div className={'popup-container' + (correct !== null ? (correct ? ' correct' : ' incorrect') : '')}>
                                     <div className='cloak'></div>
                                     <div className='popup'>
-                                        <div className='popup-title'>Feedback</div>
+                                        <div className='popup-title'></div>
                                         <div className='popup-content'>
-
+                                            {
+                                                correct ?
+                                                <CorrectFeedback />:<IncorrectFeedback />
+                                            }
                                         </div>
                                         <div className='popup-buttons'>
                                             {
