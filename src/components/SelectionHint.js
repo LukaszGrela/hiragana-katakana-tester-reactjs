@@ -1,17 +1,11 @@
 import React from 'react';
+import kanaCounter from '../utils/kanaCounter';
 
 const SelectionHint = ({ selection, data }) => {
 
-    let _nKanaLength = 0,
-        _nSeriesLength = 0,
-        _nListLength = data ? data.length : 0
-    for (let i = 0; i < _nListLength; i++) {
-        if (selection.indexOf(data[i].id) !== -1) {
-            _nSeriesLength++;
-            _nKanaLength += data[i].source.romaji.length;
-        }
-    }
-    return (<span className='selection-stats'>{"Wybrano " + _nKanaLength + " Kana z " + _nSeriesLength + " serii."}</span>);
+    const { kana, series } = kanaCounter(data, selection);
+
+    return (<span className='selection-stats'>{"Wybrano " + kana + " Kana z " + series + " serii."}</span>);
 
 };
 

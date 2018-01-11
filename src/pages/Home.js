@@ -21,6 +21,7 @@ import { withRouter } from 'react-router-dom';
 import SelectionHint from '../components/SelectionHint';
 
 import './css/Home.css';
+import kanaCounter from '../utils/kanaCounter';
 
 class Home extends Component {
     state = {};
@@ -32,6 +33,9 @@ class Home extends Component {
     render() {
         console.log('Home#render',this.props);
         const { data, selection, dispatch } = this.props;
+        
+        const { kana, series } = kanaCounter(data, selection);
+
         return (
             <div className='home'>
                 <div className='wrapper'>
@@ -41,7 +45,7 @@ class Home extends Component {
                     />
                     <button
                         className='start-button'
-                        disabled={!this.props.hasSelection}
+                        disabled={!this.props.hasSelection || kana < 5}
                         onClick={() => {
                             this.props.onNavigation && this.props.onNavigation('game');
                         }}>
@@ -71,6 +75,7 @@ const mapStateToProps = (state) => {
         //'all' - convert to list of ID's
         _selection = data.map(item => item.id);
     }
+
 
     return {
         selection: _selection,
