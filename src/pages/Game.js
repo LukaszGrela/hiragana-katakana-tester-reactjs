@@ -281,7 +281,7 @@ class Game extends Component {
                                         <div className='popup-content'>
                                             {
                                                 correct ?
-                                                <CorrectFeedback />:<IncorrectFeedback />
+                                                <CorrectFeedback message={'Świetnie!'}/>:<IncorrectFeedback />
                                             }
                                         </div>
                                         <div className='popup-buttons'>
