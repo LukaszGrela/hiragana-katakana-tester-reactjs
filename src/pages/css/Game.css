@@ -86,9 +86,36 @@
     left: 8px;
     bottom: 8px;
 }
-
+.bl-edge {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
 .tr {
     position: absolute;
     right: 8px;
     top: 8px;
+}
+.tr-edge {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.score {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: orange;
+}
+
+.progress-bar {
+    background-color: orange;
+    height: 0.8rem;
+    width: 100%;
+    display: inline-block;
+}
+
+.bar {
+    background-color: /* $primary-color */ #388E3C;
+    height: 100%;
 }

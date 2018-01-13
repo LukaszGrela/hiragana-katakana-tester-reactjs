@@ -5,6 +5,7 @@ import { shuffle } from "../utils/math";
 
 import IconMenu from "../icons/IconMenu";
 import IconReplay from "../icons/IconReplay";
+import ButtonIconNext from "../icons/ButtonIconNext";
 
 
 import './css/Game.css'
@@ -195,7 +196,9 @@ class Game extends Component {
     showHint() {
         this.hideRandomDistractor();
     }
-    hideRandomDistractor() { }
+    hideRandomDistractor() {
+
+    }
 
     validateAnswer(answer, btnId) {
         const { current } = this.state;
@@ -259,6 +262,9 @@ class Game extends Component {
                     <div className='card'>
                         <div className='question'>{current.question}</div>
                         <div className='progress bl'>{(index + 1) + ' / ' + length}</div>
+                        <div className='progress-bar bl-edge'>
+                            <div className='bar' style={{width:Math.floor(((index + 1) / length) * 100)+'%'}}></div>
+                        </div>
                         <div className='score tr'>{score}</div>
                     </div>
                     <div className='distractors'>
@@ -281,7 +287,8 @@ class Game extends Component {
                                         <div className='popup-content'>
                                             {
                                                 correct ?
-                                                <CorrectFeedback message={'Świetnie!'}/>:<IncorrectFeedback />
+                                                    <CorrectFeedback message={'Świetnie!'} /> : 
+                                                    <IncorrectFeedback message={'Niepoprawnie!'} />
                                             }
                                         </div>
                                         <div className='popup-buttons'>
@@ -292,29 +299,23 @@ class Game extends Component {
                                                         className='replay-button'
                                                         onClick={() => {
                                                             console.log("Restart Quiz");
+                                                            this.restart();
                                                         }}><IconReplay /></button>,
                                                     <button
                                                         key={'menu-button'}
                                                         className='menu-button'
                                                         onClick={() => {
                                                             console.log("Go to Menu");
+                                                            this.goMenu();
                                                         }}><IconMenu /></button>
-                                                ] : correct ? [
+                                                ] :
                                                     <button
                                                         key={'next-question-button'}
                                                         className='next-question-button'
                                                         onClick={() => {
                                                             this.nextQuestion();
-                                                        }}><IconReplay /></button>
-                                                ] : [
+                                                        }}><span className='label'>Dalej</span><ButtonIconNext /></button>
 
-                                                            <button
-                                                                key={'next-question-button'}
-                                                                className='next-question-button'
-                                                                onClick={() => {
-                                                                    this.nextQuestion();
-                                                                }}><IconReplay /></button>
-                                                        ]
                                             }
                                         </div>
                                     </div>

@@ -13,26 +13,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-html {
-  font-size: 62.5%;
+
+import React, { Component } from 'react';
+
+class ButtonIconNext extends Component {
+    state = {}
+    render() {
+        return (
+            <svg xmlns="http://www.w3.org/2000/svg"
+                className='button-icon-next'
+                width="24" height="24" viewBox="0 0 24 24">
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+            </svg>
+        );
+    }
 }
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  color: /*$primary-text-color:*/   #212121;
-}
 
-/* reset */
-
-button {
-  border: none;
-  background: none;
-  padding: 0;
-  margin: 0;
-
-  min-width: 40px;
-  min-height: 40px;
-
-  cursor: pointer;
-}
+export default ButtonIconNext;

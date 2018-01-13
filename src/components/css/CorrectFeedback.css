@@ -1,14 +1,10 @@
 .gold {
     fill: gold;
 }
-.size-medium {
-    width: 3.2rem;
-    height: 3.2rem;
+.stars {
+    margin: 1.5rem auto;
 }
-.size-large {
-    width: 6.4rem;
-    height: 6.4rem;
-}
+
 .message {
     font-size: 6.4rem
 }
