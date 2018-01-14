@@ -19,7 +19,7 @@ import MoodIcon from '../icons/MoodIcon'
 
 import './css/IncorrectFeedback.css'
 
-const IncorrectFeedback = ({message})=>{
+const IncorrectFeedback = ({message, correct})=>{
 
     return (
         <div className='feedback incorrect'>
@@ -30,6 +30,7 @@ const IncorrectFeedback = ({message})=>{
                 <MoodIcon className='sad size-medium' />
             </div>
             <div className='message'>{message}</div>
+            <div className='correct-answer'>{correct}</div>
         </div>
     )
 }

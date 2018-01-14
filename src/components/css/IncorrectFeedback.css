@@ -1,3 +1,13 @@
 .mood {
     margin: 1.5rem auto;
 }
+
+.message {
+    font-size: 4.4rem
+}
+
+.correct-answer {
+    color: green;
+    font-size: 3.2rem;
+    font-weight: bold;
+}

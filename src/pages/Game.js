@@ -52,16 +52,7 @@ class Game extends Component {
     }
 
     componentDidMount() {
-        const questions = this.generateQuestionPool();
-        this.setState({
-            questions: questions,
-            current: this.getNextQuestionData(questions[0]),
-            index: 0,
-            score: 0,
-            correct: null,
-            btnId: null,
-            gameOver: false
-        });
+        this.restart();
     }
 
     generateQuestionPool() {
@@ -208,9 +199,37 @@ class Game extends Component {
         this.setState({ gameOver: true });
     }
 
+
+    goMenu() {
+        const { history } = this.props;
+        console.log(this.props, history);
+    }
+
+    restart() {
+
+        const questions = this.generateQuestionPool();
+        this.setState({
+            questions: questions,
+            current: this.getNextQuestionData(questions[0]),
+            index: 0,
+            score: 0,
+            correct: null,
+            btnId: null,
+            gameOver: false
+        }, () => {
+            //
+            this.nextQuestion(true);
+        });
+
+    }
+
     showHint() {
         this.hideRandomDistractor();
     }
+
+
+
+
     hideRandomDistractor() {
 
     }
@@ -278,7 +297,7 @@ class Game extends Component {
                         <div className='question'>{current.question}</div>
                         <div className='progress bl'>{(index + 1) + ' / ' + length}</div>
                         <div className='progress-bar bl-edge'>
-                            <div className='bar' style={{width:Math.floor(((index + 1) / length) * 100)+'%'}}></div>
+                            <div className='bar' style={{ width: Math.floor(((index + 1) / length) * 100) + '%' }}></div>
                         </div>
                         <div className='score tr'>{score}</div>
                     </div>
@@ -302,8 +321,10 @@ class Game extends Component {
                                         <div className='popup-content'>
                                             {
                                                 correct ?
-                                                    <CorrectFeedback message={'Świetnie!'} /> : 
-                                                    <IncorrectFeedback message={'Niepoprawnie!'} />
+                                                    <CorrectFeedback message={'Świetnie!'} /> :
+                                                    <IncorrectFeedback
+                                                        message={'Niepoprawnie!'}
+                                                        correct={current.correct} />
                                             }
                                         </div>
                                         <div className='popup-buttons'>
