@@ -29,6 +29,7 @@ import '../components/css/Feedback.css'
 
 import CorrectFeedback from '../components/CorrectFeedback';
 import IncorrectFeedback from '../components/IncorrectFeedback';
+import GameOver from '../components/GameOver';
 
 
 class Game extends Component {
@@ -320,6 +321,8 @@ class Game extends Component {
                                         <div className='popup-title'></div>
                                         <div className='popup-content'>
                                             {
+                                                gameOver ? <GameOver />
+                                                :
                                                 correct ?
                                                     <CorrectFeedback message={'Świetnie!'} /> :
                                                     <IncorrectFeedback
