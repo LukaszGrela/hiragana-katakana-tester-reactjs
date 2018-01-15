@@ -36,14 +36,16 @@ const GameOver = ({ data }) => {
 
     return (
         <div className='game-over'>
-            <div className='go-list-title'>{'Twoje błędne odpowiedzi:'}</div>
             {
                 incorrectList ?
-                    <ul className='go-incorrect-list'>
-                        {
-                            incorrectList
-                        }
-                    </ul>
+                    [
+                        <div key={'go-list-title'} className='go-list-title'>{'Twoje błędne odpowiedzi:'}</div>,
+                        <ul key={'go-incorrect-list'} className='go-incorrect-list'>
+                            {
+                                incorrectList
+                            }
+                        </ul>
+                    ]
                     : null
             }
         </div>

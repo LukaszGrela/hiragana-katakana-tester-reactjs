@@ -201,7 +201,7 @@ class Game extends Component {
 
     goMenu() {
         const { history } = this.props;
-        console.log(this.props, history);
+        history.goBack();
     }
 
     restart() {
