@@ -86,7 +86,7 @@ class Game extends Component {
 
             console.log(distractors);
             let questions = [];
-            let pool = data.filter((item) => {
+            data.forEach((item, i) => {
                 // test from which source:
                 // pytamy o kana czy romaji
                 // jak kana to z ktorego syllabariusza - romaji bedzie w opcjach odpowiedzi
@@ -148,9 +148,7 @@ class Game extends Component {
                             questions.push(question);
                         });
                     }
-                    return true;
                 }
-                return false;
             });
 
 
@@ -298,7 +296,7 @@ class Game extends Component {
                         <div className='question'>{current.question}</div>
                         <div className='progress bl'>{(index + 1) + ' / ' + length}</div>
                         <div className='progress-bar bl-edge'>
-                            <div className='bar' style={{ width: Math.floor(((index + 1) / length) * 100) + '%' }}></div>
+                            <div className='bar' style={{ width: Math.round(((index + 1) / length) * 100) + '%' }}></div>
                         </div>
                         <div className='score tr'>{score}</div>
                     </div>
@@ -318,16 +316,20 @@ class Game extends Component {
                                 <div className={'popup-container' + (correct !== null ? (correct ? ' correct' : ' incorrect') : '')}>
                                     <div className='cloak'></div>
                                     <div className='popup'>
-                                        <div className='popup-title'></div>
+                                        <div className='popup-title'>
+                                        {
+                                            gameOver ? 'Game Over!':null
+                                        }
+                                        </div>
                                         <div className='popup-content'>
                                             {
-                                                gameOver ? <GameOver />
+                                                gameOver ? <GameOver data={this.answeredList} />
                                                 :
                                                 correct ?
                                                     <CorrectFeedback message={'Świetnie!'} /> :
                                                     <IncorrectFeedback
                                                         message={'Niepoprawnie!'}
-                                                        correct={current.correct} />
+                                                        correct={["Prawidłowa odpowiedź to: ",<span key='span-answer' className='answer'>{current.correct}</span>]}/>
                                             }
                                         </div>
                                         <div className='popup-buttons'>

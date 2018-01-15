@@ -1,0 +1,58 @@
+.game-over {
+    display: block;
+    max-height: 22rem;
+    overflow-y: auto;
+}
+
+.go-incorrect-list {
+    margin: 1rem auto;
+}
+
+.go-incorrect-list li {
+    font-size: 1.5rem;
+}
+
+.go-list-title {
+    margin: 1rem auto;
+    font-size: 1.5rem;
+}
+
+li>span,
+li>span>span {
+    display: inline-block;
+}
+
+span.go-question {
+    width: 4rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding-right: 0.5rem;
+    color: orange;
+}
+
+span.go-your-answer-label {
+    width: 17rem;
+    text-align: left;
+}
+span.go-your-answer-value {
+    width: 4.2rem;
+    text-align: right;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: red;
+}
+
+span.go-correct-answer-label {
+    width: 13rem;
+    text-align: left;
+    padding-left: 0.5rem;
+}
+
+span.go-correct-answer-value {
+    width: 4.2rem;
+    text-align: right;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: green;
+}
+

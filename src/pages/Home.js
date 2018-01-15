@@ -32,9 +32,9 @@ class Home extends Component {
 
     render() {
         console.log('Home#render',this.props);
-        const { data, selection, dispatch } = this.props;
+        const { data, selection } = this.props;
         
-        const { kana, series } = kanaCounter(data, selection);
+        const { kana } = kanaCounter(data, selection);
 
         return (
             <div className='home'>

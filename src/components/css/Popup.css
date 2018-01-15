@@ -24,7 +24,8 @@
     left: 50%;
     transform: translate(-50%,-50%);
     width: 80%;
-    height: 320px;
+    min-width: 32rem;
+    height: 32rem;
     background-color: white;
 }
 
@@ -62,4 +63,7 @@ svg.button-icon-next {
 
 .popup-title {
     height: 40px;
+    font-size: 2.6rem;
+    margin-top: 0.8rem;
+    font-weight: bold;
 }
