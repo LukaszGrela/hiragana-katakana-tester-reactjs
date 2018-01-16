@@ -17,55 +17,68 @@
 .header {
     width: 100%;
     height: /* $header-height */ 60px;
-
     background-color: /* $primary-color */ #388E3C;
     color: /* $primary-color-text; */ #fff;
 }
+
 .left-placeholder {
     position: absolute;
     left: /* $margin-left */ 8px;
     top: 0;
-
-    width: 60px;
-    height:  /* $header-height */ 60px;
+    width: 40px;
+    height: /* $header-height */ 60px;
 }
+
 .left-placeholder button {
     margin-top: 10px;
 }
+
 .left-placeholder button svg {
     width: 32px;
     height: 32px;
     fill: /* $primary-color-text; */ #fff;
 }
+
 .app-title {
     width: 80%;
     margin: 0 auto;
-
     font-size: 1.8rem;
 }
+
 .app-title > * {
     display: inline-block;
+    vertical-align: middle;
     margin-top: 11px;
 }
+
 .app-title svg {
     width: 32px;
     height: 32px;
     fill: /* $primary-color-text; */ #fff;
 }
-.title-text {
-    vertical-align: super;
+
+
+@media all and (max-width:320px) {
+    .app-title {
+        width: 22.4rem;
+    }
+    .app-title .title-text {
+        font-size: 1.4rem;
+        width: 16rem;
+    }
 }
+
 .right-placeholder {
     position: absolute;
     right: /* $margin-right */ 8px;
     top: 0;
-
-    height:  /* $header-height */ 60px;
+    height: /* $header-height */ 60px;
 }
 
 .right-placeholder button {
     margin-top: 10px;
 }
+
 .right-placeholder button svg {
     width: 32px;
     height: 32px;
