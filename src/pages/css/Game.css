@@ -11,8 +11,8 @@
     min-height: 260px;
     box-shadow: 2px 2px 10px -1px #212121;
     margin: 0 auto;
+    margin-top: 5rem;
 }
-
 .distractors {
     margin-top: 8px;
 }

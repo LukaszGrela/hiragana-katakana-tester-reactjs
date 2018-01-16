@@ -33,6 +33,12 @@
     display: inline-block;
     margin-bottom: 0.6rem;
 }
+.row.test-what,
+ .row.writing {
+    width: 16.4rem;
+    display: inline-block;
+}
+
 
 .test-what-switch,
 .writing-switch {
@@ -40,14 +46,16 @@
 }
 
 .row.list-toolbar {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
 }
 
 .selection-button {
     width: 150px;
     background-color: #FFC107;
 }
-
+.selection-stats {
+    margin: 0.5rem auto;
+}
 .series-list {
     overflow-x: hidden;
     overflow-y: scroll;
