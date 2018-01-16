@@ -124,7 +124,7 @@
 
 
 .popup-buttons button {
-    width: 19rem;
+    width: 15rem;
     padding: 0.8rem;
     display: inline-block;
     height: 100%;
@@ -133,14 +133,15 @@
 .popup-buttons button span.label {
     display: inline-block;
     vertical-align: middle;
-    font-size: 3rem
+    font-size: 2.5rem;
+    margin-right: 0.3rem;
 }
 
 .popup-buttons button svg.icon {
     display: inline-block;
     vertical-align: middle;
 
-    width: 4.8rem;
-    height: 3.8rem;
+    width: 3rem;
+    height: 3rem;
 }
 

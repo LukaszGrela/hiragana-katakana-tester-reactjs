@@ -22,14 +22,22 @@ import connect from 'react-redux/lib/connect/connect';
 import Splash from './pages/Splash';
 import AppView from './pages/AppView';
 import { withRouter } from 'react-router-dom';
+import Redirect from 'react-router-dom/Redirect';
 
 class App extends Component {
   render() {
+    console.log('App#render');
+    const { location } = this.props;
     return (
       <div className="App">
         {
           !this.props.hasData ?
-            <Splash />
+            (
+              location.pathname != '/' ?
+                <Redirect to='/' />
+                :
+                <Splash />
+            )
             :
             <AppView />
         }
