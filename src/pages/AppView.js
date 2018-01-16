@@ -45,6 +45,18 @@ export class AppView extends Component {
         this.handleNavigationAction = this.handleNavigationAction.bind(this);
     }
 
+    componentDidMount() {
+        console.log('AppView#componentDidMount');
+        this.unlistenHistory = this.props.history.listen((location, action) => {
+            console.log("on route change", location, action);
+            this.setState({ location: location.pathname });
+          });
+    }
+    componentWillUnmount() {
+        console.log('AppView#componentWillUnmount');
+        this.unlistenHistory();
+    }
+
 
     handleNavigationAction(id = '/') {
         let to = '/';
@@ -60,7 +72,6 @@ export class AppView extends Component {
                 to = '/';
                 break;
         }
-        this.setState({ location: to });
         this.props.history.push(to);
     }
 
