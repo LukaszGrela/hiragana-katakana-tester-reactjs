@@ -56,3 +56,10 @@ span.go-correct-answer-value {
     color: green;
 }
 
+
+
+.congratulation {
+    font-size: 2rem;
+    width: 30rem;
+    margin: 0 auto;
+}

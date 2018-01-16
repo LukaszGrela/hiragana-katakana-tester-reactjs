@@ -120,3 +120,27 @@
     background-color: /* $primary-color */ #388E3C;
     height: 100%;
 }
+
+
+
+.popup-buttons button {
+    width: 19rem;
+    padding: 0.8rem;
+    display: inline-block;
+    height: 100%;
+}
+
+.popup-buttons button span.label {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 3rem
+}
+
+.popup-buttons button svg.icon {
+    display: inline-block;
+    vertical-align: middle;
+
+    width: 4.8rem;
+    height: 3.8rem;
+}
+

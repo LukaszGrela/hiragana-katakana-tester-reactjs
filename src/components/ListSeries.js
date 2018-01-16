@@ -62,8 +62,9 @@ export class ListSeries extends Component {
     }
 
     render() {
+        const className = this.props.className || '';
         return (
-            <div className={this.props.className + ' list-series'}>
+            <div className={className + ' list-series'}>
                 <ul>
                     {
                         this.generateOptions()

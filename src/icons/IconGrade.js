@@ -19,9 +19,10 @@ import React, { Component } from 'react';
 class IconGrade extends Component {
     state = {}
     render() {
+        const className = this.props.className || '';
         return (
             <svg xmlns="http://www.w3.org/2000/svg"
-                className={this.props.className}
+                className={className + ' icon-grade'}
                 id='icon-grade'
                 width="24" height="24"
                 viewBox="0 0 24 24">

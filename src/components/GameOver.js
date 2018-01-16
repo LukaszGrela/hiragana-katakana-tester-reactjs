@@ -14,6 +14,9 @@
    limitations under the License.
 */
 import React from 'react';
+
+import Stars from '../components/Stars'
+
 import './css/GameOver.css'
 
 const GameOver = ({ data }) => {
@@ -46,7 +49,13 @@ const GameOver = ({ data }) => {
                             }
                         </ul>
                     ]
-                    : null
+                    : 
+                    [
+                        <div className='congratulation'>
+                            <Stars />
+                            <p>Brawo, odpowiedziałeś poprawnie, na wszystkie pytania.</p>
+                        </div>
+                    ]
             }
         </div>
     )

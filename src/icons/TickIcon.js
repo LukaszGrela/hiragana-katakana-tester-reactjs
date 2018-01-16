@@ -14,10 +14,12 @@
    limitations under the License.
 */
 import React from 'react';
-const IconTick = () => {
+const IconTick = ({ className }) => {
+
     return (
         <svg id='icon-tick' xmlns='http://www.w3.org/2000/svg'
             width='64' height='64'
+            className={(className || '') + ' icon-tick'}
             viewBox='0 0 64 64'>
             <path d="M52.376,12.565l1.025,1.465c-4.18,3.145-8.828,7.988-13.945,14.531c-5.117,6.543-9.023,12.657-11.719,18.34l-2.168,1.465
                 c-1.797,1.25-3.018,2.178-3.663,2.783c-0.254-0.918-0.811-2.422-1.67-4.512l-0.82-1.904c-1.172-2.734-2.261-4.756-3.267-6.064

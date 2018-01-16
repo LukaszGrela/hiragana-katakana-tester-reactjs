@@ -339,23 +339,21 @@ class Game extends Component {
                                                         key={'replay-button'}
                                                         className='replay-button'
                                                         onClick={() => {
-                                                            console.log("Restart Quiz");
                                                             this.restart();
-                                                        }}><IconReplay /></button>,
+                                                        }}><span className='label'>Od nowa</span><IconReplay className='icon'/></button>,
                                                     <button
                                                         key={'menu-button'}
                                                         className='menu-button'
                                                         onClick={() => {
-                                                            console.log("Go to Menu");
                                                             this.goMenu();
-                                                        }}><IconMenu /></button>
+                                                        }}><span className='label'>Menu</span><IconMenu className='icon'/></button>
                                                 ] :
                                                     <button
                                                         key={'next-question-button'}
                                                         className='next-question-button'
                                                         onClick={() => {
                                                             this.nextQuestion();
-                                                        }}><span className='label'>Dalej</span><ButtonIconNext /></button>
+                                                        }}><span className='label'>Dalej</span><ButtonIconNext className='icon'/></button>
 
                                             }
                                         </div>
