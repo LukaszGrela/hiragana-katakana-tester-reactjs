@@ -30,6 +30,7 @@ import '../components/css/Feedback.css'
 import CorrectFeedback from '../components/CorrectFeedback';
 import IncorrectFeedback from '../components/IncorrectFeedback';
 import GameOver from '../components/GameOver';
+import Distractors from '../components/Distractors';
 
 
 class Game extends Component {
@@ -38,15 +39,16 @@ class Game extends Component {
 
     constructor(props) {
         super(props);
-        console.log('Game#constructor', props);
+
         this.state = {
             questions: [],
             current: {},
             index: 0,
             score: 0,
             correct: null,
-            btnId: null,
-            gameOver: false
+            selectedBtnId: null,
+            gameOver: false,
+            hintUsed: false
         }
         this.showHint = this.showHint.bind(this);
         this.validateAnswer = this.validateAnswer.bind(this);
@@ -84,7 +86,7 @@ class Game extends Component {
 
             const distractorsCopy = distractors.concat();
 
-            console.log(distractors);
+
             let questions = [];
             data.forEach((item, i) => {
                 // test from which source:
@@ -93,7 +95,7 @@ class Game extends Component {
                 // jak romaji to z ktorego syllabariusza wziasc odpowiedzi
 
                 if (selection.indexOf(item.id) !== -1) {
-                    console.log('whatToTest', whatToTest, 'whatToTestLabel', romajiLabel, 'syllabaryChosen', syllabaryChosen);
+
                     let question;
                     let chosenDistractors = [];
 
@@ -171,7 +173,7 @@ class Game extends Component {
 
     nextQuestion(start = false) {
         const { questions, index } = this.state;
-        console.log('Game#nextQuestion', start, index, questions.length);
+
         const next = start ? 0 : (index + 1);
         if (start) {
             this.answeredList = [];
@@ -185,8 +187,9 @@ class Game extends Component {
                 index: next,
                 current: copy,
                 correct: null,
-                btnId: null,
-                showPopup: false
+                selectedBtnId: null,
+                showPopup: false,
+                hintUsed: false
             });
 
 
@@ -194,7 +197,7 @@ class Game extends Component {
     }
 
     gameOver() {
-        console.log('Game Over');
+
         this.setState({ gameOver: true });
     }
 
@@ -213,8 +216,9 @@ class Game extends Component {
             index: 0,
             score: 0,
             correct: null,
-            btnId: null,
-            gameOver: false
+            selectedBtnId: null,
+            gameOver: false,
+            hintUsed: false
         }, () => {
             //
             this.nextQuestion(true);
@@ -230,7 +234,8 @@ class Game extends Component {
 
 
     hideRandomDistractor() {
-
+        this.distractors && this.distractors.hideRandomDistractor();
+        this.setState({ hintUsed: true });
     }
 
     validateAnswer(answer, btnId) {
@@ -240,57 +245,38 @@ class Game extends Component {
 
         if (copy.correct === answer) {
             // score
-            console.log("CORRECT");
+
             copy.userAnswer = {
                 isCorrect: true
             }
             this.answeredList.push(copy);
-            this.setState({ score: this.state.score + 1, correct: true, btnId: btnId, showPopup: true });
+            this.setState({ score: this.state.score + 1, correct: true, selectedBtnId: btnId, showPopup: true });
         } else {
-            console.warn("INCORRECT!");
+            
             copy.userAnswer = {
                 isCorrect: false,
                 answer: answer
             }
             this.answeredList.push(copy);
-            this.setState({ correct: false, btnId: btnId, showPopup: true });
+            this.setState({ correct: false, selectedBtnId: btnId, showPopup: true });
         }
     }
 
-    /**
-     * Returns answer buttons fragment.
-     * @param {string} correct Correct answer value
-     * @param {string[]} distractors List of distractor values
-     * @returns {JSX.Element | null}
-     */
-    generateAnswers() {
-        const { answerOptions } = this.state.current;
-
-        if (!answerOptions) return null;
-
-
-        let i = 0;
-        return answerOptions.map(item => {
-            const id = 'answer-' + (i++);
-            return (
-                <button
-                    key={item}
-                    id={id}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        if (this.state.correct === null) {
-                            this.validateAnswer(item, id);
-                        }
-                    }}>{item}</button>
-            )
-        })
-    }
-
     render() {
-        const { questions, current, index, score, correct, btnId, gameOver, showPopup } = this.state;
+        const {
+            questions,
+            current,
+            index,
+            score,
+            correct,
+            selectedBtnId,
+            gameOver,
+            showPopup,
+            hintUsed
+        } = this.state;
         const length = questions.length;
         return (
-            <div className={'game' + (correct !== null ? (correct ? ' correct' : ' incorrect') : '') + (btnId !== null ? ' ' + btnId : '')}>
+            <div className={'game' + (correct !== null ? (correct ? ' correct' : ' incorrect') : '') + (selectedBtnId !== null ? ' ' + selectedBtnId : '')}>
                 <div className='wrapper'>
                     <div className='card'>
                         <div className='question'>{current.question}</div>
@@ -300,15 +286,22 @@ class Game extends Component {
                         </div>
                         <div className='score tr'>{score}</div>
                     </div>
-                    <div className='distractors'>
-                        {
-                            this.generateAnswers(current.correct, current.distractors)
-                        }
-                    </div>
+                    <Distractors
+                        ref={(distractors) => this.distractors = distractors}
+                        correct={current.correct}
+                        answerOptions={current.answerOptions}
+                        handleClick={(item, id) => {
+                            if (this.state.correct === null) {
+                                this.validateAnswer(item, id);
+                            }
+                        }}
+                         />
                     <div className='hint'>
-                        <button onClick={() => {
-                            this.showHint();
-                        }}>Podpowiedź</button>
+                        <button
+                            disabled={hintUsed}
+                            onClick={() => {
+                                this.showHint();
+                            }}>Podpowiedź</button>
                     </div>
                     {
                         showPopup ?
@@ -317,19 +310,19 @@ class Game extends Component {
                                     <div className='cloak'></div>
                                     <div className='popup'>
                                         <div className='popup-title'>
-                                        {
-                                            gameOver ? 'Game Over!':null
-                                        }
+                                            {
+                                                gameOver ? 'Game Over!' : null
+                                            }
                                         </div>
                                         <div className='popup-content'>
                                             {
                                                 gameOver ? <GameOver data={this.answeredList} />
-                                                :
-                                                correct ?
-                                                    <CorrectFeedback message={'Świetnie!'} /> :
-                                                    <IncorrectFeedback
-                                                        message={'Niepoprawnie!'}
-                                                        correct={["Prawidłowa odpowiedź to: ",<span key='span-answer' className='answer'>{current.correct}</span>]}/>
+                                                    :
+                                                    correct ?
+                                                        <CorrectFeedback message={'Świetnie!'} /> :
+                                                        <IncorrectFeedback
+                                                            message={'Niepoprawnie!'}
+                                                            correct={["Prawidłowa odpowiedź to: ", <span key='span-answer' className='answer'>{current.correct}</span>]} />
                                             }
                                         </div>
                                         <div className='popup-buttons'>
@@ -340,20 +333,20 @@ class Game extends Component {
                                                         className='replay-button'
                                                         onClick={() => {
                                                             this.restart();
-                                                        }}><span className='label'>Od nowa</span><IconReplay className='icon'/></button>,
+                                                        }}><span className='label'>Od nowa</span><IconReplay className='icon' /></button>,
                                                     <button
                                                         key={'menu-button'}
                                                         className='menu-button'
                                                         onClick={() => {
                                                             this.goMenu();
-                                                        }}><span className='label'>Menu</span><IconMenu className='icon'/></button>
+                                                        }}><span className='label'>Menu</span><IconMenu className='icon' /></button>
                                                 ] :
                                                     <button
                                                         key={'next-question-button'}
                                                         className='next-question-button'
                                                         onClick={() => {
                                                             this.nextQuestion();
-                                                        }}><span className='label'>Dalej</span><ButtonIconNext className='icon'/></button>
+                                                        }}><span className='label'>Dalej</span><ButtonIconNext className='icon' /></button>
 
                                             }
                                         </div>
@@ -369,7 +362,7 @@ class Game extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    console.log('Game#mapStateToProps', state);
+
     const { syllabary, writing, selection, data } = state;
 
     let _selection = selection;

@@ -38,14 +38,14 @@ export class ListSeries extends Component {
     }
 
     generateOptions() {
-        console.log(this.props);
+        
         const { data, selection } = this.state;
         if (data && selection) {
             const allSelected = selection.length > 0 && isNaN(parseInt(selection, 10));
             return data.map((series, index) => {
                 const { id, name } = series;
                 let selected = allSelected || selection.indexOf(id) !== -1;
-                console.log(selected);
+                
                 return <li
                     key={id}
                     className={'option' + (selected ? ' selected' : '') + (index % 2 === 0 ? ' even':' odd')}

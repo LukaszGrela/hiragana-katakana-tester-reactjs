@@ -29,7 +29,7 @@ import SelectionHint from '../components/SelectionHint';
 class Setup extends Component {
     constructor(props) {
         super(props);
-        console.log("Setup#constructor");
+        
         this.state = {
             syllabary_selection: (!!this.props.syllabary_selection && this.props.syllabary_selection === 1)
         }
@@ -37,7 +37,7 @@ class Setup extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log("Setup#componentWillReceiveProps",nextProps);
+        
     }
 
     render() {
@@ -104,7 +104,7 @@ class Setup extends Component {
                             } else {
                                 newSelection.push(parseInt(id, 10))
                             }
-                            console.log('onItemClicked', id, selected);
+                            
                             dispatch(selectionChanged(newSelection));
                         }} />
                 </div>
@@ -117,7 +117,7 @@ const mapStateToProps = (state) => {
     const { syllabary, writing, selection, data } = state;
     let _selection = selection;
     let _fullSelection = [];
-    console.log("Setup#mapStateToProps", state);
+    
 
     if (selection && selection.length === 1 && isNaN(selection[0])) {
         //'all' - convert to list of ID's

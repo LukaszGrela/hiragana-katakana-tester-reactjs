@@ -13,66 +13,6 @@
     margin: 0 auto;
     margin-top: 5rem;
 }
-.distractors {
-    margin-top: 8px;
-}
-
-.distractors button {
-    background-color: #fff;
-    width: 60px;
-    height: 64px;
-    margin: 0 2px;
-    box-shadow: 2px 2px 10px -1px #212121;
-
-    font-size: 2.4rem;
-    cursor: pointer;
-}
-.correct .distractors button,
-.incorrect .distractors button {
-    cursor: not-allowed;
-    color: silver;
-}
-.distractors button:hover {
-    background-color: #F57C00;
-}
-.correct .distractors button:hover,
-.incorrect .distractors button {
-    background-color: #fff;
-}
-
-.correct.answer-0 #answer-0,
-.correct.answer-0 button#answer-0:hover,
-.correct.answer-1 #answer-1,
-.correct.answer-1 button#answer-1:hover,
-.correct.answer-2 #answer-2,
-.correct.answer-2 button#answer-2:hover,
-.correct.answer-3 #answer-3,
-.correct.answer-3 button#answer-3:hover,
-.correct.answer-4 #answer-4,
-.correct.answer-4 button#answer-4:hover {
-    background-color: green;
-}
-
-
-.incorrect.answer-0 #answer-0,
-.incorrect.answer-0 button#answer-0:hover,
-.incorrect.answer-1 #answer-1,
-.incorrect.answer-1 button#answer-1:hover,
-.incorrect.answer-2 #answer-2,
-.incorrect.answer-2 button#answer-2:hover,
-.incorrect.answer-3 #answer-3,
-.incorrect.answer-3 button#answer-3:hover,
-.incorrect.answer-4 #answer-4,
-.incorrect.answer-4 button#answer-4:hover {
-    background-color: red;
-}
-
-
-
-
-
-
-
 
 .question {
     font-size: 16rem;
@@ -87,16 +27,19 @@
     left: 8px;
     bottom: 8px;
 }
+
 .bl-edge {
     position: absolute;
     left: 0;
     bottom: 0;
 }
+
 .tr {
     position: absolute;
     right: 8px;
     top: 8px;
 }
+
 .tr-edge {
     position: absolute;
     right: 0;
@@ -117,11 +60,10 @@
 }
 
 .bar {
-    background-color: /* $primary-color */ #388E3C;
+    background-color: /* $primary-color */
+    #388E3C;
     height: 100%;
 }
-
-
 
 .popup-buttons button {
     width: 15rem;
@@ -140,8 +82,42 @@
 .popup-buttons button svg.icon {
     display: inline-block;
     vertical-align: middle;
-
     width: 3rem;
     height: 3rem;
 }
 
+
+/* Hint button */
+
+.hint button {
+    box-shadow: rgb(62, 115, 39) 0px 10px 14px -7px;
+    background: linear-gradient(rgb(119, 181, 90) 5%, rgb(114, 179, 82) 100%) rgb(119, 181, 90);
+    border-radius: 4px;
+    border: 1px solid rgb(75, 143, 41);
+    display: inline-block;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    font-family: Arial;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.4rem 1rem;
+    text-decoration: none;
+    text-shadow: rgb(91, 138, 60) 0px 1px 0px;
+
+    min-height: 2.5rem;
+    font-size: 1.2rem;
+    margin: 0.8rem auto;
+}
+.hint button:hover {
+    box-shadow: none;
+}
+.hint button:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: grey;
+    border-color: #212121;
+    background: none;
+    background-color: #3f3f3f;
+    text-shadow: none;
+    box-shadow: none;
+}

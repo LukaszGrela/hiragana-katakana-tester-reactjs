@@ -20,7 +20,7 @@ import './css/OnOffSwitch.css'
 class CheckboxSwitch extends Component {
     constructor(props) {
         super(props);
-        console.log("CheckboxSwitch#constructor",props);
+        
         this.state = {
             selected: props.isChecked || false
         }

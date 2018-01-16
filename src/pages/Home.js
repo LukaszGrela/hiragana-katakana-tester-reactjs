@@ -27,11 +27,11 @@ class Home extends Component {
     state = {};
 
     componentWillReceiveProps(nextProps) {
-        console.log("Home#componentWillReceiveProps",nextProps);
+        
     }
 
     render() {
-        console.log('Home#render',this.props);
+        
         const { data, selection } = this.props;
         
         const { kana } = kanaCounter(data, selection);
@@ -62,9 +62,9 @@ class Home extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    console.log('Home#mapStateToProps', state);
+    
     const { syllabary, writing, selection, data } = state;
-    console.log(selection);
+    
     let hasSelection = false,
         _selection = selection;
     if (selection && selection.length > 0) {

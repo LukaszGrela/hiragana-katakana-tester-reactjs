@@ -26,14 +26,14 @@ import Redirect from 'react-router-dom/Redirect';
 
 class App extends Component {
   render() {
-    console.log('App#render');
+    
     const { location } = this.props;
     return (
       <div className="App">
         {
           !this.props.hasData ?
             (
-              location.pathname != '/' ?
+              location.pathname !== '/' ?
                 <Redirect to='/' />
                 :
                 <Splash />

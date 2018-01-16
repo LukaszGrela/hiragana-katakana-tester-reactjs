@@ -46,14 +46,14 @@ export class AppView extends Component {
     }
 
     componentDidMount() {
-        console.log('AppView#componentDidMount');
+        
         this.unlistenHistory = this.props.history.listen((location, action) => {
-            console.log("on route change", location, action);
+            
             this.setState({ location: location.pathname });
           });
     }
     componentWillUnmount() {
-        console.log('AppView#componentWillUnmount');
+        
         this.unlistenHistory();
     }
 
@@ -83,7 +83,7 @@ export class AppView extends Component {
      */
     getHeaderLeftSlotFragment() {
         const { location } = this.state;
-        console.log('AppView#getHeaderLeftSlotFragment', location);
+        
         if (location !== '/') {
             return <button onClick={() => { this.handleNavigationAction() }}>
                 <IconArrowBack /></button>
@@ -97,7 +97,7 @@ export class AppView extends Component {
      */
     getHeaderRightSlotFragment() {
         const { location } = this.state;
-        console.log('AppView#getHeaderRightSlotFragment', location);
+        
         if (location === '/') {
             return (
                 <button key={'settings-btn'} className='button-settings'
