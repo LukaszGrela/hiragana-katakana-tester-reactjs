@@ -29,7 +29,7 @@ import SelectionHint from '../components/SelectionHint';
 class Setup extends Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             syllabary_selection: (!!this.props.syllabary_selection && this.props.syllabary_selection === 1)
         }
@@ -37,7 +37,7 @@ class Setup extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        
+
     }
 
     render() {
@@ -87,6 +87,7 @@ class Setup extends Component {
                             }}
                         >{selection.length === 0 ? 'Select All' : 'Deselect All'}</button>
                         <SelectionHint
+                            pattern={"It is selected {k} Kana of {s} series."}
                             selection={selection}
                             data={data} />
                     </div>
@@ -104,7 +105,7 @@ class Setup extends Component {
                             } else {
                                 newSelection.push(parseInt(id, 10))
                             }
-                            
+
                             dispatch(selectionChanged(newSelection));
                         }} />
                 </div>
@@ -117,7 +118,7 @@ const mapStateToProps = (state) => {
     const { syllabary, writing, selection, data } = state;
     let _selection = selection;
     let _fullSelection = [];
-    
+
 
     if (selection && selection.length === 1 && isNaN(selection[0])) {
         //'all' - convert to list of ID's

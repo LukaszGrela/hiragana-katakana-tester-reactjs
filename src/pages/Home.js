@@ -27,19 +27,20 @@ class Home extends Component {
     state = {};
 
     componentWillReceiveProps(nextProps) {
-        
+
     }
 
     render() {
-        
+
         const { data, selection } = this.props;
-        
+
         const { kana } = kanaCounter(data, selection);
 
         return (
             <div className='home'>
                 <div className='wrapper'>
                     <SelectionHint
+                        pattern={"It is selected {k} Kana of {s} series."}
                         selection={selection}
                         data={data}
                     />
@@ -62,9 +63,9 @@ class Home extends Component {
     }
 }
 const mapStateToProps = (state) => {
-    
+
     const { syllabary, writing, selection, data } = state;
-    
+
     let hasSelection = false,
         _selection = selection;
     if (selection && selection.length > 0) {

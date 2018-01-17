@@ -16,11 +16,20 @@
 import React from 'react';
 import kanaCounter from '../utils/kanaCounter';
 
-const SelectionHint = ({ selection, data }) => {
+const SelectionHint = ({ selection, data, pattern }) => {
 
     const { kana, series } = kanaCounter(data, selection);
-
-    return (<span className='selection-stats'>{"Wybrano " + kana + " Kana z " + series + " serii."}</span>);
+    const stats = pattern.replace(/{(k|s)}/gi, (match, $1, index) => {
+        switch ($1) {
+            case 'k':
+                return kana;
+            case 's':
+                return series;
+            default:
+                return match;
+        }
+    })
+    return (<span className='selection-stats'>{stats}</span>);
 
 };
 

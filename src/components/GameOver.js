@@ -31,8 +31,8 @@ const GameOver = ({ data }) => {
             console.log(index, item)
             return (<li key={index}>
                 <span className='go-question'>{item.question}</span>
-                <span className='go-your-answer-label'>Twoja odpowiedź: <span className='go-your-answer-value'>{item.userAnswer.answer}</span>, </span>
-                <span className='go-correct-answer-label'>poprawna: <span className='go-correct-answer-value'>{item.correct}</span></span>
+                <span className='go-your-answer-label'>Your answer: <span className='go-your-answer-value'>{item.userAnswer.answer}</span>, </span>
+                <span className='go-correct-answer-label'>correct: <span className='go-correct-answer-value'>{item.correct}</span></span>
             </li>);
         })
     }
@@ -42,7 +42,7 @@ const GameOver = ({ data }) => {
             {
                 incorrectList ?
                     [
-                        <div key={'go-list-title'} className='go-list-title'>{'Twoje błędne odpowiedzi:'}</div>,
+                        <div key={'go-list-title'} className='go-list-title'>{'Incorrect answers:'}</div>,
                         <ul key={'go-incorrect-list'} className='go-incorrect-list'>
                             {
                                 incorrectList
@@ -53,7 +53,7 @@ const GameOver = ({ data }) => {
                     [
                         <div className='congratulation'>
                             <Stars />
-                            <p>Brawo, odpowiedziałeś poprawnie, na wszystkie pytania.</p>
+                            <p>Well done, you've answered correctly on all questions.</p>
                         </div>
                     ]
             }
