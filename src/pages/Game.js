@@ -301,7 +301,7 @@ class Game extends Component {
                             disabled={hintUsed}
                             onClick={() => {
                                 this.showHint();
-                            }}>Podpowiedź</button>
+                            }}>Hint</button>
                     </div>
                     {
                         showPopup ?
@@ -319,10 +319,10 @@ class Game extends Component {
                                                 gameOver ? <GameOver data={this.answeredList} />
                                                     :
                                                     correct ?
-                                                        <CorrectFeedback message={'Świetnie!'} /> :
+                                                        <CorrectFeedback message={'Excellent!'} /> :
                                                         <IncorrectFeedback
-                                                            message={'Niepoprawnie!'}
-                                                            correct={["Prawidłowa odpowiedź to: ", <span key='span-answer' className='answer'>{current.correct}</span>]} />
+                                                            message={'Incorrect!'}
+                                                            correct={["Correct answer is: ", <span key='span-answer' className='answer'>{current.correct}</span>]} />
                                             }
                                         </div>
                                         <div className='popup-buttons'>
@@ -333,7 +333,7 @@ class Game extends Component {
                                                         className='replay-button'
                                                         onClick={() => {
                                                             this.restart();
-                                                        }}><span className='label'>Od nowa</span><IconReplay className='icon' /></button>,
+                                                        }}><span className='label'>Again</span><IconReplay className='icon' /></button>,
                                                     <button
                                                         key={'menu-button'}
                                                         className='menu-button'
@@ -346,7 +346,7 @@ class Game extends Component {
                                                         className='next-question-button'
                                                         onClick={() => {
                                                             this.nextQuestion();
-                                                        }}><span className='label'>Dalej</span><ButtonIconNext className='icon' /></button>
+                                                        }}><span className='label'>Next</span><ButtonIconNext className='icon' /></button>
 
                                             }
                                         </div>

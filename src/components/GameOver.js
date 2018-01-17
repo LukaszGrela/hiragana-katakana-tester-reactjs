@@ -50,12 +50,12 @@ const GameOver = ({ data }) => {
                         </ul>
                     ]
                     : 
-                    [
+                    
                         <div className='congratulation'>
                             <Stars />
                             <p>Well done, you've answered correctly on all questions.</p>
                         </div>
-                    ]
+                    
             }
         </div>
     )
