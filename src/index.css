@@ -21,6 +21,7 @@ body {
   padding: 0;
   font-family: sans-serif;
   color: /*$primary-text-color:*/   #212121;
+  background-color: #E8D1A8;
 }
 
 /* reset */

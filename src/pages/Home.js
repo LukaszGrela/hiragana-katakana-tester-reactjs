@@ -40,7 +40,7 @@ class Home extends Component {
             <div className='home'>
                 <div className='wrapper'>
                     <SelectionHint
-                        pattern={"It is selected {k} Kana of {s} series."}
+                        pattern={"Selected {k} Kana of {s} series."}
                         selection={selection}
                         data={data}
                     />
@@ -50,12 +50,14 @@ class Home extends Component {
                         onClick={() => {
                             this.props.onNavigation && this.props.onNavigation('game');
                         }}>
+                        <span className='button-content-wrapper'>
                         <span className='button-label'>START</span>
                         <span className='selection-prefix'></span>
                         <span className='selection-syllabary'>{this.props.syllabary}</span>
                         <span className='selection-connect'>with</span>
                         <span className='selection-writing'>{this.props.writing}</span>
                         <span className='selection-sufix'>test</span>
+                        </span>
                     </button>
                 </div>
             </div>

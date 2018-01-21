@@ -13,12 +13,17 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+.app-view {
+    max-width: 94rem;
+    margin: 0 auto;
+    position: relative;
+}
 
 .header {
     width: 100%;
     height: /* $header-height */ 60px;
 
-    background-color: /* $primary-color */ #388E3C;
+    background-color: transparent;
     color: /* $primary-color-text; */ #fff;
 }
 .left-placeholder {

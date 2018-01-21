@@ -60,6 +60,8 @@
     overflow-x: hidden;
     overflow-y: scroll;
     height: 200px;
+    margin: 0 auto;
+    max-width: 64rem;
 }
 
 @media all and (max-width:320px) {
