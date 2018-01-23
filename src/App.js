@@ -26,10 +26,20 @@ import Redirect from 'react-router-dom/Redirect';
 
 class App extends Component {
   render() {
-    
+
     const { location } = this.props;
     return (
       <div className="App">
+        <div className="app-background">
+          <div className="layer sky">
+            <div className="layer sun"></div>
+            <div className="layer mountains"></div>
+          </div>
+          <div className="layer ground">
+            <div className="layer tree-01"></div>
+            <div className="layer tree-02"></div>
+          </div>
+        </div>
         {
           !this.props.hasData ?
             (
