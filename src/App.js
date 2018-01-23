@@ -38,6 +38,9 @@ class App extends Component {
           <div className="layer ground">
             <div className="layer tree-01"></div>
             <div className="layer tree-02"></div>
+            <div className="layer building-01"></div>
+            <div className="layer building-02"></div>
+            <div className="layer crane crane-01"></div>
           </div>
         </div>
         {

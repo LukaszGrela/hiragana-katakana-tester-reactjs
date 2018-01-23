@@ -37,16 +37,42 @@
     background-image: url(images/tree-01.png);
     width: 252px;
     height: 216px;
-    left: 202px;
-    bottom: 344px;
+    left: 100px;
+    bottom: 382px;
 }
 
 .tree-02 {
     background-image: url(images/tree-02.png);
     width: 223px;
     height: 176px;
-    right: 195px;
+    right: 178px;
     bottom: 451px;
+}
+
+.building-02 {
+    background-image: url(images/building-02.png);
+    width: 97px;
+    height: 262px;
+    right: 460px;
+    bottom: 375px;
+}
+
+.building-01 {
+  background-image: url(images/building-01.png);
+  width: 175px;
+  height: 185px;
+  left: 405px;
+  bottom: 347px;
+}
+.crane {
+  background-image: url(images/crane.png);
+  width: 50px;
+  height: 27px;
+
+}
+.crane-01 {
+  left: 640px;
+  bottom: 400px;
 }
 
 .sky {
