@@ -1,6 +1,9 @@
 
 
-
+.list-series {
+    overflow-x: hidden;
+    overflow-y: scroll;    
+}
 
 
 ul {
@@ -36,7 +39,7 @@ li.option .label {
 
 li.option svg {
     display: none;
-    fill: #212121;
+    fill: #E3412C;
 
     position: absolute;
     top:0;
@@ -48,11 +51,4 @@ li.option svg {
 }
 li.option.selected svg {
     display: inline-block;
-}
-
-.option:nth-child(even) {
-    background-color: #eee;
-}
-.option:nth-child(odd) {
-    background-color: #dcdcdc;
 }

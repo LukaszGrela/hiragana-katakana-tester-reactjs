@@ -17,14 +17,14 @@
 .setup {
     width: 80%;
     margin: 0 auto;
-    min-width: 320px;
+    min-width: 32rem;
 }
 
 
 /* .wrapper {} */
 
 .row {
-    min-height: 40px;
+    min-height: 4rem;
     margin-bottom: 1.6rem;
 }
 
@@ -33,12 +33,12 @@
     display: inline-block;
     margin-bottom: 0.6rem;
 }
+
 .row.test-what,
- .row.writing {
+.row.writing {
     width: 16.4rem;
     display: inline-block;
 }
-
 
 .test-what-switch,
 .writing-switch {
@@ -50,22 +50,69 @@
 }
 
 .selection-button {
-    width: 150px;
+    width: 15rem;
     background-color: #FFC107;
 }
+
 .selection-stats {
     margin: 0.5rem auto;
 }
+
 .series-list {
-    overflow-x: hidden;
-    overflow-y: scroll;
-    height: 200px;
-    margin: 0 auto;
+    height: 20rem;
+    margin: 1rem auto;
     max-width: 64rem;
+    
+    min-width: 30.4rem;
+    background-color: initial;
+
+    outline: rgba(255, 255, 255, 0.85) solid 0.4rem;
+    outline-offset: 0.4rem;
 }
 
-@media all and (max-width:320px) {
+/* scrollbars */
+
+.series-list::-webkit-scrollbar {
+	width: 10px;
+	background-color: transparent;
+}
+
+.series-list::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: rgba(245, 245, 245, 0.75);
+  border: 1px solid #ccc;
+}
+
+.series-list::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: linear-gradient(to left, #fff, #e4e4e4);
+  border: 1px solid #aaa;
+}
+
+.series-list::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+
+.series-list::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(to left, #E3412C, rgb(201, 53, 33));
+  border: 1px solid transparent;
+}
+
+.series-list ul {
+    
+    background-image: url(../../images/pattern-320.png);
+    background-color: transparent;
+}
+
+.series-list ul .option:nth-child(even) {
+    background-color: initial;
+}
+.series-list ul .option:nth-child(odd) {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+@media all and (max-width:32rem) {
     .series-list {
-        height: 160px
+        height: 16rem;
     }
 }
