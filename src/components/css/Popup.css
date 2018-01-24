@@ -1,5 +1,5 @@
 .popup-container {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -24,9 +24,14 @@
     left: 50%;
     transform: translate(-50%,-50%);
     width: 80%;
-    min-width: 32rem;
-    height: 32rem;
+    min-width: 30.4rem;
+    height: 30.4rem;
+    background-image: url(../../images/pattern-360.png);
     background-color: white;
+
+
+    outline: 0.4rem solid white;
+    outline-offset: 0.4rem;
 }
 
 .popup .popup-content {
