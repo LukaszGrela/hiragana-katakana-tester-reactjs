@@ -39,11 +39,6 @@ class Home extends Component {
         return (
             <div className='home'>
                 <div className='wrapper'>
-                    <SelectionHint
-                        pattern={"Selected {k} Kana of {s} series."}
-                        selection={selection}
-                        data={data}
-                    />
                     <button
                         className='start-button'
                         disabled={!this.props.hasSelection || kana < 5}
@@ -51,13 +46,18 @@ class Home extends Component {
                             this.props.onNavigation && this.props.onNavigation('game');
                         }}>
                         <span className='button-content-wrapper'>
-                        <span className='button-label'>START</span>
-                        <span className='selection-prefix'></span>
-                        <span className='selection-syllabary'>{this.props.syllabary}</span>
-                        <span className='selection-connect'>with</span>
-                        <span className='selection-writing'>{this.props.writing}</span>
-                        <span className='selection-sufix'>test</span>
-                        </span>
+                            <span className='selection-syllabary'>{this.props.syllabary}</span>
+                            <span className='selection-connect'>with</span>
+                            <span className='selection-writing'>{this.props.writing}</span>
+                            <span className='selection-sufix'>test</span>
+                            <span className='button-label'>START TEST</span>
+                            </span>
+                            <SelectionHint
+                                className='stats'
+                                pattern={"Selected {k} Kana of {s} series."}
+                                selection={selection}
+                                data={data}
+                            />
                     </button>
                 </div>
             </div>

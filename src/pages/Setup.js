@@ -87,6 +87,7 @@ class Setup extends Component {
                             }}
                         >{selection.length === 0 ? 'Select All' : 'Deselect All'}</button>
                         <SelectionHint
+                            className="selection-stats"
                             pattern={"It is selected {k} Kana of {s} series."}
                             selection={selection}
                             data={data} />

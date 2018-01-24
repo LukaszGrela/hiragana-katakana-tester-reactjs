@@ -1,32 +1,70 @@
 .home {
-
     width: 80%;
     margin: 0 auto;
-    min-width: 320px;
-
+    min-width: 32.0rem;
 }
+
+
 /*
 .wrapper {}
 */
-.selection-stats {
-    display: block;
-}
 
 .start-button {
-
+    position: relative;
     background-image: url(../../images/start-test-button.png);
-
+    background-repeat: no-repeat;
     display: block;
-    
-    margin: 30px auto;
-    width: 192px;
-    height: 132px;
+    margin: 3.0rem auto;
+    width: 19.2rem;
+    height: 13.2rem;
     border-radius: 0;
 }
-.start-button > * {
+
+.start-button .button-content-wrapper {
+    position: relative;
     display: block;
+}
+
+.start-button .button-content-wrapper>* {
+    display: inline-block;
+    font-size: 1.4rem;
+}
+
+.start-button .button-content-wrapper .selection-syllabary,
+.start-button .button-content-wrapper .button-label {
+    display: block;
+}
+
+.start-button .stats {
+    display: block;
+}
+
+.start-button .stats {
+    position: absolute;
+    width: 100%;
+    font-size: 1.2rem;
+    bottom: 0.5rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.selection-connect {
+    margin-right: 0.4rem;
+}
+
+.selection-writing {
+    margin-right: 0.4rem;
+}
+
+/* .selection-sufix {} */
+
+.selection-syllabary {
+    margin: 0.4rem;
 }
 
 .start-button .button-label {
     font-size: 1.8rem;
+    margin: 1.5rem 0.5rem;
+    font-weight: bold;
+    color: #E3412C;
 }

@@ -16,7 +16,7 @@
 import React from 'react';
 import kanaCounter from '../utils/kanaCounter';
 
-const SelectionHint = ({ selection, data, pattern }) => {
+const SelectionHint = ({ selection, data, pattern, className }) => {
 
     const { kana, series } = kanaCounter(data, selection);
     const stats = pattern.replace(/{(k|s)}/gi, (match, $1, index) => {
@@ -29,7 +29,7 @@ const SelectionHint = ({ selection, data, pattern }) => {
                 return match;
         }
     })
-    return (<span className='selection-stats'>{stats}</span>);
+    return (<span className={'selection-hint' + (className ? ' '+className:'')}>{stats}</span>);
 
 };
 

@@ -281,9 +281,11 @@ class Game extends Component {
                     <div className='card'>
                         <div className='question'>{current.question}</div>
                         <div className='progress bl'>{(index + 1) + ' / ' + length}</div>
+                        {false &&
                         <div className='progress-bar bl-edge'>
                             <div className='bar' style={{ width: Math.round(((index + 1) / length) * 100) + '%' }}></div>
                         </div>
+                        }
                         <div className='score tr'>{score}</div>
                     </div>
                     <Distractors
