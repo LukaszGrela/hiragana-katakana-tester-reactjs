@@ -46,14 +46,14 @@ export class AppView extends Component {
     }
 
     componentDidMount() {
-        
+
         this.unlistenHistory = this.props.history.listen((location, action) => {
-            
+
             this.setState({ location: location.pathname });
-          });
+        });
     }
     componentWillUnmount() {
-        
+
         this.unlistenHistory();
     }
 
@@ -83,7 +83,7 @@ export class AppView extends Component {
      */
     getHeaderLeftSlotFragment() {
         const { location } = this.state;
-        
+
         if (location !== '/') {
             return <button onClick={() => { this.handleNavigationAction() }}>
                 <IconArrowBack /></button>
@@ -97,7 +97,7 @@ export class AppView extends Component {
      */
     getHeaderRightSlotFragment() {
         const { location } = this.state;
-        
+
         if (location === '/') {
             return (
                 <button key={'settings-btn'} className='button-settings'
@@ -116,10 +116,14 @@ export class AppView extends Component {
                     <div className='right-placeholder'>{this.getHeaderRightSlotFragment()}</div>
                 </div>
                 <div className='content'>
-                    <div className='left-column side'>
+                    {
+                        /* here we will test for large display */
+                        false &&
+                        <div className='left-column side'>
 
-                    </div>
-                    <div className='right-column main'>
+                        </div>
+                    }
+                    <div className={ false ? 'right-column main':'main'}>
 
                         <Switch>
                             <Route exact path="/" component={() => { return <Home onNavigation={this.handleNavigationAction} /> }} />

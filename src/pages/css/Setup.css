@@ -72,9 +72,14 @@
 
 /* scrollbars */
 
+
+
 .series-list::-webkit-scrollbar {
 	width: 10px;
 	background-color: transparent;
+}
+.mobile .series-list::-webkit-scrollbar {
+    display: none;
 }
 
 .series-list::-webkit-scrollbar-track {
