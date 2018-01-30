@@ -19,6 +19,10 @@
     height: 13.2rem;
     border-radius: 0;
 }
+button.start-button:disabled {
+    opacity: 0.5;
+    cursor: default;
+}
 
 .start-button .button-content-wrapper {
     position: relative;

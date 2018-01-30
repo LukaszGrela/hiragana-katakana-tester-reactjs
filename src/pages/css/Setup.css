@@ -18,6 +18,7 @@
     width: 80%;
     margin: 0 auto;
     min-width: 32rem;
+    max-width: 48rem;
 }
 
 
@@ -46,17 +47,14 @@
 }
 
 .row.list-toolbar {
-    max-width: 64rem;
+    /* max-width: 64rem; */
     margin: 0 auto;
-    margin-bottom: 2rem;
-
+    margin-bottom: 0.4rem;
 }
 
 .row.list-toolbar {
-
     background-image: url(../../images/pattern-320.png);
     background-color: transparent;
-
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -64,64 +62,62 @@
 
 .selection-button {
     width: 15rem;
-    border-right: 4px solid rgba(232, 209, 168, 0.75);
-/* 
-    outline: rgba(255, 255, 255, 0.85) solid 0.4rem;
-    outline-offset: 0.4rem; */
+    font-weight: bold;
 }
+
+.selection-button:hover {
+    background-color: rgba(227, 65, 44, 0.397);
+}
+
 .selection-stats {
-    /* margin: 0.5rem auto; */
     margin-right: 1.2rem;
     font-size: 1.2rem;
 }
 
 .series-list {
     height: 20rem;
-    margin: 1rem auto;
+    margin: 0.4rem auto;
     max-width: 64rem;
-    
     min-width: 30.4rem;
     background-color: initial;
-
-    outline: rgba(255, 255, 255, 0.85) solid 0.4rem;
-    outline-offset: 0.4rem;
+    /* outline: rgba(255, 255, 255, 0.85) solid 0.4rem; */
+    /* outline-offset: 0.4rem; */
 }
+
 
 /* scrollbars */
 
-
-
 .series-list::-webkit-scrollbar {
-	width: 10px;
-	background-color: transparent;
+    width: 10px;
+    background-color: transparent;
 }
+
 .mobile .series-list::-webkit-scrollbar {
     display: none;
 }
 
 .series-list::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background: rgba(245, 245, 245, 0.75);
-  border: 1px solid #ccc;
+    border-radius: 10px;
+    background: rgba(245, 245, 245, 0.75);
+    border: 1px solid #ccc;
 }
 
 .series-list::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background: linear-gradient(to left, #fff, #e4e4e4);
-  border: 1px solid #aaa;
+    border-radius: 10px;
+    background: linear-gradient(to left, #fff, #e4e4e4);
+    border: 1px solid #aaa;
 }
 
 .series-list::-webkit-scrollbar-thumb:hover {
-  background: #fff;
+    background: #fff;
 }
 
 .series-list::-webkit-scrollbar-thumb:active {
-  background: linear-gradient(to left, #E3412C, rgb(201, 53, 33));
-  border: 1px solid transparent;
+    background: linear-gradient(to left, #E3412C, rgb(201, 53, 33));
+    border: 1px solid transparent;
 }
 
 .series-list ul {
-    
     background-image: url(../../images/pattern-320.png);
     background-color: transparent;
 }
@@ -129,6 +125,7 @@
 .series-list ul .option:nth-child(even) {
     background-color: initial;
 }
+
 .series-list ul .option:nth-child(odd) {
     background-color: rgba(0, 0, 0, 0.1);
 }
