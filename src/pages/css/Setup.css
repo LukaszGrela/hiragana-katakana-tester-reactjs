@@ -46,16 +46,33 @@
 }
 
 .row.list-toolbar {
-    margin-bottom: 0.5rem;
+    max-width: 64rem;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+
+}
+
+.row.list-toolbar {
+
+    background-image: url(../../images/pattern-320.png);
+    background-color: transparent;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
 }
 
 .selection-button {
     width: 15rem;
-    background-color: #FFC107;
+    border-right: 4px solid rgba(232, 209, 168, 0.75);
+/* 
+    outline: rgba(255, 255, 255, 0.85) solid 0.4rem;
+    outline-offset: 0.4rem; */
 }
-
 .selection-stats {
-    margin: 0.5rem auto;
+    /* margin: 0.5rem auto; */
+    margin-right: 1.2rem;
+    font-size: 1.2rem;
 }
 
 .series-list {
