@@ -1,7 +1,8 @@
 {
   "name": "hiragana-katakana-tester-react",
-  "version": "0.1.5",
+  "version": "0.4.3",
   "private": true,
+  "homepage": "http://greladesign.com/hiragana-katakana-tester",
   "dependencies": {
     "axios": "^0.17.1",
     "bowser": "^1.9.1",

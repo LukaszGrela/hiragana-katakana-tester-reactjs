@@ -33,7 +33,7 @@ class Splash extends Component {
 
     componentDidMount() {
         const {dispatch} = this.props;
-        axios.get('/data/data.json')
+        axios.get('./data/data.json')
             .then(res => {
 
                 const selection = res.data.selection;

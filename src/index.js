@@ -32,7 +32,7 @@ import hkTesterStore from "./store/HKTesterStore";
 
 ReactDOM.render(
     <Provider store={hkTesterStore}>
-        <Router>
+        <Router basename='/hiragana-katakana-tester'>
             <App />
         </Router>
     </Provider>
