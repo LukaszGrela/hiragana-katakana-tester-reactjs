@@ -1,0 +1,17 @@
+#Options All -Indexes
+Options -Indexes
+<Files *.php>
+    ForceType application/x-httpd-php5
+</Files>
+
+# BEGIN Hiragana/Katakana Tester Web-App
+<ifModule mod_rewrite.c>
+  Options +FollowSymLinks
+  IndexIgnore */*
+  RewriteEngine On
+  RewriteBase /hiragana-katakana-tester/
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule (.*) /hiragana-katakana-tester/index.html
+</ifModule>
+# END   Hiragana/Katakana Tester Web-App
