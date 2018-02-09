@@ -25,11 +25,23 @@ import { withRouter } from 'react-router-dom';
 import Redirect from 'react-router-dom/Redirect';
 
 class App extends Component {
+
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      this.onRouteChanged();
+    }
+  }
+
+  onRouteChanged = () => {
+    console.log("route changed", this.props.location);
+  }
+
   render() {
 
     const { location } = this.props;
+    const page = location.pathname.split('/')[1] || 'home';
     return (
-      <div className="App">
+      <div className={"App" + " page-" + page}>
         <div className="app-background">
           <div className="layer sky">
             <div className="layer sun"></div>

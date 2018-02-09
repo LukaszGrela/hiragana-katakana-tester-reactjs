@@ -9,12 +9,9 @@
     height: 100%;
     width: 100vw;
     height: 100vmax;
-    /* -webkit-transition: all .2s ease;
-  transition: all .2s ease;  */
+
     overflow: hidden;
 }
-
-
 
 .layer {
     position: absolute;
@@ -28,8 +25,17 @@
     bottom: -240px;
     left: 50%;
     transform: translate(-50%, 0);
-}
 
+
+    -webkit-transition: all .8s ease;
+    transition: all .8s ease;
+}
+.page-game .ground {
+    left: 65%;
+}
+.page-setup .ground {
+    left: 40%;
+}
 .tree-01 {
     background-image: url(images/tree-01.png);
     width: 252px;
@@ -55,21 +61,22 @@
 }
 
 .building-01 {
-  background-image: url(images/building-01.png);
-  width: 175px;
-  height: 185px;
-  left: 405px;
-  bottom: 347px;
+    background-image: url(images/building-01.png);
+    width: 175px;
+    height: 185px;
+    left: 405px;
+    bottom: 347px;
 }
-.crane {
-  background-image: url(images/crane.png);
-  width: 50px;
-  height: 27px;
 
+.crane {
+    background-image: url(images/crane.png);
+    width: 50px;
+    height: 27px;
 }
+
 .crane-01 {
-  left: 640px;
-  bottom: 400px;
+    left: 640px;
+    bottom: 400px;
 }
 
 .sky {
@@ -78,9 +85,22 @@
     left: 50%;
     bottom: 15%;
     transform: translate(-50%, 0);
+
+
+    -webkit-transition: all .75s ease;
+    transition: all .75s ease;
 }
+
 .mobile .sky {
     bottom: 10%;
+}
+
+.page-game .sky {
+    left: 60%;
+}
+
+.page-setup .sky {
+    left: 45%;
 }
 .sun {
     background-image: url(images/sun.png);
