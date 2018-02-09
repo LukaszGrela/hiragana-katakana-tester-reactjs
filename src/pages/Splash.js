@@ -23,6 +23,8 @@ import syllabaryChanged from '../actions/syllabaryChanged';
 import writingAdded from '../actions/writingAdded';
 import writingChanged from '../actions/writingChanged';
 
+import './css/Splash.css';
+
 class Splash extends Component {
     constructor(props) {
         super(props);

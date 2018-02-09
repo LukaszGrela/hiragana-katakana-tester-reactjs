@@ -25,34 +25,6 @@
     background-color: #fff;
 }
 
-/*
-.correct.answer-0 #answer-0,
-.correct.answer-0 button#answer-0:hover,
-.correct.answer-1 #answer-1,
-.correct.answer-1 button#answer-1:hover,
-.correct.answer-2 #answer-2,
-.correct.answer-2 button#answer-2:hover,
-.correct.answer-3 #answer-3,
-.correct.answer-3 button#answer-3:hover,
-.correct.answer-4 #answer-4,
-.correct.answer-4 button#answer-4:hover {
-    background-color: green;
-}
-
-
-.incorrect.answer-0 #answer-0,
-.incorrect.answer-0 button#answer-0:hover,
-.incorrect.answer-1 #answer-1,
-.incorrect.answer-1 button#answer-1:hover,
-.incorrect.answer-2 #answer-2,
-.incorrect.answer-2 button#answer-2:hover,
-.incorrect.answer-3 #answer-3,
-.incorrect.answer-3 button#answer-3:hover,
-.incorrect.answer-4 #answer-4,
-.incorrect.answer-4 button#answer-4:hover {
-    background-color: red;
-}
-*/
 
 @-webkit-keyframes flipOutX {
     from {

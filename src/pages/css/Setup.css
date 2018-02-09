@@ -35,6 +35,13 @@
     margin-bottom: 0.6rem;
 }
 
+@media all and (max-width:32rem) {
+    .row.test-what>span,
+    .row.writing>span {
+        font-size: 1.3rem;
+    }
+}
+
 .row.test-what,
 .row.writing {
     width: 16.4rem;
@@ -57,7 +64,7 @@
     background-color: transparent;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: center;
 }
 
 .selection-button {
