@@ -40,8 +40,9 @@ class App extends Component {
 
     const { location } = this.props;
     const page = location.pathname.split('/')[1] || 'home';
+
     return (
-      <div className={"App" + " page-" + page}>
+      <div className={"App page-" + page}>
         <div className="app-background">
           <div className="layer sky">
             <div className="layer sun"></div>

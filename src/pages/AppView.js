@@ -18,6 +18,7 @@ import React, { Component } from 'react';
 import { withRouter, Switch } from 'react-router-dom';
 
 import Route from 'react-router-dom/Route';
+import MediaQuery from 'react-responsive';
 import NoMatch from './NoMatch';
 import Home from './Home';
 import Footer from '../components/Footer';
@@ -26,18 +27,22 @@ import IconKatakanaKa from '../icons/IconKatakanaKa';
 import IconHiraganaKa from '../icons/IconHiraganaKa';
 import IconArrowBack from '../icons/IconArrowBack';
 import IconSettings from '../icons/IconSettings';
+import IconInfo from '../icons/IconInfo';
+import IconMore from '../icons/IconMore';
 
-
+import About from './About';
 import Game from './Game';
 import Setup from './Setup';
 
 import './css/AppView.css';
+import './css/DropDown.css';
 
 export class AppView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            location: '/'
+            location: '/',
+            ddMenuOpen: false
         }
 
         this.getHeaderLeftSlotFragment = this.getHeaderLeftSlotFragment.bind(this);
@@ -64,6 +69,9 @@ export class AppView extends Component {
             case 'config':
                 to = '/setup';
                 break;
+            case 'about':
+                to = '/about';
+                break;
             case 'game':
                 to = '/game';
                 break;
@@ -85,12 +93,22 @@ export class AppView extends Component {
         const { location } = this.state;
 
         if (location !== '/') {
-            return <button onClick={() => { this.handleNavigationAction() }}>
-                <IconArrowBack /></button>
+            return <button onClick={() => { this.handleNavigationAction() }}><IconArrowBack /></button>
 
         } else {
             return null;
         }
+    }
+    getSettingsButton = (label) => (
+        <button
+            key={'settings-btn'}
+            className='button-settings'
+            onClick={() => { this.handleNavigationAction('config') }}><IconSettings />
+            {label && <span className='label'>label</span>}
+        </button>
+    );
+    handleDropDown = () => {
+        this.setState(() => ({ ddMenuOpen: true }));
     }
     /**
      * @returns {JSX.Element | null} Returns fragment to be placed in the headers right slot
@@ -99,13 +117,49 @@ export class AppView extends Component {
         const { location } = this.state;
 
         if (location === '/') {
-            return (
-                <button key={'settings-btn'} className='button-settings'
-                    onClick={() => { this.handleNavigationAction('config') }}><IconSettings />
-                </button>
-            )
+            return [
+                <MediaQuery
+                    key={'media-query'}
+                    minDeviceWidth={410}
+                >
+                    {(matches) => {
+                        if (matches) {
+                            /* normal */
+                            return [
+                                <button
+                                    key={'about-btn'}
+                                    className='button-about'
+                                    onClick={() => { this.handleNavigationAction('about') }}><IconInfo /></button>,
+
+                                this.getSettingsButton()
+                            ];
+                        } else {
+                            /* dd on small devices */
+                            return [
+                                <button key={'dd-menu-btn'}
+                                    className='dd-button-menu'
+                                    onClick={() => { this.handleDropDown() }}><IconMore /></button>,
+                                <div key={'dd-menu-box'}
+                                    className={'dd-menu' + (this.state.ddMenuOpen ? ' open' : ' close')}>
+                                    <div className='cloak'
+                                        onClick={() => { this.setState(() => ({ ddMenuOpen: true })) }}></div>
+                                    <div className='dd-menu-container'>
+                                        <button key={'about-btn'} className='button-about' 
+                                        onClick={() => { this.handleNavigationAction('about') }}><IconInfo /><span className='label'>About</span></button>
+                                        {this.getSettingsButton('Setup')}
+                                    </div>
+                                </div>
+                            ]
+                        }
+                    }}
+                </MediaQuery>
+            ];
+        } else if (location === '/about') {
+            return this.getSettingsButton();
+        } else {
+
+            return null;
         }
-        return null;
     }
     render() {
         return (
@@ -123,12 +177,13 @@ export class AppView extends Component {
 
                         </div>
                     }
-                    <div className={ false ? 'right-column main':'main'}>
+                    <div className={false ? 'right-column main' : 'main'}>
 
                         <Switch>
                             <Route exact path="/" component={() => { return <Home onNavigation={this.handleNavigationAction} /> }} />
                             <Route exact path="/game" component={() => { return <Game /> }} />
                             <Route exact path="/setup" component={() => { return <Setup /> }} />
+                            <Route exact path="/about" component={() => { return <About /> }} />
                             <Route component={NoMatch} />
                         </Switch>
 

@@ -1,6 +1,6 @@
 {
   "name": "hiragana-katakana-tester-react",
-  "version": "0.6.1",
+  "version": "0.6.4",
   "private": true,
   "homepage": "http://greladesign.com/hiragana-katakana-tester",
   "dependencies": {
@@ -9,6 +9,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
+    "react-responsive": "^4.0.3",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
     "redux": "^3.7.2",
