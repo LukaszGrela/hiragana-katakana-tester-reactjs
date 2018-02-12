@@ -23,9 +23,9 @@ const About = () => {
         <div className='about'>
             <div className='wrapper'>
                 <div className='about_content'>
-                    <div className='info-text'>Hiragana/Katakana tester App. 
-                    This application will test your knowledge of Hiragana/Katakana Syllabary, at the moment there is no option to teach You (yet), it only do tests.<br /><br />
-                    If you want to change what is tested and the number of questions, go to Setup and check all the settings.</div>
+                    <div className='info-text'>Hiragana/Katakana tester App.<br/>
+                    This application will test your knowledge of the Hiragana/Katakana Syllabary, at the moment there is no option to teach You (yet), it only do the tests.<br /><br />
+                    If you want to change what will be tested and/or the number of questions, go to the <strong>Setup</strong> and change the settings.</div>
                     <div className='acknowledgement'>
                         <ul>
                             <li>Background graphic <a href="http://www.freepik.com" target='_blank' rel="noopener noreferrer">designed by Freepik</a></li>

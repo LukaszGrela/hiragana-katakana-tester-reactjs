@@ -52,13 +52,15 @@ export class AppView extends Component {
 
     componentDidMount() {
 
+        document.addEventListener('keydown', this.handleKeyDown);
         this.unlistenHistory = this.props.history.listen((location, action) => {
 
-            this.setState({ location: location.pathname });
+            this.setState(_ => ({ location: location.pathname }));
         });
     }
     componentWillUnmount() {
 
+        document.removeEventListener('keydown', this.handleKeyDown);
         this.unlistenHistory();
     }
 
@@ -80,11 +82,28 @@ export class AppView extends Component {
                 to = '/';
                 break;
         }
-        this.props.history.push(to);
+        this.setState(_ => ({
+            // hide state
+            ddMenuOpen: false
+        }), _ => {
+            // state change applied - navigate
+            this.props.history.push(to);
+        })
     }
 
 
+    handleDropDown = () => {
+        this.setState(_ => ({ ddMenuOpen: true }));
+    }
 
+    handleKeyDown = (event) => {
+        const { keyCode: code } = event
+        if(this.state.ddMenuOpen && code === 27) {
+            // Escape
+            event.preventDefault();
+            this.setState(_ => ({ ddMenuOpen: false }));
+        }
+    };
 
     /**
      * @returns {JSX.Element | null} Returns fragment to be placed in the headers left slot
@@ -104,12 +123,9 @@ export class AppView extends Component {
             key={'settings-btn'}
             className='button-settings'
             onClick={() => { this.handleNavigationAction('config') }}><IconSettings />
-            {label && <span className='label'>label</span>}
+            {label && <span className='label'>{label}</span>}
         </button>
     );
-    handleDropDown = () => {
-        this.setState(() => ({ ddMenuOpen: true }));
-    }
     /**
      * @returns {JSX.Element | null} Returns fragment to be placed in the headers right slot
      */
@@ -138,17 +154,7 @@ export class AppView extends Component {
                             return [
                                 <button key={'dd-menu-btn'}
                                     className='dd-button-menu'
-                                    onClick={() => { this.handleDropDown() }}><IconMore /></button>,
-                                <div key={'dd-menu-box'}
-                                    className={'dd-menu' + (this.state.ddMenuOpen ? ' open' : ' close')}>
-                                    <div className='cloak'
-                                        onClick={() => { this.setState(() => ({ ddMenuOpen: true })) }}></div>
-                                    <div className='dd-menu-container'>
-                                        <button key={'about-btn'} className='button-about' 
-                                        onClick={() => { this.handleNavigationAction('about') }}><IconInfo /><span className='label'>About</span></button>
-                                        {this.getSettingsButton('Setup')}
-                                    </div>
-                                </div>
+                                    onClick={() => { this.handleDropDown() }}><IconMore /></button>
                             ]
                         }
                     }}
@@ -190,6 +196,19 @@ export class AppView extends Component {
                     </div>
                 </div>
                 <Footer />
+                <div key={'dd-menu-box'}
+                    className={'dd-menu' + (this.state.ddMenuOpen ? ' open' : ' close')}>
+                    <div className='cloak'
+                        onClick={_ => {
+                            console.log('cick');
+                            this.setState(_ => ({ ddMenuOpen: false }));
+                        }}></div>
+                    <div className='dd-menu-container'>
+                        <button key={'about-btn'} className='button-about'
+                            onClick={_ => { this.handleNavigationAction('about') }}><IconInfo /><span className='label'>About</span></button>
+                        {this.getSettingsButton('Setup')}
+                    </div>
+                </div>
             </div>
         )
     }
