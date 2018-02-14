@@ -20,7 +20,7 @@
 
 .ground {
     background-image: url(images/ground.png);
-    width: 1570px;
+    width: 2000px;
     height: 600px;
     bottom: -240px;
     left: 50%;
@@ -43,7 +43,7 @@
     background-image: url(images/tree-01.png);
     width: 252px;
     height: 216px;
-    left: 100px;
+    left: 315px;
     bottom: 382px;
 }
 
@@ -51,7 +51,7 @@
     background-image: url(images/tree-02.png);
     width: 223px;
     height: 176px;
-    right: 178px;
+    right: 393px;
     bottom: 451px;
 }
 
@@ -59,7 +59,7 @@
     background-image: url(images/building-02.png);
     width: 97px;
     height: 262px;
-    right: 460px;
+    right: 675px;
     bottom: 375px;
 }
 
@@ -67,7 +67,7 @@
     background-image: url(images/building-01.png);
     width: 175px;
     height: 185px;
-    left: 405px;
+    left: 620px;
     bottom: 347px;
 }
 
@@ -78,7 +78,7 @@
 }
 
 .crane-01 {
-    left: 640px;
+    left: 855px;
     bottom: 400px;
 }
 
