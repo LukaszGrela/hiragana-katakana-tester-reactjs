@@ -40,6 +40,12 @@
     outline-offset: 0.4rem;
 }
 
+@media all and (max-width:32rem) {
+    .about_content {
+        padding: 0.8rem;
+        margin-top: 1rem;
+    }
+}
 .about .git-source {
     padding: 1rem 0;
 }
@@ -56,4 +62,10 @@
     padding: 0 2rem;
     padding-top: 2rem;
     color: #757575;
+}
+
+@media all and (max-width:32rem) {
+    .about .acknowledgement {
+        padding-top: 0rem;
+    }
 }
