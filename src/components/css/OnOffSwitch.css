@@ -49,6 +49,8 @@
 }
 
 .onoffswitch-inner .before {
+    background-color: rgb(238, 157, 76);
+    background-color: rgba(245, 123, 0, 0.424);
     background-color: #f57b006c;
     color: #FFFFFF;
     padding-left: 6px;

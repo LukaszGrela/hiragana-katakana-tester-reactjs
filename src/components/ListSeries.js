@@ -38,17 +38,17 @@ export class ListSeries extends Component {
     }
 
     generateOptions() {
-        
+
         const { data, selection } = this.state;
         if (data && selection) {
             const allSelected = selection.length > 0 && isNaN(parseInt(selection, 10));
             return data.map((series, index) => {
                 const { id, name } = series;
                 let selected = allSelected || selection.indexOf(id) !== -1;
-                
+
                 return <li
                     key={id}
-                    className={'option' + (selected ? ' selected' : '') + (index % 2 === 0 ? ' even':' odd')}
+                    className={'option' + (selected ? ' selected' : '') + (index % 2 === 0 ? ' even' : ' odd')}
                     onClick={() => {
                         this.props.onItemClicked && this.props.onItemClicked(id, selected);
                     }}

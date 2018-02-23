@@ -17,7 +17,7 @@
     cursor: not-allowed;
     color: silver;
 }
-.distractors button:hover {
+.desktop .distractors button:hover {
     background-color: #F57C00;
 }
 .correct .distractors button:hover,

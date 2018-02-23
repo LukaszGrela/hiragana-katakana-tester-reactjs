@@ -333,20 +333,23 @@ class Game extends Component {
                                                     <button
                                                         key={'replay-button'}
                                                         className='replay-button'
-                                                        onClick={() => {
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
                                                             this.restart();
                                                         }}><span className='label'>Again</span><IconReplay className='icon' /></button>,
                                                     <button
                                                         key={'menu-button'}
                                                         className='menu-button'
-                                                        onClick={() => {
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
                                                             this.goMenu();
                                                         }}><span className='label'>Menu</span><IconMenu className='icon' /></button>
                                                 ] :
                                                     <button
                                                         key={'next-question-button'}
                                                         className='next-question-button'
-                                                        onClick={() => {
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
                                                             this.nextQuestion();
                                                         }}><span className='label'>Next</span><ButtonIconNext className='icon' /></button>
 

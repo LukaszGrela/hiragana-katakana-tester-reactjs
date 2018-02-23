@@ -25,6 +25,8 @@ import hkTesterStore from "./store/HKTesterStore";
     if (bowser.ipad) html.className += ' ipad';
     if (bowser.ipod) html.className += ' ipod';
     if (bowser.windowsphone) html.className += ' windowsphone';
+    if(!bowser.mobile && !bowser.tablet && !bowser.windowsphone
+        && !bowser.iphone && !bowser.ipad && !bowser.ipod) html.className += ' desktop';
 
 
 
