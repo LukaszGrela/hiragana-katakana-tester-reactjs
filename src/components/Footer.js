@@ -15,17 +15,10 @@
 */
 import React, { Component } from 'react';
 
-import './css/Footer.css'
+import './css/Footer.css';
 
-class Footer extends Component {
-    state = {
-        currentYear: (new Date()).getFullYear()
-    }
-    render() {
-        return (
-            <footer>GrelaDesign (c) {this.state.currentYear}</footer>
-        );
-    }
-}
+const Footer = props => (
+  <footer>GrelaDesign (c) {new Date().getFullYear()}</footer>
+);
 
 export default Footer;
