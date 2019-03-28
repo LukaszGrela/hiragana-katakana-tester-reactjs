@@ -17,7 +17,7 @@
 import React from 'react';
 import connect from 'react-redux/lib/connect/connect';
 import CheckboxSwitch from '../components/CheckboxSwitch';
-import { ListSeries } from '../components/ListSeries';
+import ListSeries from '../components/ListSeries';
 import selectionChanged from '../actions/selectionChanged';
 import syllabaryChanged from '../actions/syllabaryChanged';
 import writingChanged from '../actions/writingChanged';
