@@ -15,65 +15,48 @@
 */
 import React, { Component } from 'react';
 
-import IconTick from "../icons/TickIcon";
+import IconTick from '../icons/TickIcon';
 
-import './css/ListSeries.css'
+import './css/ListSeries.css';
 
-export class ListSeries extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: this.props.data || [],
-            selection: this.props.selection || []
-        }
-    }
+export const ListSeries = props => {
+  const generateOptions = () => {
+    const { data, selection } = props;
 
-    componentWillReceiveProps(nextProps) {
-        if (this.state.data !== nextProps.data) {
-            this.setState({ data: nextProps.data });
-        }
-        if (this.state.selection !== nextProps.selection) {
-            this.setState({ selection: nextProps.selection });
-        }
-    }
-
-    generateOptions() {
-
-        const { data, selection } = this.state;
-        if (data && selection) {
-            const allSelected = selection.length > 0 && isNaN(parseInt(selection, 10));
-            return data.map((series, index) => {
-                const { id, name } = series;
-                let selected = allSelected || selection.indexOf(id) !== -1;
-
-                return <li
-                    key={id}
-                    className={'option' + (selected ? ' selected' : '') + (index % 2 === 0 ? ' even' : ' odd')}
-                    onClick={() => {
-                        this.props.onItemClicked && this.props.onItemClicked(id, selected);
-                    }}
-                >
-                    <IconTick />
-                    <span className='label'>{name.label}</span>
-                    <span className='kana'>{name.kana}</span>
-                </li>
-            })
-        }
-        return null;
-    }
-
-    render() {
-        const className = this.props.className || '';
+    if (data && selection) {
+      const allSelected =
+        selection.length > 0 && isNaN(parseInt(selection, 10));
+      return data.map((series, index) => {
+        const { id, name } = series;
+        let selected = allSelected || selection.indexOf(id) !== -1;
         return (
-            <div className={className + ' list-series'}>
-                <ul>
-                    {
-                        this.generateOptions()
-                    }
-                </ul>
-            </div>
-        )
+          <li
+            key={id}
+            className={
+              'option' +
+              (selected ? ' selected' : '') +
+              (index % 2 === 0 ? ' even' : ' odd')
+            }
+            onClick={() => {
+              props.onItemClicked && props.onItemClicked(id, selected);
+            }}>
+            <IconTick />
+            <span className="label">{name.label}</span>
+            <span className="kana">{name.kana}</span>
+          </li>
+        );
+      });
     }
-}
+
+    return null;
+  };
+
+  const className = props.className || '';
+  return (
+    <div className={className + ' list-series'}>
+      <ul>{generateOptions()}</ul>
+    </div>
+  );
+};
 
 export default ListSeries;

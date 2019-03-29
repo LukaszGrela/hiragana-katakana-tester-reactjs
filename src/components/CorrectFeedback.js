@@ -15,17 +15,14 @@
 */
 import React from 'react';
 
-import './css/CorrectFeedback.css'
-import Stars from '../components/Stars'
+import './css/CorrectFeedback.css';
+import Stars from '../components/Stars';
 
-const CorrectFeedback = ({ message }) => {
-
-    return (
-        <div className='feedback correct'>
-            <Stars />
-            <div className='message'>{message}</div>
-        </div>
-    )
-}
+const CorrectFeedback = ({ message }) => (
+  <div className="feedback correct">
+    <Stars />
+    <div className="message">{message}</div>
+  </div>
+);
 
 export default CorrectFeedback;
