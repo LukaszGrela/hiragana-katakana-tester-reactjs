@@ -1,20 +1,20 @@
 .game-over {
     display: block;
-    max-height: 22rem;
+    max-height: 220px;
     overflow-y: auto;
 }
 
 .go-incorrect-list {
-    margin: 1rem auto;
+    margin: 10px auto;
 }
 
 .go-incorrect-list li {
-    font-size: 1.5rem;
+    font-size: 15px;
 }
 
 .go-list-title {
-    margin: 1rem auto;
-    font-size: 1.5rem;
+    margin: 10px auto;
+    font-size: 15px;
 }
 
 li>span,
@@ -23,35 +23,35 @@ li>span>span {
 }
 
 span.go-question {
-    width: 4rem;
-    font-size: 1.8rem;
+    width: 40px;
+    font-size: 18px;
     font-weight: bold;
-    padding-right: 0.5rem;
+    padding-right: 5px;
     color: #212121;
 }
 
 span.go-your-answer-label {
-    width: 17rem;
+    width: 170px;
     text-align: left;
 }
 span.go-your-answer-value {
-    width: 4.2rem;
+    width: 42px;
     text-align: right;
-    font-size: 1.8rem;
+    font-size: 18px;
     font-weight: bold;
     color: #E3412C;
 }
 
 span.go-correct-answer-label {
-    width: 13rem;
+    width: 130px;
     text-align: left;
-    padding-left: 0.5rem;
+    padding-left: 5px;
 }
 
 span.go-correct-answer-value {
-    width: 4.2rem;
+    width: 42px;
     text-align: right;
-    font-size: 1.8rem;
+    font-size: 18px;
     font-weight: bold;
     color: green;
 }
@@ -59,7 +59,7 @@ span.go-correct-answer-value {
 
 
 .congratulation {
-    font-size: 2rem;
-    width: 30rem;
+    font-size: 20px;
+    width: 300px;
     margin: 0 auto;
 }

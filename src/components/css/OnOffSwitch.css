@@ -1,7 +1,7 @@
 .onoffswitch {
     position: relative;
-    width: 15rem;
-    height: 4rem;
+    width: 150px;
+    height: 40px;
     margin: 0 auto;
     -webkit-user-select: none;
     -moz-user-select: none;
@@ -17,7 +17,7 @@
     display: block;
     overflow: hidden;
     cursor: pointer;
-    height: 4rem;
+    height: 40px;
     background-image: url(../../images/pattern-320.png);
     background-color: transparent;
     /* border: 2px solid #999999; */
@@ -38,13 +38,13 @@
     width: 50%;
     height: 30px;
     padding: 0;
-    line-height: 3.0rem;
-    font-size: 1.5rem;
+    line-height: 30px;
+    font-size: 15px;
     color: white;
     font-family: Trebuchet, Arial, sans-serif;
     font-weight: bold;
     box-sizing: border-box;
-    height: 4rem;
+    height: 40px;
     padding-top: 5px;
 }
 
@@ -88,8 +88,8 @@
     width: 100%;
     height: 100%;
     padding: 0;
-    line-height: 3rem;
-    font-size: 1.5rem;
+    line-height: 30px;
+    font-size: 15px;
     text-align: center;
     transition: all 0.3s ease-in 0s;
 }

@@ -19,8 +19,8 @@
 .about {
     width: 80%;
     margin: 0 auto;
-    min-width: 32rem;
-    max-width: 48rem;
+    min-width: 320px;
+    max-width: 480px;
 }
 
 .about .wrapper {
@@ -31,41 +31,41 @@
 }
 
 .about_content {
-    min-width: 28rem;
-    padding: 2rem 0.8rem;
-    font-size: 1.6rem;
+    min-width: 280px;
+    padding: 20px 8px;
+    font-size: 16px;
     text-align: left;
     background-image: url(../../images/pattern-320.png);
-    outline: rgba(255, 255, 255, 0.85) solid 0.4rem;
-    outline-offset: 0.4rem;
+    outline: rgba(255, 255, 255, 0.85) solid 4px;
+    outline-offset: 4px;
 }
 
-@media all and (max-width:32rem) {
+@media all and (max-width:320px) {
     .about_content {
-        padding: 0.8rem;
-        margin-top: 1rem;
+        padding: 8px;
+        margin-top: 10px;
     }
 }
 .about .git-source {
-    padding: 1rem 0;
+    padding: 10px 0;
 }
 
 .about .git-source .git-hub-icon {
     vertical-align: bottom;
-    width: 2.2rem;
-    height: 2.2rem;
-    padding-right: 0.4rem;
+    width: 22px;
+    height: 22px;
+    padding-right: 4px;
 }
 
 .about .acknowledgement {
-    font-size: 1.2rem;
-    padding: 0 2rem;
-    padding-top: 2rem;
+    font-size: 12px;
+    padding: 0 20px;
+    padding-top: 20px;
     color: #757575;
 }
 
-@media all and (max-width:32rem) {
+@media all and (max-width:320px) {
     .about .acknowledgement {
-        padding-top: 0rem;
+        padding-top: 0px;
     }
 }

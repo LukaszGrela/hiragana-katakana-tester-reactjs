@@ -1,18 +1,18 @@
 .mood {
-    margin: 1.5rem auto;
+    margin: 15px auto;
 }
 
 .message {
-    font-size: 4.4rem
+    font-size: 44px
 }
 
 .correct-answer {
     color: green;
-    font-size: 2.2rem;
+    font-size: 22px;
     font-weight: bold;
 }
 span.answer {
     color: green;
-    font-size: 3.2rem;
+    font-size: 32px;
     display: inline-block;
 }

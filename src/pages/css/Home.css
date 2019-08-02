@@ -1,7 +1,7 @@
 .home {
     width: 80%;
     margin: 0 auto;
-    min-width: 32.0rem;
+    min-width: 320px;
 }
 
 
@@ -14,9 +14,9 @@
     background-image: url(../../images/start-test-button.png);
     background-repeat: no-repeat;
     display: block;
-    margin: 3.0rem auto;
-    width: 19.2rem;
-    height: 13.2rem;
+    margin: 30px auto;
+    width: 192px;
+    height: 132px;
     border-radius: 0;
 }
 button.start-button:disabled {
@@ -31,7 +31,7 @@ button.start-button:disabled {
 
 .start-button .button-content-wrapper>* {
     display: inline-block;
-    font-size: 1.4rem;
+    font-size: 14px;
 }
 
 .start-button .button-content-wrapper .selection-syllabary,
@@ -46,29 +46,29 @@ button.start-button:disabled {
 .start-button .stats {
     position: absolute;
     width: 100%;
-    font-size: 1.2rem;
-    bottom: 0.5rem;
+    font-size: 12px;
+    bottom: 5px;
     left: 50%;
     transform: translate(-50%, 0);
 }
 
 .selection-connect {
-    margin-right: 0.4rem;
+    margin-right: 4px;
 }
 
 .selection-writing {
-    margin-right: 0.4rem;
+    margin-right: 4px;
 }
 
 /* .selection-sufix {} */
 
 .selection-syllabary {
-    margin: 0.4rem;
+    margin: 4px;
 }
 
 .start-button .button-label {
-    font-size: 1.8rem;
-    margin: 1.5rem 0.5rem;
+    font-size: 18px;
+    margin: 15px 5px;
     font-weight: bold;
     color: #E3412C;
 }

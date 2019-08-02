@@ -25,7 +25,7 @@ li.option .kana {
     right: 16px;
     margin-top: 0px;
 
-    font-size: 2.4rem;
+    font-size: 24px;
     font-weight: 900;
 }
 li.option .label {
@@ -33,7 +33,7 @@ li.option .label {
     top:0;
     margin-top: 12px;
     left: 48px;
-    font-size: 1.4rem;
+    font-size: 14px;
 }
 
 li.option svg {

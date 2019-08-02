@@ -15,7 +15,7 @@
 */
 
 .app-view {
-    max-width: 94rem;
+    max-width: 940px;
     margin: 0 auto;
     position: relative;
 }
@@ -25,7 +25,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: /* $header-height */ 6rem;
+    height: /* $header-height */ 60px;
     background-color: transparent;
     color: /* $primary-color-text; */ #fff;
 }
@@ -35,7 +35,7 @@
     left: /* $margin-left */ 8px;
     top: 0;
     width: 40px;
-    height: /* $header-height */ 6rem;
+    height: /* $header-height */ 60px;
 }
 
 .left-placeholder button {
@@ -51,7 +51,7 @@
 .app-title {
     width: 80%;
     margin: 0 auto;
-    font-size: 1.8rem;
+    font-size: 18px;
 }
 
 .app-title>* {
@@ -67,21 +67,21 @@
 }
 
 .title-text {
-    margin-left: 0.8rem;
-    margin-right: 0.8rem;
+    margin-left: 8px;
+    margin-right: 8px;
 }
 
-@media all and (max-width:32rem) {
+@media all and (max-width:320px) {
     .app-title {
-        width: 22.4rem;
+        width: 224px;
     }
     .app-title .title-text {
-        font-size: 1.4rem;
-        width: 16rem;
+        font-size: 14px;
+        width: 160px;
     }
     .title-text {
-        margin-left: 0rem;
-        margin-right: 0rem;
+        margin-left: 0px;
+        margin-right: 0px;
         font-weight: 700;
     }
 }
@@ -117,7 +117,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    margin-top: /* $header-height */6rem;
+    margin-top: /* $header-height */60px;
     min-height: 100%;
     min-height: 100vh;
 }

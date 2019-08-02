@@ -1,7 +1,7 @@
 .game {
     width: 100%;
     margin: 0;
-    min-width: 32rem;
+    min-width: 320px;
 
     position: inherit;
     top: 15%;
@@ -10,7 +10,7 @@
 }
 
 .mobile .game {
-    top:6rem;
+    top:60px;
 }
 
 
@@ -19,11 +19,11 @@
     background-image: url(../../images/card-background.png);
     background-repeat: no-repeat;
     /* background-color: #fff; */
-    width: 32rem;
-    min-height: 26rem;
+    width: 320px;
+    min-height: 260px;
     /* box-shadow: 2px 2px 10px -1px #212121; */
     margin: 0 auto;
-    margin-top: 5rem;
+    margin-top: 50px;
 }
 
 .mobile .card {
@@ -31,11 +31,11 @@
 }
 
 .question {
-    font-size: 16rem;
+    font-size: 160px;
 }
 
 .progress {
-    font-size: 1.2rem;
+    font-size: 12px;
 }
 
 .bl {
@@ -63,15 +63,15 @@
 }
 
 .score {
-    font-size: 2.5rem;
+    font-size: 25px;
     font-weight: 900;
     color: #E3412C;
-    min-width: 3.6rem;
+    min-width: 36px;
 }
 
 .progress-bar {
     background-color: orange;
-    height: 0.8rem;
+    height: 8px;
     width: 100%;
     display: inline-block;
 }
@@ -83,8 +83,8 @@
 }
 
 .popup-buttons button {
-    width: 15rem;
-    padding: 0.8rem;
+    width: 150px;
+    padding: 8px;
     display: inline-block;
     height: 100%;
 }
@@ -92,15 +92,15 @@
 .popup-buttons button span.label {
     display: inline-block;
     vertical-align: middle;
-    font-size: 2.5rem;
-    margin-right: 0.3rem;
+    font-size: 25px;
+    margin-right: 3px;
 }
 
 .popup-buttons button svg.icon {
     display: inline-block;
     vertical-align: middle;
-    width: 3rem;
-    height: 3rem;
+    width: 30px;
+    height: 30px;
 }
 
 
@@ -115,14 +115,14 @@
     cursor: pointer;
     color: rgb(255, 255, 255);
     font-family: Arial;
-    font-size: 1rem;
+    font-size: 10px;
     font-weight: bold;
-    padding: 0.4rem 1rem;
+    padding: 4px 10px;
     text-decoration: none;
     text-shadow: rgb(91, 138, 60) 0px 1px 0px;
-    min-height: 2.5rem;
-    font-size: 1.2rem;
-    margin: 0.8rem auto;
+    min-height: 25px;
+    font-size: 12px;
+    margin: 8px auto;
 }
 
 .hint button:hover {

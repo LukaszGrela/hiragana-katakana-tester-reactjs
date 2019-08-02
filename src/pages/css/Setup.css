@@ -17,34 +17,34 @@
 .setup {
     width: 80%;
     margin: 0 auto;
-    min-width: 32rem;
-    max-width: 48rem;
+    min-width: 320px;
+    max-width: 480px;
 }
 
 
 /* .wrapper {} */
 
 .row {
-    min-height: 4rem;
-    margin-bottom: 1.6rem;
+    min-height: 40px;
+    margin-bottom: 16px;
 }
 
 .row.test-what>span,
 .row.writing>span {
     display: inline-block;
-    margin-bottom: 0.6rem;
+    margin-bottom: 60px;
 }
 
-@media all and (max-width:32rem) {
+@media all and (max-width:320px) {
     .row.test-what>span,
     .row.writing>span {
-        font-size: 1.3rem;
+        font-size: 13px;
     }
 }
 
 .row.test-what,
 .row.writing {
-    width: 16.4rem;
+    width: 164px;
     display: inline-block;
 }
 
@@ -54,9 +54,9 @@
 }
 
 .row.list-toolbar {
-    /* max-width: 64rem; */
+    /* max-width: 640px; */
     margin: 0 auto;
-    margin-bottom: 0.4rem;
+    margin-bottom: 4px;
 }
 
 .row.list-toolbar {
@@ -68,7 +68,7 @@
 }
 
 .selection-button {
-    width: 15rem;
+    width: 150px;
     font-weight: bold;
 }
 
@@ -77,18 +77,18 @@
 }
 
 .selection-stats {
-    margin-right: 1.2rem;
-    font-size: 1.2rem;
+    margin-right: 12px;
+    font-size: 12px;
 }
 
 .series-list {
-    height: 20rem;
-    margin: 0.4rem auto;
-    max-width: 64rem;
-    min-width: 30.4rem;
+    height: 200px;
+    margin: 4px auto;
+    max-width: 640px;
+    min-width: 304px;
     background-color: initial;
-    /* outline: rgba(255, 255, 255, 0.85) solid 0.4rem; */
-    /* outline-offset: 0.4rem; */
+    /* outline: rgba(255, 255, 255, 0.85) solid 4px; */
+    /* outline-offset: 4px; */
 }
 
 
@@ -137,8 +137,8 @@
     background-color: rgba(0, 0, 0, 0.1);
 }
 
-@media all and (max-width:32rem) {
+@media all and (max-width:320px) {
     .series-list {
-        height: 16rem;
+        height: 160px;
     }
 }
