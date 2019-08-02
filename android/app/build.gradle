@@ -1,4 +1,35 @@
+import groovy.xml.StreamingMarkupBuilder
+
 apply plugin: 'com.android.application'
+
+//auto increment of version
+Properties versionProps = new Properties()
+def versionPropsFile = file('version.properties')
+if (versionPropsFile.exists())
+    versionProps.load(new FileInputStream(versionPropsFile))
+def code = (versionProps['VERSION_CODE'] ?: "0").toInteger() + 1
+versionProps['VERSION_CODE'] = code.toString()
+versionProps.store(versionPropsFile.newWriter(), null)
+//--- end of auto increment of version ---
+
+//build timestamp
+task updateBuildTimestamp {
+    def builder = new StreamingMarkupBuilder()
+    builder.encoding = "UTF-8"
+    //
+    def now = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+    def timestamp = now.format("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
+    def xml = {
+        mkp.xmlDeclaration()
+        resources() {
+            item("type": "string", "name": "buildDate", "$timestamp")
+        }
+    }
+    def writer = new FileWriter("app/src/main/res/values/version.xml")
+    writer << builder.bind(xml)
+    //
+}
+//--- build timestamp ---
 
 android {
     compileSdkVersion 28
@@ -6,8 +37,8 @@ android {
         applicationId "co.greladesign.hiraganakatakanatester"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode code
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
