@@ -1,141 +1,146 @@
 .game {
-    width: 100%;
-    margin: 0;
-    min-width: 320px;
+  width: 100%;
+  margin: 0;
+  min-width: 320px;
 
-    position: inherit;
-    top: 15%;
-
-
+  position: inherit;
+  top: 15%;
 }
 
 .mobile .game {
-    top:60px;
+  top: 60px;
 }
 
-
 .card {
-    position: relative;
-    background-image: url(../../images/card-background.png);
-    background-repeat: no-repeat;
-    /* background-color: #fff; */
-    width: 320px;
-    min-height: 260px;
-    /* box-shadow: 2px 2px 10px -1px #212121; */
-    margin: 0 auto;
-    margin-top: 50px;
+  position: relative;
+  background-image: url(../../images/card-background.png);
+  background-repeat: no-repeat;
+  /* background-color: #fff; */
+  width: 320px;
+  min-height: 260px;
+  /* box-shadow: 2px 2px 10px -1px #212121; */
+  margin: 0 auto;
+  margin-top: 50px;
 }
 
 .mobile .card {
-    margin-top: 0;
+  margin-top: 0;
 }
 
 .question {
-    font-size: 160px;
+  font-size: 12rem;
+}
+
+.question {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  text-align: center;
+  min-width: 300px;
 }
 
 .progress {
-    font-size: 12px;
+  font-size: 12px;
 }
 
 .bl {
-    position: absolute;
-    left: 8px;
-    bottom: 8px;
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
 }
 
 .bl-edge {
-    position: absolute;
-    left: 0;
-    bottom: 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
 }
 
 .tr {
-    position: absolute;
-    right: 8px;
-    top: 8px;
+  position: absolute;
+  right: 8px;
+  top: 8px;
 }
 
 .tr-edge {
-    position: absolute;
-    right: 0;
-    top: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
 }
 
 .score {
-    font-size: 25px;
-    font-weight: 900;
-    color: #E3412C;
-    min-width: 36px;
+  font-size: 25px;
+  font-weight: 900;
+  color: #e3412c;
+  min-width: 36px;
 }
 
 .progress-bar {
-    background-color: orange;
-    height: 8px;
-    width: 100%;
-    display: inline-block;
+  background-color: orange;
+  height: 8px;
+  width: 100%;
+  display: inline-block;
 }
 
 .bar {
-    background-color: /* $primary-color */
-    #388E3C;
-    height: 100%;
+  background-color: /* $primary-color */ #388e3c;
+  height: 100%;
 }
 
 .popup-buttons button {
-    width: 150px;
-    padding: 8px;
-    display: inline-block;
-    height: 100%;
+  width: 150px;
+  padding: 8px;
+  display: inline-block;
+  height: 100%;
 }
 
 .popup-buttons button span.label {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 25px;
-    margin-right: 3px;
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 25px;
+  margin-right: 3px;
 }
 
 .popup-buttons button svg.icon {
-    display: inline-block;
-    vertical-align: middle;
-    width: 30px;
-    height: 30px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
 }
-
 
 /* Hint button */
 
 .hint button {
-    box-shadow: rgb(62, 115, 39) 0px 10px 14px -7px;
-    background: linear-gradient(rgb(119, 181, 90) 5%, rgb(114, 179, 82) 100%) rgb(119, 181, 90);
-    border-radius: 4px;
-    border: 1px solid rgb(75, 143, 41);
-    display: inline-block;
-    cursor: pointer;
-    color: rgb(255, 255, 255);
-    font-family: Arial;
-    font-size: 10px;
-    font-weight: bold;
-    padding: 4px 10px;
-    text-decoration: none;
-    text-shadow: rgb(91, 138, 60) 0px 1px 0px;
-    min-height: 25px;
-    font-size: 12px;
-    margin: 8px auto;
+  box-shadow: rgb(62, 115, 39) 0px 10px 14px -7px;
+  background: linear-gradient(rgb(119, 181, 90) 5%, rgb(114, 179, 82) 100%)
+    rgb(119, 181, 90);
+  border-radius: 4px;
+  border: 1px solid rgb(75, 143, 41);
+  display: inline-block;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  font-family: Arial;
+  font-size: 10px;
+  font-weight: bold;
+  padding: 4px 10px;
+  text-decoration: none;
+  text-shadow: rgb(91, 138, 60) 0px 1px 0px;
+  min-height: 25px;
+  font-size: 12px;
+  margin: 8px auto;
 }
 
 .hint button:hover {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 .hint button:disabled {
-    cursor: not-allowed;
-    pointer-events: none;
-    color: grey;
-    border-color: #212121;
-    background: none;
-    background-color: #3f3f3f;
-    text-shadow: none;
-    box-shadow: none;
+  cursor: not-allowed;
+  pointer-events: none;
+  color: grey;
+  border-color: #212121;
+  background: none;
+  background-color: #3f3f3f;
+  text-shadow: none;
+  box-shadow: none;
 }

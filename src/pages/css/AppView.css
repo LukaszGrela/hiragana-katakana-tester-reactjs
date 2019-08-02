@@ -15,114 +15,125 @@
 */
 
 .app-view {
-    max-width: 940px;
-    margin: 0 auto;
-    position: relative;
+  max-width: 940px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: /* $header-height */ 60px;
-    background-color: transparent;
-    color: /* $primary-color-text; */ #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: /* $header-height */ 60px;
+  background-color: transparent;
+  color: /* $primary-color-text; */ #fff;
+}
+
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .left-placeholder {
-    position: absolute;
-    left: /* $margin-left */ 8px;
-    top: 0;
-    width: 40px;
-    height: /* $header-height */ 60px;
-}
-
-.left-placeholder button {
-    margin-top: 10px;
-}
-
-.left-placeholder button svg {
-    width: 32px;
-    height: 32px;
-    fill: /* $primary-color-text; */#fff;
-}
-
-.app-title {
-    width: 80%;
-    margin: 0 auto;
-    font-size: 18px;
-}
-
-.app-title>* {
-    display: inline-block;
-    vertical-align: middle;
-    margin-top: 11px;
-}
-
-.app-title svg {
-    width: 32px;
-    height: 32px;
-    fill: /* $primary-color-text; */#fff;
-}
-
-.title-text {
-    margin-left: 8px;
-    margin-right: 8px;
-}
-
-@media all and (max-width:320px) {
-    .app-title {
-        width: 224px;
-    }
-    .app-title .title-text {
-        font-size: 14px;
-        width: 160px;
-    }
-    .title-text {
-        margin-left: 0px;
-        margin-right: 0px;
-        font-weight: 700;
-    }
+  flex-grow: 1;
+  flex-shrink: 1;
 }
 
 .right-placeholder {
-    position: absolute;
-    right: /* $margin-right */    8px;
-    top: 0;
-    height: /* $header-height */    60px;
+  flex-grow: 1;
+  flex-shrink: 1;
+}
+
+.left-placeholder {
+  width: 40px;
+  height: /* $header-height */ 60px;
+}
+
+.left-placeholder button {
+  margin-top: 10px;
+}
+
+.left-placeholder button svg {
+  width: 32px;
+  height: 32px;
+  fill: /* $primary-color-text; */ #fff;
+}
+
+.app-title {
+  width: 80%;
+  margin: 0 auto;
+  font-size: 18px;
+}
+
+.app-title {
+    display: flex;
+    flex-grow: 2;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+.app-title svg {
+  width: 26px;
+  height: 26px;
+  fill: /* $primary-color-text; */ #fff;
+}
+
+.title-text {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
+@media all and (max-width: 320px) {
+  .app-title {
+    width: 224px;
+  }
+  .app-title .title-text {
+    font-size: 14px;
+    width: 160px;
+  }
+  .title-text {
+    margin-left: 0px;
+    margin-right: 0px;
+    font-weight: 700;
+  }
+}
+
+.right-placeholder {
+  height: /* $header-height */ 60px;
 }
 
 .right-placeholder button {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .right-placeholder button svg {
-    width: 32px;
-    height: 32px;
-    fill: /* $primary-color-text; */#fff;
+  width: 32px;
+  height: 32px;
+  fill: /* $primary-color-text; */ #fff;
 }
 .left-placeholder button svg,
-.right-placeholder button svg
- {
-    -webkit-transition: all .5s ease;
-    transition: all .5s ease;
+.right-placeholder button svg {
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 .left-placeholder button svg:hover,
 .right-placeholder button svg:hover {
-    transform: rotate(1turn);
+  transform: rotate(1turn);
 }
 .content {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    margin-top: /* $header-height */60px;
-    min-height: 100%;
-    min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-top: /* $header-height */ 60px;
+  min-height: 100%;
+  min-height: 100vh;
 }
 
 .main {
-    width: inherit;
-    position: inherit;
+  width: inherit;
+  position: inherit;
 }

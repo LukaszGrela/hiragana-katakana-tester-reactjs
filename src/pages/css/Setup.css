@@ -31,8 +31,8 @@
 
 .row.test-what>span,
 .row.writing>span {
-    display: inline-block;
-    margin-bottom: 60px;
+    display: block;
+    margin-bottom: 6px;
 }
 
 @media all and (max-width:320px) {
@@ -44,13 +44,13 @@
 
 .row.test-what,
 .row.writing {
-    width: 164px;
-    display: inline-block;
+    /* width: 164px; */
+    /* display: inline-block; */
 }
 
 .test-what-switch,
 .writing-switch {
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 .row.list-toolbar {
