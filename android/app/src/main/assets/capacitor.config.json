@@ -1,0 +1,7 @@
+{
+  "appId": "co.greladesign.hiraganakatakanatester",
+  "appName": "Hiragana Katakana Tester",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "build"
+}
