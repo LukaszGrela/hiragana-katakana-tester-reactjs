@@ -2,7 +2,7 @@
 App to test Hiragana/Katakana syllabary written in ReactJS
 
 ## Live Link
-[Hiragana/Katakana [syllabary] Tester Web App](http://greladesign.co/hiragana-katakana-tester)
+[Hiragana/Katakana [syllabary] Tester Web App](https://greladesign.co/hiragana-katakana-tester)
 
 ### Tested on
 - Windows 7 Chrome, FireFox, Opera, IE11
