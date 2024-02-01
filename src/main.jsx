@@ -7,9 +7,11 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import hkTesterStore from './store/HKTesterStore';
 
+import bowser from 'bowser';
+
 import './index.css';
 
-((bowser, html) => {
+((html) => {
   if (bowser.name) {
     html.className += ' ' + bowser.name;
     html.className += ' ' + bowser.name + '-' + bowser.version;
@@ -34,7 +36,7 @@ import './index.css';
     !bowser.ipod
   )
     html.className += ' desktop';
-})(require('bowser'), document.getElementsByTagName('html')[0]);
+})(document.getElementsByTagName('html')[0]);
 
 // Render app
 ReactDOM.render(

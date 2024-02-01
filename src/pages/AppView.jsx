@@ -17,7 +17,7 @@
 import React, { Component } from 'react';
 import { withRouter, Switch } from 'react-router-dom';
 
-import Route from 'react-router-dom/Route';
+import { Route } from 'react-router-dom';
 import MediaQuery from 'react-responsive';
 import NoMatch from './NoMatch';
 import Home from './Home';
@@ -38,180 +38,236 @@ import './css/AppView.css';
 import './css/DropDown.css';
 
 export class AppView extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            location: '/',
-            ddMenuOpen: false
-        }
-
-        this.getHeaderLeftSlotFragment = this.getHeaderLeftSlotFragment.bind(this);
-        this.getHeaderRightSlotFragment = this.getHeaderRightSlotFragment.bind(this);
-        this.handleNavigationAction = this.handleNavigationAction.bind(this);
-    }
-
-    componentDidMount() {
-
-        document.addEventListener('keydown', this.handleKeyDown);
-        this.unlistenHistory = this.props.history.listen((location, action) => {
-
-            this.setState(_ => ({ location: location.pathname }));
-        });
-    }
-    componentWillUnmount() {
-
-        document.removeEventListener('keydown', this.handleKeyDown);
-        this.unlistenHistory();
-    }
-
-
-    handleNavigationAction(id = '/') {
-        let to = '/';
-        switch (id) {
-            case 'config':
-                to = '/setup';
-                break;
-            case 'about':
-                to = '/about';
-                break;
-            case 'game':
-                to = '/game';
-                break;
-            case '/':
-            default:
-                to = '/';
-                break;
-        }
-        this.setState(_ => ({
-            // hide state
-            ddMenuOpen: false
-        }), _ => {
-            // state change applied - navigate
-            this.props.history.push(to);
-        })
-    }
-
-
-    handleDropDown = () => {
-        this.setState(_ => ({ ddMenuOpen: true }));
-    }
-
-    handleKeyDown = (event) => {
-        const { keyCode: code } = event
-        if(this.state.ddMenuOpen && code === 27) {
-            // Escape
-            event.preventDefault();
-            this.setState(_ => ({ ddMenuOpen: false }));
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      location: '/',
+      ddMenuOpen: false,
     };
 
-    /**
-     * @returns {JSX.Element | null} Returns fragment to be placed in the headers left slot
-     */
-    getHeaderLeftSlotFragment() {
-        const { location } = this.state;
+    this.getHeaderLeftSlotFragment = this.getHeaderLeftSlotFragment.bind(this);
+    this.getHeaderRightSlotFragment =
+      this.getHeaderRightSlotFragment.bind(this);
+    this.handleNavigationAction = this.handleNavigationAction.bind(this);
+  }
 
-        if (location !== '/') {
-            return <button onClick={() => { this.handleNavigationAction() }}><IconArrowBack /></button>
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+    this.unlistenHistory = this.props.history.listen((location, action) => {
+      this.setState((_) => ({ location: location.pathname }));
+    });
+  }
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown);
+    this.unlistenHistory();
+  }
 
-        } else {
-            return null;
-        }
+  handleNavigationAction(id = '/') {
+    let to = '/';
+    switch (id) {
+      case 'config':
+        to = '/setup';
+        break;
+      case 'about':
+        to = '/about';
+        break;
+      case 'game':
+        to = '/game';
+        break;
+      case '/':
+      default:
+        to = '/';
+        break;
     }
-    getSettingsButton = (label) => (
-        <button
-            key={'settings-btn'}
-            className='button-settings'
-            onClick={() => { this.handleNavigationAction('config') }}><IconSettings />
-            {label && <span className='label'>{label}</span>}
-        </button>
+    this.setState(
+      (_) => ({
+        // hide state
+        ddMenuOpen: false,
+      }),
+      (_) => {
+        // state change applied - navigate
+        this.props.history.push(to);
+      }
     );
-    /**
-     * @returns {JSX.Element | null} Returns fragment to be placed in the headers right slot
-     */
-    getHeaderRightSlotFragment() {
-        const { location } = this.state;
+  }
 
-        if (location === '/') {
-            return [
-                <MediaQuery
-                    key={'media-query'}
-                    minDeviceWidth={410}
+  handleDropDown = () => {
+    this.setState((_) => ({ ddMenuOpen: true }));
+  };
+
+  handleKeyDown = (event) => {
+    const { keyCode: code } = event;
+    if (this.state.ddMenuOpen && code === 27) {
+      // Escape
+      event.preventDefault();
+      this.setState((_) => ({ ddMenuOpen: false }));
+    }
+  };
+
+  /**
+   * @returns {JSX.Element | null} Returns fragment to be placed in the headers left slot
+   */
+  getHeaderLeftSlotFragment() {
+    const { location } = this.state;
+
+    if (location !== '/') {
+      return (
+        <button
+          onClick={() => {
+            this.handleNavigationAction();
+          }}
+        >
+          <IconArrowBack />
+        </button>
+      );
+    } else {
+      return null;
+    }
+  }
+  getSettingsButton = (label) => (
+    <button
+      key={'settings-btn'}
+      className='button-settings'
+      onClick={() => {
+        this.handleNavigationAction('config');
+      }}
+    >
+      <IconSettings />
+      {label && <span className='label'>{label}</span>}
+    </button>
+  );
+  /**
+   * @returns {JSX.Element | null} Returns fragment to be placed in the headers right slot
+   */
+  getHeaderRightSlotFragment() {
+    const { location } = this.state;
+
+    if (location === '/') {
+      return [
+        <MediaQuery key={'media-query'} minDeviceWidth={410}>
+          {(matches) => {
+            if (matches) {
+              /* normal */
+              return [
+                <button
+                  key={'about-btn'}
+                  className='button-about'
+                  onClick={() => {
+                    this.handleNavigationAction('about');
+                  }}
                 >
-                    {(matches) => {
-                        if (matches) {
-                            /* normal */
-                            return [
-                                <button
-                                    key={'about-btn'}
-                                    className='button-about'
-                                    onClick={() => { this.handleNavigationAction('about') }}><IconInfo /></button>,
+                  <IconInfo />
+                </button>,
 
-                                this.getSettingsButton()
-                            ];
-                        } else {
-                            /* dd on small devices */
-                            return [
-                                <button key={'dd-menu-btn'}
-                                    className='dd-button-menu'
-                                    onClick={() => { this.handleDropDown() }}><IconMore /></button>
-                            ]
-                        }
-                    }}
-                </MediaQuery>
-            ];
-        } else if (location === '/about') {
-            return this.getSettingsButton();
-        } else {
-
-            return null;
-        }
+                this.getSettingsButton(),
+              ];
+            } else {
+              /* dd on small devices */
+              return [
+                <button
+                  key={'dd-menu-btn'}
+                  className='dd-button-menu'
+                  onClick={() => {
+                    this.handleDropDown();
+                  }}
+                >
+                  <IconMore />
+                </button>,
+              ];
+            }
+          }}
+        </MediaQuery>,
+      ];
+    } else if (location === '/about') {
+      return this.getSettingsButton();
+    } else {
+      return null;
     }
-    render() {
-        return (
-            <div className='app-view'>
-                <div className='header'>
-                    <div className='left-placeholder'>{this.getHeaderLeftSlotFragment()}</div>
-                    <div className='app-title'><IconHiraganaKa /><div className='title-text'>Hiragana/Katakana Tester</div><IconKatakanaKa /></div>
-                    <div className='right-placeholder'>{this.getHeaderRightSlotFragment()}</div>
-                </div>
-                <div className='content'>
-                    {
-                        /* here we will test for large display */
-                        false &&
-                        <div className='left-column side'>
-
-                        </div>
-                    }
-                    <div className={false ? 'right-column main' : 'main'}>
-
-                        <Switch>
-                            <Route exact path="/" component={() => { return <Home onNavigation={this.handleNavigationAction} /> }} />
-                            <Route exact path="/game" component={() => { return <Game /> }} />
-                            <Route exact path="/setup" component={() => { return <Setup /> }} />
-                            <Route exact path="/about" component={() => { return <About /> }} />
-                            <Route component={NoMatch} />
-                        </Switch>
-
-                    </div>
-                </div>
-                <Footer />
-                <div key={'dd-menu-box'}
-                    className={'dd-menu' + (this.state.ddMenuOpen ? ' open' : ' close')}>
-                    <div className='cloak'
-                        onClick={_ => {
-                            console.log('cick');
-                            this.setState(_ => ({ ddMenuOpen: false }));
-                        }}></div>
-                    <div className='dd-menu-container'>
-                        <button key={'about-btn'} className='button-about'
-                            onClick={_ => { this.handleNavigationAction('about') }}><IconInfo /><span className='label'>About</span></button>
-                        {this.getSettingsButton('Setup')}
-                    </div>
-                </div>
-            </div>
-        )
-    }
+  }
+  render() {
+    return (
+      <div className='app-view'>
+        <div className='header'>
+          <div className='left-placeholder'>
+            {this.getHeaderLeftSlotFragment()}
+          </div>
+          <div className='app-title'>
+            <IconHiraganaKa />
+            <div className='title-text'>Hiragana/Katakana Tester</div>
+            <IconKatakanaKa />
+          </div>
+          <div className='right-placeholder'>
+            {this.getHeaderRightSlotFragment()}
+          </div>
+        </div>
+        <div className='content'>
+          {
+            /* here we will test for large display */
+            false && <div className='left-column side'></div>
+          }
+          <div className={false ? 'right-column main' : 'main'}>
+            <Switch>
+              <Route
+                exact
+                path='/'
+                component={() => {
+                  return <Home onNavigation={this.handleNavigationAction} />;
+                }}
+              />
+              <Route
+                exact
+                path='/game'
+                component={() => {
+                  return <Game />;
+                }}
+              />
+              <Route
+                exact
+                path='/setup'
+                component={() => {
+                  return <Setup />;
+                }}
+              />
+              <Route
+                exact
+                path='/about'
+                component={() => {
+                  return <About />;
+                }}
+              />
+              <Route component={NoMatch} />
+            </Switch>
+          </div>
+        </div>
+        <Footer />
+        <div
+          key={'dd-menu-box'}
+          className={'dd-menu' + (this.state.ddMenuOpen ? ' open' : ' close')}
+        >
+          <div
+            className='cloak'
+            onClick={(_) => {
+              console.log('cick');
+              this.setState((_) => ({ ddMenuOpen: false }));
+            }}
+          ></div>
+          <div className='dd-menu-container'>
+            <button
+              key={'about-btn'}
+              className='button-about'
+              onClick={(_) => {
+                this.handleNavigationAction('about');
+              }}
+            >
+              <IconInfo />
+              <span className='label'>About</span>
+            </button>
+            {this.getSettingsButton('Setup')}
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default withRouter(AppView);

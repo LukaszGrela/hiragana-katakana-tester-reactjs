@@ -17,15 +17,14 @@ import React, { Component } from 'react';
 
 import './App.css';
 
-import connect from 'react-redux/lib/connect/connect';
+import { connect } from 'react-redux';
 
 import Splash from './pages/Splash';
 import AppView from './pages/AppView';
 import { withRouter } from 'react-router-dom';
-import Redirect from 'react-router-dom/Redirect';
+import { Redirect } from 'react-router-dom';
 
 class App extends Component {
-
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
       this.onRouteChanged();
@@ -33,40 +32,37 @@ class App extends Component {
   }
 
   onRouteChanged = () => {
-    console.log("route changed", this.props.location);
-  }
+    console.log('route changed', this.props.location);
+  };
 
   render() {
-
     const { location } = this.props;
     const page = location.pathname.split('/')[1] || 'home';
 
     return (
-      <div className={"App page-" + page}>
-        <div className="app-background">
-          <div className="layer sky">
-            <div className="layer sun"></div>
-            <div className="layer mountains"></div>
+      <div className={'App page-' + page}>
+        <div className='app-background'>
+          <div className='layer sky'>
+            <div className='layer sun'></div>
+            <div className='layer mountains'></div>
           </div>
-          <div className="layer ground">
-            <div className="layer tree-01"></div>
-            <div className="layer tree-02"></div>
-            <div className="layer building-01"></div>
-            <div className="layer building-02"></div>
-            <div className="layer crane crane-01"></div>
+          <div className='layer ground'>
+            <div className='layer tree-01'></div>
+            <div className='layer tree-02'></div>
+            <div className='layer building-01'></div>
+            <div className='layer building-02'></div>
+            <div className='layer crane crane-01'></div>
           </div>
         </div>
-        {
-          !this.props.hasData ?
-            (
-              location.pathname !== '/' ?
-                <Redirect to='/' />
-                :
-                <Splash />
-            )
-            :
-            <AppView />
-        }
+        {!this.props.hasData ? (
+          location.pathname !== '/' ? (
+            <Redirect to='/' />
+          ) : (
+            <Splash />
+          )
+        ) : (
+          <AppView />
+        )}
       </div>
     );
   }
@@ -74,7 +70,7 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    hasData: state.data && state.data.length > 0
-  }
+    hasData: state.data && state.data.length > 0,
+  };
 };
 export default withRouter(connect(mapStateToProps)(App));
