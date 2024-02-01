@@ -1,8 +1,15 @@
 {
   "name": "hiragana-katakana-tester-react",
-  "version": "0.8.1",
   "private": true,
+  "version": "0.9.1",
   "homepage": "http://greladesign.co/hiragana-katakana-tester",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "axios": "^1.6.7",
     "bowser": "^1.9.1",
@@ -17,16 +24,12 @@
     "redux-promise-middleware": "^5.0.0",
     "redux-thunk": "^2.2.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "vite": "^5.0.8"
+  }
 }
