@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "http://greladesign.co/hiragana-katakana-tester",
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^1.6.7",
     "bowser": "^1.9.1",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
