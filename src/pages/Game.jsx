@@ -15,7 +15,6 @@
 */
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import connect from 'react-redux/lib/connect/connect';
 import { shuffle } from '../utils/math';
 
 import IconMenu from '../icons/IconMenu';
@@ -30,6 +29,7 @@ import CorrectFeedback from '../components/CorrectFeedback';
 import IncorrectFeedback from '../components/IncorrectFeedback';
 import GameOver from '../components/GameOver';
 import Distractors from '../components/Distractors';
+import { connect } from 'react-redux';
 
 class Game extends Component {
   answeredList = [];
@@ -62,13 +62,12 @@ class Game extends Component {
     if (data && syllabary && writing) {
       const whatToTest = writing.selection; //romaji-0
       const romajiLabel = writing.options[0].toLowerCase();
-      const syllabaryChosen = syllabary.options[
-        syllabary.selection
-      ].toLowerCase();
+      const syllabaryChosen =
+        syllabary.options[syllabary.selection].toLowerCase();
 
       // collect distractors
       let distractors = [];
-      data.filter(item => {
+      data.filter((item) => {
         if (whatToTest === 1) {
           // test kana
           item.source[romajiLabel].forEach((element, index) => {
@@ -284,22 +283,23 @@ class Game extends Component {
           'game' +
           (correct !== null ? (correct ? ' correct' : ' incorrect') : '') +
           (selectedBtnId !== null ? ' ' + selectedBtnId : '')
-        }>
-        <div className="wrapper">
-          <div className="card">
-            <div className="question">{current.question}</div>
-            <div className="progress bl">{index + 1 + ' / ' + length}</div>
+        }
+      >
+        <div className='wrapper'>
+          <div className='card'>
+            <div className='question'>{current.question}</div>
+            <div className='progress bl'>{index + 1 + ' / ' + length}</div>
             {false && (
-              <div className="progress-bar bl-edge">
+              <div className='progress-bar bl-edge'>
                 <div
-                  className="bar"
+                  className='bar'
                   style={{
                     width: Math.round(((index + 1) / length) * 100) + '%',
                   }}
                 />
               </div>
             )}
-            <div className="score tr">{score}</div>
+            <div className='score tr'>{score}</div>
           </div>
           <Distractors
             correct={current.correct}
@@ -311,12 +311,13 @@ class Game extends Component {
               }
             }}
           />
-          <div className="hint">
+          <div className='hint'>
             <button
               disabled={hintUsed}
               onClick={() => {
                 this.showHint();
-              }}>
+              }}
+            >
               Hint
             </button>
           </div>
@@ -325,13 +326,14 @@ class Game extends Component {
               className={
                 'popup-container' +
                 (correct !== null ? (correct ? ' correct' : ' incorrect') : '')
-              }>
-              <div className="cloak" />
-              <div className="popup">
-                <div className="popup-title">
+              }
+            >
+              <div className='cloak' />
+              <div className='popup'>
+                <div className='popup-title'>
                   {gameOver ? 'Game Over!' : null}
                 </div>
-                <div className="popup-content">
+                <div className='popup-content'>
                   {gameOver ? (
                     <GameOver data={this.answeredList} />
                   ) : correct ? (
@@ -341,47 +343,50 @@ class Game extends Component {
                       message={'Incorrect!'}
                       correct={[
                         'Correct answer is: ',
-                        <span key="span-answer" className="answer">
+                        <span key='span-answer' className='answer'>
                           {current.correct}
                         </span>,
                       ]}
                     />
                   )}
                 </div>
-                <div className="popup-buttons">
+                <div className='popup-buttons'>
                   {gameOver ? (
                     [
                       <button
                         key={'replay-button'}
-                        className="replay-button"
-                        onClick={e => {
+                        className='replay-button'
+                        onClick={(e) => {
                           e.preventDefault();
                           this.restart();
-                        }}>
-                        <span className="label">Again</span>
-                        <IconReplay className="icon" />
+                        }}
+                      >
+                        <span className='label'>Again</span>
+                        <IconReplay className='icon' />
                       </button>,
                       <button
                         key={'menu-button'}
-                        className="menu-button"
-                        onClick={e => {
+                        className='menu-button'
+                        onClick={(e) => {
                           e.preventDefault();
                           this.goMenu();
-                        }}>
-                        <span className="label">Menu</span>
-                        <IconMenu className="icon" />
+                        }}
+                      >
+                        <span className='label'>Menu</span>
+                        <IconMenu className='icon' />
                       </button>,
                     ]
                   ) : (
                     <button
                       key={'next-question-button'}
-                      className="next-question-button"
-                      onClick={e => {
+                      className='next-question-button'
+                      onClick={(e) => {
                         e.preventDefault();
                         this.nextQuestion();
-                      }}>
-                      <span className="label">Next</span>
-                      <ButtonIconNext className="icon" />
+                      }}
+                    >
+                      <span className='label'>Next</span>
+                      <ButtonIconNext className='icon' />
                     </button>
                   )}
                 </div>
@@ -393,14 +398,14 @@ class Game extends Component {
     );
   }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { syllabary, writing, selection, data } = state;
 
   let _selection = selection;
 
   if (selection && selection.length === 1 && isNaN(selection[0])) {
     //'all' - convert to list of ID's
-    _selection = data.map(item => item.id);
+    _selection = data.map((item) => item.id);
   }
 
   return {

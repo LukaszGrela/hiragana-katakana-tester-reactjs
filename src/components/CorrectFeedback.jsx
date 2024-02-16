@@ -16,12 +16,12 @@
 import React from 'react';
 
 import './css/CorrectFeedback.css';
-import Stars from '../components/Stars';
+import Stars from './Stars';
 
 const CorrectFeedback = ({ message }) => (
-  <div className="feedback correct">
+  <div className='feedback correct'>
     <Stars />
-    <div className="message">{message}</div>
+    <div className='message'>{message}</div>
   </div>
 );
 

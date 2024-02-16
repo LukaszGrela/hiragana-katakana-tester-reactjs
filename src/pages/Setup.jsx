@@ -15,7 +15,7 @@
 */
 
 import React from 'react';
-import connect from 'react-redux/lib/connect/connect';
+import { connect } from 'react-redux';
 import CheckboxSwitch from '../components/CheckboxSwitch';
 import ListSeries from '../components/ListSeries';
 import selectionChanged from '../actions/selectionChanged';
@@ -25,42 +25,42 @@ import writingChanged from '../actions/writingChanged';
 import './css/Setup.css';
 import SelectionHint from '../components/SelectionHint';
 
-const Setup = props => {
+const Setup = (props) => {
   const { dispatch } = props;
   return (
-    <div className="setup">
-      <div className="wrapper">
-        <div className="row test-what">
+    <div className='setup'>
+      <div className='wrapper'>
+        <div className='row test-what'>
           <span>Choose what syllabary option to test:</span>
           <CheckboxSwitch
-            id="test-what-switch"
+            id='test-what-switch'
             labelOn={props.syllabary_label_on}
             labelOff={props.syllabary_label_off}
             iconOn={'カ'}
             iconOff={'か'}
             isChecked={!!props.syllabary_selection}
-            onChecked={newState => {
+            onChecked={(newState) => {
               dispatch(syllabaryChanged(newState ? 1 : 0));
             }}
           />
         </div>
-        <div className="row writing">
+        <div className='row writing'>
           <span>Choose what writing option to test:</span>
           <CheckboxSwitch
-            id="writing-switch"
+            id='writing-switch'
             labelOn={props.writing_label_on}
             labelOff={props.writing_label_off}
             iconOn={'仮名'}
             iconOff={'Ro'}
             isChecked={!!props.writing_selection}
-            onChecked={newState => {
+            onChecked={(newState) => {
               dispatch(writingChanged(newState ? 1 : 0));
             }}
           />
         </div>
-        <div className="row list-toolbar">
+        <div className='row list-toolbar'>
           <button
-            className="selection-button"
+            className='selection-button'
             onClick={() => {
               if (props.selection.length === 0) {
                 //select all
@@ -69,18 +69,19 @@ const Setup = props => {
                 //deselect all
                 dispatch(selectionChanged([]));
               }
-            }}>
+            }}
+          >
             {props.selection.length === 0 ? 'Select All' : 'Deselect All'}
           </button>
           <SelectionHint
-            className="selection-stats"
+            className='selection-stats'
             pattern={'It is selected {k} Kana of {s} series.'}
             selection={props.selection}
             data={props.data}
           />
         </div>
         <ListSeries
-          className="row series-list"
+          className='row series-list'
           data={props.data}
           selection={props.selection}
           onItemClicked={(id, selected) => {
@@ -105,14 +106,14 @@ const Setup = props => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   const { syllabary, writing, selection, data } = state;
   let _selection = selection;
   let _fullSelection = [];
 
   if (selection && selection.length === 1 && isNaN(selection[0])) {
     //'all' - convert to list of ID's
-    _selection = data.map(item => item.id);
+    _selection = data.map((item) => item.id);
   }
   if (
     selection &&
@@ -123,7 +124,7 @@ const mapStateToProps = state => {
     _fullSelection = _selection.concat();
   } else {
     // create
-    _fullSelection = data.map(item => item.id);
+    _fullSelection = data.map((item) => item.id);
   }
 
   return {
