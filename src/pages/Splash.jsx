@@ -13,17 +13,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import React, { Component } from 'react';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import dataAdded from '../actions/dataAdded';
-import selectionChanged from '../actions/selectionChanged';
-import syllabaryAdded from '../actions/syllabaryAdded';
-import syllabaryChanged from '../actions/syllabaryChanged';
-import writingAdded from '../actions/writingAdded';
-import writingChanged from '../actions/writingChanged';
+import { Component } from "react";
+import { connect } from "react-redux";
+import dataAdded from "../actions/dataAdded";
+import selectionChanged from "../actions/selectionChanged";
+import syllabaryAdded from "../actions/syllabaryAdded";
+import syllabaryChanged from "../actions/syllabaryChanged";
+import writingAdded from "../actions/writingAdded";
+import writingChanged from "../actions/writingChanged";
 
-import './css/Splash.css';
+import "./css/Splash.css";
 
 class Splash extends Component {
   constructor(props) {
@@ -35,13 +34,14 @@ class Splash extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    axios
-      .get('./data/data.json')
-      .then((res) => {
-        const selection = res.data.selection;
-        const syllabary = res.data.syllabary;
-        const writing = res.data.writing;
-        const syllabary_series = res.data.syllabary_series.map((obj) => {
+    fetch(`${import.meta.env.BASE_URL}/data/data.json`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("res", data);
+        const selection = data.selection;
+        const syllabary = data.syllabary;
+        const writing = data.writing;
+        const syllabary_series = data.syllabary_series.map((obj) => {
           return obj;
         });
 
@@ -57,19 +57,21 @@ class Splash extends Component {
         // -------------------------
       })
       .catch((reason) => {
-        console.error('Splash#componentDidMount', reason);
+        console.error("Splash#componentDidMount", reason);
       });
   }
 
   render() {
     return (
-      <div className='splash'>
-        <div className='wrapper'>
-          <div className='loading'>Loading...</div>
+      <div className="splash">
+        <div className="wrapper">
+          <div className="loading">Loading...</div>
         </div>
       </div>
     );
   }
 }
 
-export default connect()(Splash);
+const SplashConnected = connect()(Splash);
+
+export default SplashConnected;
