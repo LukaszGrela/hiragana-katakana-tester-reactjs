@@ -14,7 +14,7 @@
    limitations under the License.
 */
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { shuffle } from '../utils/math';
 
 import IconMenu from '../icons/IconMenu';
@@ -195,8 +195,8 @@ class Game extends Component {
   }
 
   goMenu() {
-    const { history } = this.props;
-    history.goBack();
+    const { navigate } = this.props;
+    navigate(-1);
   }
 
   restart() {
@@ -415,4 +415,18 @@ const mapStateToProps = (state) => {
     writing,
   };
 };
-export default withRouter(connect(mapStateToProps)(Game));
+const withNavigation = (WrappedComponent) => {
+  const WithNavigation = (props) => {
+    const navigate = useNavigate();
+
+    return <WrappedComponent {...props} navigate={navigate} />;
+  };
+
+  WithNavigation.displayName = `withNavigation(${
+    WrappedComponent.displayName || WrappedComponent.name || 'Component'
+  })`;
+
+  return WithNavigation;
+};
+
+export default withNavigation(connect(mapStateToProps)(Game));

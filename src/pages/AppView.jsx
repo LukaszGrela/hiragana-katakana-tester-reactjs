@@ -15,10 +15,8 @@
 */
 
 import React, { Component } from 'react';
-import { withRouter, Switch } from 'react-router-dom';
-
-import { Route } from 'react-router-dom';
-import MediaQuery from 'react-responsive';
+import { useLocation, useNavigate, Routes, Route } from 'react-router-dom';
+import { MediaQuery } from 'react-responsive';
 import NoMatch from './NoMatch';
 import Home from './Home';
 import Footer from '../components/Footer';
@@ -41,7 +39,6 @@ export class AppView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      location: '/',
       ddMenuOpen: false,
     };
 
@@ -53,13 +50,9 @@ export class AppView extends Component {
 
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown);
-    this.unlistenHistory = this.props.history.listen((location, action) => {
-      this.setState((_) => ({ location: location.pathname }));
-    });
   }
   componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyDown);
-    this.unlistenHistory();
   }
 
   handleNavigationAction(id = '/') {
@@ -86,7 +79,7 @@ export class AppView extends Component {
       }),
       (_) => {
         // state change applied - navigate
-        this.props.history.push(to);
+        this.props.navigate(to);
       }
     );
   }
@@ -108,9 +101,9 @@ export class AppView extends Component {
    * @returns {JSX.Element | null} Returns fragment to be placed in the headers left slot
    */
   getHeaderLeftSlotFragment() {
-    const { location } = this.state;
+    const { location } = this.props;
 
-    if (location !== '/') {
+    if (location.pathname !== '/') {
       return (
         <button
           onClick={() => {
@@ -140,9 +133,9 @@ export class AppView extends Component {
    * @returns {JSX.Element | null} Returns fragment to be placed in the headers right slot
    */
   getHeaderRightSlotFragment() {
-    const { location } = this.state;
+    const { location } = this.props;
 
-    if (location === '/') {
+    if (location.pathname === '/') {
       return [
         <MediaQuery key={'media-query'} minDeviceWidth={410}>
           {(matches) => {
@@ -178,7 +171,7 @@ export class AppView extends Component {
           }}
         </MediaQuery>,
       ];
-    } else if (location === '/about') {
+    } else if (location.pathname === '/about') {
       return this.getSettingsButton();
     } else {
       return null;
@@ -206,37 +199,16 @@ export class AppView extends Component {
             false && <div className='left-column side'></div>
           }
           <div className={false ? 'right-column main' : 'main'}>
-            <Switch>
+            <Routes>
               <Route
-                exact
                 path='/'
-                component={() => {
-                  return <Home onNavigation={this.handleNavigationAction} />;
-                }}
+                element={<Home onNavigation={this.handleNavigationAction} />}
               />
-              <Route
-                exact
-                path='/game'
-                component={() => {
-                  return <Game />;
-                }}
-              />
-              <Route
-                exact
-                path='/setup'
-                component={() => {
-                  return <Setup />;
-                }}
-              />
-              <Route
-                exact
-                path='/about'
-                component={() => {
-                  return <About />;
-                }}
-              />
-              <Route component={NoMatch} />
-            </Switch>
+              <Route path='/game' element={<Game />} />
+              <Route path='/setup' element={<Setup />} />
+              <Route path='/about' element={<About />} />
+              <Route path='*' element={<NoMatch />} />
+            </Routes>
           </div>
         </div>
         <Footer />
@@ -270,4 +242,25 @@ export class AppView extends Component {
   }
 }
 
-export default withRouter(AppView);
+/**
+ * React Router v7 exposes navigation through hooks, so inject the location
+ * object and the navigate function into the class component.
+ */
+const withNavigation = (WrappedComponent) => {
+  const WithNavigation = (props) => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    return (
+      <WrappedComponent {...props} location={location} navigate={navigate} />
+    );
+  };
+
+  WithNavigation.displayName = `withNavigation(${
+    WrappedComponent.displayName || WrappedComponent.name || 'Component'
+  })`;
+
+  return WithNavigation;
+};
+
+export default withNavigation(AppView);

@@ -12,15 +12,15 @@
   },
   "dependencies": {
     "bowser": "^1.9.4",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-redux": "^8.1.2",
-    "react-responsive": "^8.2.0",
-    "react-router-dom": "^5.3.4",
-    "redux": "^4.2.1",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-redux": "^9.3.1",
+    "react-responsive": "^10.0.1",
+    "react-router-dom": "^7.18.5",
+    "redux": "^5.0.1",
     "redux-logger": "^3.0.6",
-    "redux-promise-middleware": "^5.0.0",
-    "redux-thunk": "^2.2.0"
+    "redux-promise-middleware": "^6.2.0",
+    "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.7.0",

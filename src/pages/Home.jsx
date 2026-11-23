@@ -16,7 +16,6 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
 import SelectionHint from '../components/SelectionHint';
 
 import './css/Home.css';
@@ -81,4 +80,4 @@ const mapStateToProps = (state) => {
     hasSelection,
   };
 };
-export default withRouter(connect(mapStateToProps)(Home));
+export default connect(mapStateToProps)(Home);

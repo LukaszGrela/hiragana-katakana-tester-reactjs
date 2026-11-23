@@ -1,4 +1,4 @@
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -37,12 +37,11 @@ import './index.css';
     html.className += ' desktop';
 })(document.getElementsByTagName('html')[0]);
 
-// Render app
-ReactDOM.render(
+// Render app (React 19 - createRoot replaces the removed ReactDOM.render)
+createRoot(document.getElementById('root')).render(
   <Provider store={hkTesterStore}>
     <Router basename='/hiragana-katakana-tester'>
       <App />
     </Router>
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 );
