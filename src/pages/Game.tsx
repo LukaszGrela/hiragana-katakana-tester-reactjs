@@ -13,32 +13,32 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import { Component, type FC } from 'react';
-import { connect } from 'react-redux';
-import { useNavigate, type NavigateFunction } from 'react-router-dom';
+import { Component, type FC } from "react";
+import { connect } from "react-redux";
+import { useNavigate, type NavigateFunction } from "react-router-dom";
 
-import { shuffle } from '../utils/math';
+import { shuffle } from "../utils/math";
 
-import IconMenu from '../icons/IconMenu';
-import IconReplay from '../icons/IconReplay';
-import ButtonIconNext from '../icons/ButtonIconNext';
+import IconMenu from "../icons/IconMenu";
+import IconReplay from "../icons/IconReplay";
+import ButtonIconNext from "../icons/ButtonIconNext";
 
-import './css/Game.css';
-import '../components/css/Popup.css';
-import '../components/css/Feedback.css';
+import "./css/Game.css";
+import "../components/css/Popup.css";
+import "../components/css/Feedback.css";
 
-import CorrectFeedback from '../components/CorrectFeedback';
-import IncorrectFeedback from '../components/IncorrectFeedback';
-import GameOver from '../components/GameOver';
-import Distractors from '../components/Distractors';
-import type { TAnsweredQuestion } from '../components/types';
-import type { TRootState } from '../reducers';
+import CorrectFeedback from "../components/CorrectFeedback";
+import IncorrectFeedback from "../components/IncorrectFeedback";
+import GameOver from "../components/GameOver";
+import Distractors from "../components/Distractors";
+import type { TAnsweredQuestion } from "../components/types";
+import type { TRootState } from "../reducers";
 import type {
   TSyllabary,
   TSyllabarySeries,
   TSyllabarySeriesEntry,
   TWriting,
-} from '../store/types';
+} from "../store/types";
 
 export type TQuestion = {
   correct: string;
@@ -48,7 +48,7 @@ export type TQuestion = {
 
 export type TCurrentQuestion = TQuestion & {
   answerOptions?: string[];
-  userAnswer?: TAnsweredQuestion['userAnswer'];
+  userAnswer?: TAnsweredQuestion["userAnswer"];
 };
 
 export type TGameState = {
@@ -73,7 +73,7 @@ export type TGameProps = {
 };
 
 /** Klucze w `source`, np. `romaji` / `hiragana` / `katakana`. */
-type TSourceKey = keyof TSyllabarySeriesEntry['source'];
+type TSourceKey = keyof TSyllabarySeriesEntry["source"];
 
 class Game extends Component<TGameProps, TGameState> {
   answeredList: TAnsweredQuestion[] = [];
@@ -156,7 +156,7 @@ class Game extends Component<TGameProps, TGameState> {
                   // Oryginalna implementacja wkładała wynik splice() (tablicę)
                   // jako jeden element — zachowane 1:1, stąd rzutowanie.
                   chosenDistractors.push(
-                    distractors.splice(1, 1) as unknown as string
+                    distractors.splice(1, 1) as unknown as string,
                   );
                 }
               }
@@ -185,7 +185,7 @@ class Game extends Component<TGameProps, TGameState> {
                   // Oryginalna implementacja wkładała wynik splice() (tablicę)
                   // jako jeden element — zachowane 1:1, stąd rzutowanie.
                   chosenDistractors.push(
-                    distractors.splice(1, 1) as unknown as string
+                    distractors.splice(1, 1) as unknown as string,
                   );
                 }
               }
@@ -269,7 +269,7 @@ class Game extends Component<TGameProps, TGameState> {
       () => {
         //
         this.nextQuestion(true);
-      }
+      },
     );
   }
 
@@ -286,7 +286,7 @@ class Game extends Component<TGameProps, TGameState> {
       i = Math.floor(Math.random() * answerOptions.length);
     } while (answerOptions[i] === correct);
 
-    this.setState(() => ({ hintUsed: true, hideButtonId: 'answer-' + i }));
+    this.setState(() => ({ hintUsed: true, hideButtonId: "answer-" + i }));
   }
 
   validateAnswer(answer: string, btnId: string): void {
@@ -333,26 +333,26 @@ class Game extends Component<TGameProps, TGameState> {
     return (
       <div
         className={
-          'game' +
-          (correct !== null ? (correct ? ' correct' : ' incorrect') : '') +
-          (selectedBtnId !== null ? ' ' + selectedBtnId : '')
+          "game" +
+          (correct !== null ? (correct ? " correct" : " incorrect") : "") +
+          (selectedBtnId !== null ? " " + selectedBtnId : "")
         }
       >
-        <div className='wrapper'>
-          <div className='card'>
-            <div className='question'>{current.question}</div>
-            <div className='progress bl'>{index + 1 + ' / ' + length}</div>
+        <div className="wrapper">
+          <div className="card">
+            <div className="question">{current.question}</div>
+            <div className="progress bl">{index + 1 + " / " + length}</div>
             {false && (
-              <div className='progress-bar bl-edge'>
+              <div className="progress-bar bl-edge">
                 <div
-                  className='bar'
+                  className="bar"
                   style={{
-                    width: Math.round(((index + 1) / length) * 100) + '%',
+                    width: Math.round(((index + 1) / length) * 100) + "%",
                   }}
                 />
               </div>
             )}
-            <div className='score tr'>{score}</div>
+            <div className="score tr">{score}</div>
           </div>
           <Distractors
             answerOptions={current.answerOptions}
@@ -363,7 +363,7 @@ class Game extends Component<TGameProps, TGameState> {
               }
             }}
           />
-          <div className='hint'>
+          <div className="hint">
             <button
               disabled={hintUsed}
               onClick={() => {
@@ -376,27 +376,27 @@ class Game extends Component<TGameProps, TGameState> {
           {showPopup ? (
             <div
               className={
-                'popup-container' +
-                (correct !== null ? (correct ? ' correct' : ' incorrect') : '')
+                "popup-container" +
+                (correct !== null ? (correct ? " correct" : " incorrect") : "")
               }
             >
-              <div className='cloak' />
-              <div className='popup'>
-                <div className='popup-title'>
-                  {gameOver ? 'Game Over!' : null}
+              <div className="cloak" />
+              <div className="popup">
+                <div className="popup-title">
+                  {gameOver ? "Game Over!" : null}
                 </div>
-                <div className='popup-content'>
+                <div className="popup-content">
                   {gameOver ? (
                     <GameOver data={this.answeredList} />
                   ) : correct ? (
-                    <CorrectFeedback message={'Excellent!'} />
+                    <CorrectFeedback message={"Excellent!"} />
                   ) : (
                     <IncorrectFeedback
-                      message={'Incorrect!'}
+                      message={"Incorrect!"}
                       correct={
                         [
-                          'Correct answer is: ',
-                          <span key='span-answer' className='answer'>
+                          "Correct answer is: ",
+                          <span key="span-answer" className="answer">
                             {current.correct}
                           </span>,
                         ] as const
@@ -404,43 +404,43 @@ class Game extends Component<TGameProps, TGameState> {
                     />
                   )}
                 </div>
-                <div className='popup-buttons'>
+                <div className="popup-buttons">
                   {gameOver ? (
                     [
                       <button
-                        key={'replay-button'}
-                        className='replay-button'
+                        key={"replay-button"}
+                        className="replay-button"
                         onClick={(e) => {
                           e.preventDefault();
                           this.restart();
                         }}
                       >
-                        <span className='label'>Again</span>
-                        <IconReplay className='icon' />
+                        <span className="label">Again</span>
+                        <IconReplay className="icon" />
                       </button>,
                       <button
-                        key={'menu-button'}
-                        className='menu-button'
+                        key={"menu-button"}
+                        className="menu-button"
                         onClick={(e) => {
                           e.preventDefault();
                           this.goMenu();
                         }}
                       >
-                        <span className='label'>Menu</span>
-                        <IconMenu className='icon' />
+                        <span className="label">Menu</span>
+                        <IconMenu className="icon" />
                       </button>,
                     ]
                   ) : (
                     <button
-                      key={'next-question-button'}
-                      className='next-question-button'
+                      key={"next-question-button"}
+                      className="next-question-button"
                       onClick={(e) => {
                         e.preventDefault();
                         this.nextQuestion();
                       }}
                     >
-                      <span className='label'>Next</span>
-                      <ButtonIconNext className='icon' />
+                      <span className="label">Next</span>
+                      <ButtonIconNext className="icon" />
                     </button>
                   )}
                 </div>
@@ -453,7 +453,7 @@ class Game extends Component<TGameProps, TGameState> {
   }
 }
 
-type TGameStateProps = Omit<TGameProps, 'navigate'>;
+type TGameStateProps = Omit<TGameProps, "navigate">;
 
 const mapStateToProps = (state: TRootState): TGameStateProps => {
   const { syllabary, writing, selection, data } = state;
@@ -478,7 +478,7 @@ const mapStateToProps = (state: TRootState): TGameStateProps => {
  * function into the connected class component.
  */
 const withNavigation = <P extends object>(
-  WrappedComponent: React.ComponentType<P & { navigate: NavigateFunction }>
+  WrappedComponent: React.ComponentType<P & { navigate: NavigateFunction }>,
 ): FC<P> => {
   const WithNavigation: FC<P> & { displayName?: string } = (props) => {
     const navigate = useNavigate();
@@ -489,7 +489,7 @@ const withNavigation = <P extends object>(
   const wrappedName =
     (WrappedComponent as { displayName?: string; name?: string }).displayName ||
     (WrappedComponent as { displayName?: string; name?: string }).name ||
-    'Component';
+    "Component";
 
   WithNavigation.displayName = `withNavigation(${wrappedName})`;
 
@@ -504,4 +504,6 @@ const ConnectedGame = connect<
 >(mapStateToProps)(Game);
 
 /** Strona `/game` nie ma własnych propsów — `navigate` wstrzykuje HOC. */
-export default withNavigation<Record<string, never>>(ConnectedGame);
+const GameWithNavigation = withNavigation<Record<string, never>>(ConnectedGame);
+GameWithNavigation.displayName = "Game";
+export default GameWithNavigation;

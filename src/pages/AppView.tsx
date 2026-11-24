@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import { Component, type FC, type ReactElement } from 'react';
+import { Component, type FC, type ReactElement } from "react";
 import {
   Route,
   Routes,
@@ -21,25 +21,25 @@ import {
   useNavigate,
   type Location,
   type NavigateFunction,
-} from 'react-router-dom';
-import { MediaQuery } from 'react-responsive';
+} from "react-router-dom";
+import { MediaQuery } from "react-responsive";
 
-import Footer from '../components/Footer';
-import IconArrowBack from '../icons/IconArrowBack';
-import IconHiraganaKa from '../icons/IconHiraganaKa';
-import IconInfo from '../icons/IconInfo';
-import IconKatakanaKa from '../icons/IconKatakanaKa';
-import IconMore from '../icons/IconMore';
-import IconSettings from '../icons/IconSettings';
+import Footer from "../components/Footer";
+import IconArrowBack from "../icons/IconArrowBack";
+import IconHiraganaKa from "../icons/IconHiraganaKa";
+import IconInfo from "../icons/IconInfo";
+import IconKatakanaKa from "../icons/IconKatakanaKa";
+import IconMore from "../icons/IconMore";
+import IconSettings from "../icons/IconSettings";
 
-import About from './About';
-import Game from './Game';
-import Home from './Home';
-import NoMatch from './NoMatch';
-import Setup from './Setup';
+import About from "./About";
+import Game from "./Game";
+import Home from "./Home";
+import NoMatch from "./NoMatch";
+import Setup from "./Setup";
 
-import './css/AppView.css';
-import './css/DropDown.css';
+import "./css/AppView.css";
+import "./css/DropDown.css";
 
 export type TAppViewProps = {
   location: Location;
@@ -64,28 +64,28 @@ export class AppView extends Component<TAppViewProps, TAppViewState> {
   }
 
   override componentDidMount() {
-    document.addEventListener('keydown', this.handleKeyDown);
+    document.addEventListener("keydown", this.handleKeyDown);
   }
 
   override componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown);
+    document.removeEventListener("keydown", this.handleKeyDown);
   }
 
-  handleNavigationAction(id: string = '/'): void {
-    let to = '/';
+  handleNavigationAction(id: string = "/"): void {
+    let to = "/";
     switch (id) {
-      case 'config':
-        to = '/setup';
+      case "config":
+        to = "/setup";
         break;
-      case 'about':
-        to = '/about';
+      case "about":
+        to = "/about";
         break;
-      case 'game':
-        to = '/game';
+      case "game":
+        to = "/game";
         break;
-      case '/':
+      case "/":
       default:
-        to = '/';
+        to = "/";
         break;
     }
     this.setState(
@@ -96,7 +96,7 @@ export class AppView extends Component<TAppViewProps, TAppViewState> {
       () => {
         // state change applied - navigate
         this.props.navigate(to);
-      }
+      },
     );
   }
 
@@ -119,7 +119,7 @@ export class AppView extends Component<TAppViewProps, TAppViewState> {
   getHeaderLeftSlotFragment(): ReactElement | null {
     const { location } = this.props;
 
-    if (location.pathname !== '/') {
+    if (location.pathname !== "/") {
       return (
         <button
           onClick={() => {
@@ -136,14 +136,14 @@ export class AppView extends Component<TAppViewProps, TAppViewState> {
 
   getSettingsButton = (label?: string): ReactElement => (
     <button
-      key={'settings-btn'}
-      className='button-settings'
+      key={"settings-btn"}
+      className="button-settings"
       onClick={() => {
-        this.handleNavigationAction('config');
+        this.handleNavigationAction("config");
       }}
     >
       <IconSettings />
-      {label && <span className='label'>{label}</span>}
+      {label && <span className="label">{label}</span>}
     </button>
   );
 
@@ -153,18 +153,18 @@ export class AppView extends Component<TAppViewProps, TAppViewState> {
   getHeaderRightSlotFragment(): ReactElement | ReactElement[] | null {
     const { location } = this.props;
 
-    if (location.pathname === '/') {
+    if (location.pathname === "/") {
       return [
-        <MediaQuery key={'media-query'} minDeviceWidth={410}>
+        <MediaQuery key={"media-query"} minDeviceWidth={410}>
           {(matches: boolean) => {
             if (matches) {
               /* normal */
               return [
                 <button
-                  key={'about-btn'}
-                  className='button-about'
+                  key={"about-btn"}
+                  className="button-about"
                   onClick={() => {
-                    this.handleNavigationAction('about');
+                    this.handleNavigationAction("about");
                   }}
                 >
                   <IconInfo />
@@ -176,8 +176,8 @@ export class AppView extends Component<TAppViewProps, TAppViewState> {
               /* dd on small devices */
               return [
                 <button
-                  key={'dd-menu-btn'}
-                  className='dd-button-menu'
+                  key={"dd-menu-btn"}
+                  className="dd-button-menu"
                   onClick={() => {
                     this.handleDropDown();
                   }}
@@ -189,7 +189,7 @@ export class AppView extends Component<TAppViewProps, TAppViewState> {
           }}
         </MediaQuery>,
       ];
-    } else if (location.pathname === '/about') {
+    } else if (location.pathname === "/about") {
       return this.getSettingsButton();
     } else {
       return null;
@@ -198,62 +198,58 @@ export class AppView extends Component<TAppViewProps, TAppViewState> {
 
   override render() {
     return (
-      <div className='app-view'>
-        <div className='header'>
-          <div className='left-placeholder'>
+      <div className="app-view">
+        <div className="header">
+          <div className="left-placeholder">
             {this.getHeaderLeftSlotFragment()}
           </div>
-          <div className='app-title'>
+          <div className="app-title">
             <IconHiraganaKa />
-            <div className='title-text'>Hiragana/Katakana Tester</div>
+            <div className="title-text">Hiragana/Katakana Tester</div>
             <IconKatakanaKa />
           </div>
-          <div className='right-placeholder'>
+          <div className="right-placeholder">
             {this.getHeaderRightSlotFragment()}
           </div>
         </div>
-        <div className='content'>
-          {
-            /* here we will test for large display */
-            false && <div className='left-column side'></div>
-          }
-          <div className={false ? 'right-column main' : 'main'}>
+        <div className="content">
+          <div className={"right-column main"}>
             <Routes>
               <Route
-                path='/'
+                path="/"
                 element={<Home onNavigation={this.handleNavigationAction} />}
               />
-              <Route path='/game' element={<Game />} />
-              <Route path='/setup' element={<Setup />} />
-              <Route path='/about' element={<About />} />
-              <Route path='*' element={<NoMatch />} />
+              <Route path="/game" element={<Game />} />
+              <Route path="/setup" element={<Setup />} />
+              <Route path="/about" element={<About />} />
+              <Route path="*" element={<NoMatch />} />
             </Routes>
           </div>
         </div>
         <Footer />
         <div
-          key={'dd-menu-box'}
-          className={'dd-menu' + (this.state.ddMenuOpen ? ' open' : ' close')}
+          key={"dd-menu-box"}
+          className={"dd-menu" + (this.state.ddMenuOpen ? " open" : " close")}
         >
           <div
-            className='cloak'
+            className="cloak"
             onClick={() => {
-              console.log('cick');
+              console.log("cick");
               this.setState(() => ({ ddMenuOpen: false }));
             }}
           ></div>
-          <div className='dd-menu-container'>
+          <div className="dd-menu-container">
             <button
-              key={'about-btn'}
-              className='button-about'
+              key={"about-btn"}
+              className="button-about"
               onClick={() => {
-                this.handleNavigationAction('about');
+                this.handleNavigationAction("about");
               }}
             >
               <IconInfo />
-              <span className='label'>About</span>
+              <span className="label">About</span>
             </button>
-            {this.getSettingsButton('Setup')}
+            {this.getSettingsButton("Setup")}
           </div>
         </div>
       </div>
@@ -266,7 +262,7 @@ export class AppView extends Component<TAppViewProps, TAppViewState> {
  * object and the navigate function into the class component.
  */
 const withNavigation = <P extends object>(
-  WrappedComponent: React.ComponentType<P & TAppViewProps>
+  WrappedComponent: React.ComponentType<P & TAppViewProps>,
 ): FC<P> => {
   const WithNavigation: FC<P> & { displayName?: string } = (props) => {
     const location = useLocation();
@@ -280,11 +276,14 @@ const withNavigation = <P extends object>(
   const wrappedName =
     (WrappedComponent as { displayName?: string; name?: string }).displayName ||
     (WrappedComponent as { displayName?: string; name?: string }).name ||
-    'Component';
+    "Component";
 
   WithNavigation.displayName = `withNavigation(${wrappedName})`;
 
   return WithNavigation;
 };
 
-export default withNavigation(AppView);
+const AppViewWithNavigation = withNavigation(AppView);
+AppViewWithNavigation.displayName = "AppView";
+
+export default AppViewWithNavigation;

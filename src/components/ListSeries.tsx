@@ -13,10 +13,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import IconTick from '../icons/TickIcon';
-import type { TSelection, TSyllabarySeries } from '../store/types';
+import IconTick from "../icons/TickIcon";
+import type { TSelection, TSyllabarySeries } from "../store/types";
 
-import './css/ListSeries.css';
+import "./css/ListSeries.css";
 
 export type TListSeriesProps = {
   data?: TSyllabarySeries;
@@ -34,18 +34,19 @@ export const ListSeries = (props: TListSeriesProps) => {
         selection.length > 0 && isNaN(parseInt(String(selection), 10));
       return data.map((series, index) => {
         const { id, name } = series;
-        let selected = allSelected || selection.indexOf(id) !== -1;
+        const selected = allSelected || selection.indexOf(id) !== -1;
         return (
           <li
             key={id}
             className={
-              'option' +
-              (selected ? ' selected' : '') +
-              (index % 2 === 0 ? ' even' : ' odd')
+              "option" +
+              (selected ? " selected" : "") +
+              (index % 2 === 0 ? " even" : " odd")
             }
             onClick={() => {
-              props.onItemClicked && props.onItemClicked(id, selected);
-            }}>
+              props.onItemClicked?.(id, selected);
+            }}
+          >
             <IconTick />
             <span className="label">{name.label}</span>
             <span className="kana">{name.kana}</span>
@@ -57,9 +58,9 @@ export const ListSeries = (props: TListSeriesProps) => {
     return null;
   };
 
-  const className = props.className || '';
+  const className = props.className || "";
   return (
-    <div className={className + ' list-series'}>
+    <div className={className + " list-series"}>
       <ul>{generateOptions()}</ul>
     </div>
   );

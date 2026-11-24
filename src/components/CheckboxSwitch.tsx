@@ -13,9 +13,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
-import './css/OnOffSwitch.css';
+import "./css/OnOffSwitch.css";
 
 export type TCheckboxSwitchProps = {
   id?: string;
@@ -45,17 +45,17 @@ const CheckboxSwitch = ({
         id={id}
         checked={isChecked}
         onChange={() => {
-          onChecked && onChecked(!isChecked);
+          onChecked?.(!isChecked);
         }}
       />
       <label className="onoffswitch-label" htmlFor={id}>
         <span className="onoffswitch-inner">
-          <span className="before">{labelOn || 'ON'}</span>
-          <span className="after">{labelOff || 'OFF'}</span>
+          <span className="before">{labelOn || "ON"}</span>
+          <span className="after">{labelOff || "OFF"}</span>
         </span>
         <span className="onoffswitch-switch">
-          <span className="before">{iconOn || '+'}</span>
-          <span className="after">{iconOff || '-'}</span>
+          <span className="before">{iconOn || "+"}</span>
+          <span className="after">{iconOff || "-"}</span>
         </span>
       </label>
     </div>

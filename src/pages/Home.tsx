@@ -13,15 +13,15 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import type { ReactElement } from 'react';
-import { connect } from 'react-redux';
+import type { ReactElement } from "react";
+import { connect } from "react-redux";
 
-import SelectionHint from '../components/SelectionHint';
-import type { TRootState } from '../reducers';
-import type { TSyllabarySeries } from '../store/types';
-import kanaCounter from '../utils/kanaCounter';
+import SelectionHint from "../components/SelectionHint";
+import type { TRootState } from "../reducers";
+import type { TSyllabarySeries } from "../store/types";
+import kanaCounter from "../utils/kanaCounter";
 
-import './css/Home.css';
+import "./css/Home.css";
 
 export type THomeProps = {
   data: TSyllabarySeries;
@@ -36,24 +36,25 @@ const Home = (props: THomeProps): ReactElement => {
   const { data, selection } = props;
   const { kana } = kanaCounter(data, selection);
   return (
-    <div className='home'>
-      <div className='wrapper'>
+    <div className="home">
+      <div className="wrapper">
         <button
-          className='start-button'
+          className="start-button"
           disabled={!props.hasSelection || kana < 5}
           onClick={() => {
-            props.onNavigation && props.onNavigation('game');
-          }}>
-          <span className='button-content-wrapper'>
-            <span className='selection-syllabary'>{props.syllabary}</span>
-            <span className='selection-connect'>with</span>
-            <span className='selection-writing'>{props.writing}</span>
-            <span className='selection-sufix'>test</span>
-            <span className='button-label'>START TEST</span>
+            props.onNavigation?.("game");
+          }}
+        >
+          <span className="button-content-wrapper">
+            <span className="selection-syllabary">{props.syllabary}</span>
+            <span className="selection-connect">with</span>
+            <span className="selection-writing">{props.writing}</span>
+            <span className="selection-sufix">test</span>
+            <span className="button-label">START TEST</span>
           </span>
           <SelectionHint
-            className='stats'
-            pattern={'Selected {k} Kana of {s} series.'}
+            className="stats"
+            pattern={"Selected {k} Kana of {s} series."}
             selection={selection}
             data={data}
           />
@@ -63,7 +64,7 @@ const Home = (props: THomeProps): ReactElement => {
   );
 };
 
-type THomeStateProps = Omit<THomeProps, 'onNavigation'>;
+type THomeStateProps = Omit<THomeProps, "onNavigation">;
 
 const mapStateToProps = (state: TRootState): THomeStateProps => {
   const { syllabary, writing, selection, data } = state;
@@ -85,11 +86,11 @@ const mapStateToProps = (state: TRootState): THomeStateProps => {
     syllabary:
       syllabary && syllabary.options && syllabary.options.length > 0
         ? syllabary.options[syllabary.selection]
-        : '',
+        : "",
     writing:
       writing && writing.options && writing.options.length > 0
         ? writing.options[writing.selection]
-        : '',
+        : "",
     hasSelection,
   };
 };

@@ -103,11 +103,11 @@ const Setup = (props: TSetupProps): ReactElement => {
           data={props.data}
           selection={props.selection}
           onItemClicked={(id, selected) => {
-            let newSelection = props.selection.concat();
+            const newSelection = props.selection.concat();
 
             if (selected) {
               // deselect
-              let index = newSelection.indexOf(id);
+              const index = newSelection.indexOf(id);
 
               if (index >= 0) {
                 newSelection.splice(index, 1);

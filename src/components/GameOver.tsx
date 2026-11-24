@@ -66,7 +66,7 @@ const GameOver = ({ data }: TGameOverProps) => {
       ) : (
         <div className='congratulation'>
           <Stars />
-          <p>Well done, you've answered correctly on all questions.</p>
+          <p>Well done, you&apos;ve answered correctly on all questions.</p>
         </div>
       )}
     </div>
