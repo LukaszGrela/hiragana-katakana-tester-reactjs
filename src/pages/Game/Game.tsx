@@ -13,64 +13,28 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+import "../css/Game.css";
+import "../../components/css/Popup.css";
+import "../../components/css/Feedback.css";
+
 import { Component, useMemo, type FC } from "react";
-import { useNavigate, type NavigateFunction } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-import { shuffle } from "../utils/math";
+import { shuffle } from "../../utils/math";
 
-import IconMenu from "../icons/IconMenu";
-import IconReplay from "../icons/IconReplay";
-import ButtonIconNext from "../icons/ButtonIconNext";
+import IconMenu from "../../icons/IconMenu";
+import IconReplay from "../../icons/IconReplay";
+import ButtonIconNext from "../../icons/ButtonIconNext";
 
-import "./css/Game.css";
-import "../components/css/Popup.css";
-import "../components/css/Feedback.css";
-
-import CorrectFeedback from "../components/CorrectFeedback";
-import IncorrectFeedback from "../components/IncorrectFeedback";
-import GameOver from "../components/GameOver";
-import Distractors from "../components/Distractors";
-import type { TAnsweredQuestion } from "../components/types";
-import { useAppSelector } from "../store/hooks";
-import type { TSelection } from "../store/types";
-import type {
-  TSyllabary,
-  TSyllabarySeries,
-  TSyllabarySeriesEntry,
-  TWriting,
-} from "../store/types";
-
-export type TQuestion = {
-  correct: string;
-  question: string;
-  distractors: string[];
-};
-
-export type TCurrentQuestion = TQuestion & {
-  answerOptions?: string[];
-  userAnswer?: TAnsweredQuestion["userAnswer"];
-};
-
-export type TGameState = {
-  questions: TQuestion[];
-  current: Partial<TCurrentQuestion>;
-  index: number;
-  score: number;
-  correct: boolean | null;
-  selectedBtnId: string | null;
-  gameOver: boolean;
-  hintUsed: boolean;
-  hideButtonId: string | null;
-  showPopup?: boolean;
-};
-
-export type TGameProps = {
-  selection: number[];
-  data: TSyllabarySeries;
-  syllabary: TSyllabary;
-  writing: TWriting;
-  navigate: NavigateFunction;
-};
+import CorrectFeedback from "../../components/CorrectFeedback";
+import IncorrectFeedback from "../../components/IncorrectFeedback";
+import GameOver from "../../components/GameOver";
+import Distractors from "../../components/Distractors";
+import type { TAnsweredQuestion } from "../../components/types";
+import { useAppSelector } from "../../store/hooks";
+import type { TSyllabarySeriesEntry } from "../../store/types";
+import { TCurrentQuestion, TGameProps, TGameState, TQuestion } from "./types";
+import { resolveSelection } from "./utils";
 
 /** Klucze w `source`, np. `romaji` / `hiragana` / `katakana`. */
 type TSourceKey = keyof TSyllabarySeriesEntry["source"];
@@ -452,22 +416,6 @@ class Game extends Component<TGameProps, TGameState> {
     );
   }
 }
-
-/**
- * `selection` może zawierać `"all"` — rozwijamy je do listy ID z `data`
- * (dawniej robił to `mapStateToProps` w `connect()`).
- */
-export const resolveSelection = (
-  selection: TSelection,
-  data: TSyllabarySeries,
-): number[] => {
-  if (selection && selection.length === 1 && isNaN(Number(selection[0]))) {
-    //'all' - convert to list of ID's
-    return data.map((item) => item.id);
-  }
-
-  return selection as number[];
-};
 
 const GameConnected: FC = () => {
   const navigate = useNavigate();

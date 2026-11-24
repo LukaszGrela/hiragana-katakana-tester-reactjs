@@ -4,19 +4,19 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { configureStore } from "@reduxjs/toolkit";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import dataAdded from "../actions/dataAdded";
-import selectionChanged from "../actions/selectionChanged";
-import syllabaryAdded from "../actions/syllabaryAdded";
-import syllabaryChanged from "../actions/syllabaryChanged";
-import writingAdded from "../actions/writingAdded";
-import writingChanged from "../actions/writingChanged";
-import reducer from "../reducers";
-import type { TSelection } from "../store/types";
+import dataAdded from "../../actions/dataAdded";
+import selectionChanged from "../../actions/selectionChanged";
+import syllabaryAdded from "../../actions/syllabaryAdded";
+import syllabaryChanged from "../../actions/syllabaryChanged";
+import writingAdded from "../../actions/writingAdded";
+import writingChanged from "../../actions/writingChanged";
+import reducer from "../../reducers";
+import type { TSelection } from "../../store/types";
 import {
   gameSeriesFixture,
   syllabaryFixture,
   writingFixture,
-} from "../test/fixtures";
+} from "../../test/fixtures";
 import Game from "./Game";
 
 type TGameOptions = {

@@ -33,7 +33,7 @@ import IconMore from "../icons/IconMore";
 import IconSettings from "../icons/IconSettings";
 
 import About from "./About";
-import Game from "./Game";
+import { Game } from "./Game";
 import Home from "./Home";
 import NoMatch from "./NoMatch";
 import Setup from "./Setup";
