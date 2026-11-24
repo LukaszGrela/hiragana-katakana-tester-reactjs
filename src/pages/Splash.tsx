@@ -13,8 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import { Component } from "react";
-import { connect } from "react-redux";
+import { Component, useMemo, type FC } from "react";
 
 import dataAdded from "../actions/dataAdded";
 import selectionChanged from "../actions/selectionChanged";
@@ -22,6 +21,7 @@ import syllabaryAdded from "../actions/syllabaryAdded";
 import syllabaryChanged from "../actions/syllabaryChanged";
 import writingAdded from "../actions/writingAdded";
 import writingChanged from "../actions/writingChanged";
+import { useAppDispatch } from "../store/hooks";
 import type { TDataFile } from "./types";
 
 import "./css/Splash.css";
@@ -94,15 +94,29 @@ class Splash extends Component<TSplashProps, TSplashState> {
   }
 }
 
-const mapDispatchToProps = {
-  dataAdded,
-  selectionChanged,
-  syllabaryAdded,
-  syllabaryChanged,
-  writingAdded,
-  writingChanged,
+const SplashConnected: FC = () => {
+  const dispatch = useAppDispatch();
+
+  const actions = useMemo(
+    () => ({
+      dataAdded: (...args: Parameters<typeof dataAdded>) =>
+        dispatch(dataAdded(...args)),
+      selectionChanged: (...args: Parameters<typeof selectionChanged>) =>
+        dispatch(selectionChanged(...args)),
+      syllabaryAdded: (...args: Parameters<typeof syllabaryAdded>) =>
+        dispatch(syllabaryAdded(...args)),
+      syllabaryChanged: (...args: Parameters<typeof syllabaryChanged>) =>
+        dispatch(syllabaryChanged(...args)),
+      writingAdded: (...args: Parameters<typeof writingAdded>) =>
+        dispatch(writingAdded(...args)),
+      writingChanged: (...args: Parameters<typeof writingChanged>) =>
+        dispatch(writingChanged(...args)),
+    }),
+    [dispatch],
+  );
+
+  return <Splash {...actions} />;
 };
 
-const SplashConnected = connect(null, mapDispatchToProps)(Splash);
-
+SplashConnected.displayName = "Splash";
 export default SplashConnected;

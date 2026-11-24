@@ -13,8 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import { Component, type FC } from "react";
-import { connect } from "react-redux";
+import { Component, useMemo, type FC } from "react";
 import { useNavigate, type NavigateFunction } from "react-router-dom";
 
 import { shuffle } from "../utils/math";
@@ -32,7 +31,8 @@ import IncorrectFeedback from "../components/IncorrectFeedback";
 import GameOver from "../components/GameOver";
 import Distractors from "../components/Distractors";
 import type { TAnsweredQuestion } from "../components/types";
-import type { TRootState } from "../reducers";
+import { useAppSelector } from "../store/hooks";
+import type { TSelection } from "../store/types";
 import type {
   TSyllabary,
   TSyllabarySeries,
@@ -453,57 +453,44 @@ class Game extends Component<TGameProps, TGameState> {
   }
 }
 
-type TGameStateProps = Omit<TGameProps, "navigate">;
-
-const mapStateToProps = (state: TRootState): TGameStateProps => {
-  const { syllabary, writing, selection, data } = state;
-
-  let _selection: number[] = selection as number[];
-
+/**
+ * `selection` może zawierać `"all"` — rozwijamy je do listy ID z `data`
+ * (dawniej robił to `mapStateToProps` w `connect()`).
+ */
+export const resolveSelection = (
+  selection: TSelection,
+  data: TSyllabarySeries,
+): number[] => {
   if (selection && selection.length === 1 && isNaN(Number(selection[0]))) {
     //'all' - convert to list of ID's
-    _selection = data.map((item) => item.id);
+    return data.map((item) => item.id);
   }
 
-  return {
-    selection: _selection,
-    data,
-    syllabary,
-    writing,
-  };
+  return selection as number[];
 };
 
-/**
- * React Router v7 exposes navigation through hooks, so inject the navigate
- * function into the connected class component.
- */
-const withNavigation = <P extends object>(
-  WrappedComponent: React.ComponentType<P & { navigate: NavigateFunction }>,
-): FC<P> => {
-  const WithNavigation: FC<P> & { displayName?: string } = (props) => {
-    const navigate = useNavigate();
+const GameConnected: FC = () => {
+  const navigate = useNavigate();
+  const data = useAppSelector((state) => state.data);
+  const selection = useAppSelector((state) => state.selection);
+  const syllabary = useAppSelector((state) => state.syllabary);
+  const writing = useAppSelector((state) => state.writing);
 
-    return <WrappedComponent {...props} navigate={navigate} />;
-  };
+  const resolvedSelection = useMemo(
+    () => resolveSelection(selection, data),
+    [data, selection],
+  );
 
-  const wrappedName =
-    (WrappedComponent as { displayName?: string; name?: string }).displayName ||
-    (WrappedComponent as { displayName?: string; name?: string }).name ||
-    "Component";
-
-  WithNavigation.displayName = `withNavigation(${wrappedName})`;
-
-  return WithNavigation;
+  return (
+    <Game
+      data={data}
+      selection={resolvedSelection}
+      syllabary={syllabary}
+      writing={writing}
+      navigate={navigate}
+    />
+  );
 };
 
-const ConnectedGame = connect<
-  TGameStateProps,
-  Record<string, never>,
-  { navigate: NavigateFunction },
-  TRootState
->(mapStateToProps)(Game);
-
-/** Strona `/game` nie ma własnych propsów — `navigate` wstrzykuje HOC. */
-const GameWithNavigation = withNavigation<Record<string, never>>(ConnectedGame);
-GameWithNavigation.displayName = "Game";
-export default GameWithNavigation;
+GameConnected.displayName = "Game";
+export default GameConnected;
