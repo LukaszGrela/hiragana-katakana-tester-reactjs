@@ -17,4 +17,22 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
+  overrides: [
+    {
+      // Pliki TypeScript — dodawane stopniowo obok istniejących .js/.jsx.
+      files: ['**/*.ts', '**/*.tsx'],
+      parser: '@typescript-eslint/parser',
+      plugins: ['@typescript-eslint'],
+      extends: ['plugin:@typescript-eslint/recommended'],
+      parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+      rules: {
+        'no-undef': 'off',
+      },
+    },
+    {
+      // Konfiguracja Vite działa w środowisku Node.
+      files: ['vite.config.ts'],
+      env: { node: true },
+    },
+  ],
 };
