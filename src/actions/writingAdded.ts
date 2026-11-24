@@ -13,11 +13,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-export const WRITING_CHANGED = 'WRITING_CHANGED';
+import type { TWriting } from '../store/types';
 
-export default function writingChanged(selection = 0) {
-    return {
-        type: WRITING_CHANGED,
-        payload: selection
-    }
+export const WRITING_DATA_ADDED = 'WRITING_DATA_ADDED';
+
+export type TWritingAddedAction = {
+  type: typeof WRITING_DATA_ADDED;
+  payload: TWriting;
+};
+
+export default function writingAdded(
+  data: TWriting = { selection: 0, options: [] },
+): TWritingAddedAction {
+  return {
+    type: WRITING_DATA_ADDED,
+    payload: data,
+  };
 }

@@ -13,11 +13,24 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-export const WRITING_DATA_ADDED = 'WRITING_DATA_ADDED';
+import type { TSelection } from '../store/types';
 
-export default function writingAdded(data = { selection: 0, options: [] }) {
-    return {
-        type: WRITING_DATA_ADDED,
-        payload: data
-    }
+export const SELECTION_CHANGED = 'SELECTION_CHANGED';
+
+export type TSelectionChangedAction = {
+  type: typeof SELECTION_CHANGED;
+  payload: TSelection;
+};
+
+/**
+ * Action Creator - Creates SELECTION_CHANGED action passing the list of
+ * selected series ids (or the `"all"` sentinel from data.json).
+ */
+export default function selectionChanged(
+  selection: TSelection,
+): TSelectionChangedAction {
+  return {
+    type: SELECTION_CHANGED,
+    payload: selection,
+  };
 }

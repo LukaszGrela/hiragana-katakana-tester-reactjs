@@ -13,11 +13,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
+import type { TSyllabarySeries } from '../store/types';
+
 export const DATA_ADDED = 'DATA_ADDED';
 
-export default function dataAdded(data = []) {
-    return {
-        type: DATA_ADDED,
-        payload: data
-    }
+export type TDataAddedAction = {
+  type: typeof DATA_ADDED;
+  payload: TSyllabarySeries;
+};
+
+export default function dataAdded(
+  data: TSyllabarySeries = [],
+): TDataAddedAction {
+  return {
+    type: DATA_ADDED,
+    payload: data,
+  };
 }

@@ -13,11 +13,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-export const SYLLABARY_DATA_ADDED = "SYLLABARY_DATA_ADDED";
+export const WRITING_CHANGED = 'WRITING_CHANGED';
 
-export default function syllabaryAdded(data = { selection: 0, options: [] }) {
-    return {
-        type: SYLLABARY_DATA_ADDED,
-        payload: data
-    };
+export type TWritingChangedAction = {
+  type: typeof WRITING_CHANGED;
+  payload: number;
+};
+
+export default function writingChanged(
+  selection = 0,
+): TWritingChangedAction {
+  return {
+    type: WRITING_CHANGED,
+    payload: selection,
+  };
 }

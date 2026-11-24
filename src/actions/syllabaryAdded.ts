@@ -13,15 +13,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-export const SELECTION_CHANGED = 'SELECTION_CHANGED';
+import type { TSyllabary } from '../store/types';
 
-/**
- * Action Creator - Creates SELECTION_CHANGED action passing the list of selected indices
- * @param {number[]} selection 
- */
-export default function selectionChanged(selection) {
-    return {
-        type: SELECTION_CHANGED,
-        payload: selection
-    }
+export const SYLLABARY_DATA_ADDED = 'SYLLABARY_DATA_ADDED';
+
+export type TSyllabaryAddedAction = {
+  type: typeof SYLLABARY_DATA_ADDED;
+  payload: TSyllabary;
+};
+
+export default function syllabaryAdded(
+  data: TSyllabary = { selection: 0, options: [] },
+): TSyllabaryAddedAction {
+  return {
+    type: SYLLABARY_DATA_ADDED,
+    payload: data,
+  };
 }

@@ -15,9 +15,16 @@
 */
 export const SYLLABARY_CHANGED = 'SYLLABARY_CHANGED';
 
-export default function syllabaryChanged(selection = 0) {
-    return {
-        type: SYLLABARY_CHANGED,
-        payload: selection
-    }
+export type TSyllabaryChangedAction = {
+  type: typeof SYLLABARY_CHANGED;
+  payload: number;
+};
+
+export default function syllabaryChanged(
+  selection = 0,
+): TSyllabaryChangedAction {
+  return {
+    type: SYLLABARY_CHANGED,
+    payload: selection,
+  };
 }
