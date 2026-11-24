@@ -13,17 +13,17 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import type { ReactElement } from 'react';
+import type { ReactElement } from "react";
 
-import GitHubIcon from '../icons/GitHubIcon';
-import './css/About.css';
+import GitHubIcon from "../icons/GitHubIcon";
+import "./css/About.css";
 
 const About = (): ReactElement => {
   return (
-    <div className='about'>
-      <div className='wrapper'>
-        <div className='about_content'>
-          <div className='info-text'>
+    <div className="about">
+      <div className="wrapper">
+        <div className="about_content">
+          <div className="info-text">
             Hiragana/Katakana tester App.
             <br />
             This application will test your knowledge of the Hiragana/Katakana
@@ -34,23 +34,25 @@ const About = (): ReactElement => {
             If you want to change what will be tested and/or the number of
             questions, go to the <strong>Setup</strong> and change the settings.
           </div>
-          <div className='git-source'>
+          <div className="git-source">
             <GitHubIcon />
             <a
-              href='https://github.com/LukaszGrela/hiragana-katakana-tester-reactjs'
-              target='_blank'
-              rel='noopener noreferrer'>
+              href="https://github.com/LukaszGrela/hiragana-katakana-tester-reactjs"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               LukaszGrela/hiragana-katakana-tester-reactjs
             </a>
           </div>
-          <div className='acknowledgement'>
+          <div className="acknowledgement">
             <ul>
               <li>
-                Background graphic{' '}
+                Background graphic{" "}
                 <a
-                  href='http://www.freepik.com'
-                  target='_blank'
-                  rel='noopener noreferrer'>
+                  href="http://www.freepik.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   designed by Freepik
                 </a>
               </li>

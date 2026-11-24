@@ -16,8 +16,8 @@
 
 /* redux-logger nie dostarcza typów (i nie ma @types), a jego API potrzebne
    jest tylko w jednym miejscu — tworzeniu middleware w store. */
-declare module 'redux-logger' {
-  import type { Middleware } from 'redux';
+declare module "redux-logger" {
+  import type { Middleware } from "redux";
 
   export const logger: Middleware;
   export default logger;

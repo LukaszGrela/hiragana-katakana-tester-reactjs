@@ -19,7 +19,7 @@ import type {
   TSyllabarySeries,
   TSelection,
   TWriting,
-} from '../store/types';
+} from "../store/types";
 
 /** Kształt pliku `public/data/data.json` wczytywanego przez `Splash`. */
 export type TDataFile = {

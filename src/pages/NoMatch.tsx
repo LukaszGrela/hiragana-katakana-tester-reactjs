@@ -15,8 +15,8 @@
 */
 
 const NoMatch = () => (
-  <div className='no-match 404'>
-    <div className='wrapper'>
+  <div className="no-match 404">
+    <div className="wrapper">
       <div>404 Not Found!</div>
     </div>
   </div>

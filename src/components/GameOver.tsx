@@ -13,12 +13,12 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import type { ReactElement } from 'react';
+import type { ReactElement } from "react";
 
-import Stars from './Stars';
-import type { TAnsweredQuestion } from './types';
+import Stars from "./Stars";
+import type { TAnsweredQuestion } from "./types";
 
-import './css/GameOver.css';
+import "./css/GameOver.css";
 
 export type TGameOverProps = {
   data: TAnsweredQuestion[];
@@ -35,17 +35,17 @@ const GameOver = ({ data }: TGameOverProps) => {
       console.log(index, item);
       return (
         <li key={index}>
-          <span className='go-question'>{item.question}</span>
-          <span className='go-your-answer-label'>
-            Your answer:{' '}
-            <span className='go-your-answer-value'>
+          <span className="go-question">{item.question}</span>
+          <span className="go-your-answer-label">
+            Your answer:{" "}
+            <span className="go-your-answer-value">
               {item.userAnswer.answer}
             </span>
-            ,{' '}
+            ,{" "}
           </span>
-          <span className='go-correct-answer-label'>
-            correct:{' '}
-            <span className='go-correct-answer-value'>{item.correct}</span>
+          <span className="go-correct-answer-label">
+            correct:{" "}
+            <span className="go-correct-answer-value">{item.correct}</span>
           </span>
         </li>
       );
@@ -53,18 +53,18 @@ const GameOver = ({ data }: TGameOverProps) => {
   }
 
   return (
-    <div className='game-over'>
+    <div className="game-over">
       {incorrectList ? (
         [
-          <div key={'go-list-title'} className='go-list-title'>
-            {'Incorrect answers:'}
+          <div key={"go-list-title"} className="go-list-title">
+            {"Incorrect answers:"}
           </div>,
-          <ul key={'go-incorrect-list'} className='go-incorrect-list'>
+          <ul key={"go-incorrect-list"} className="go-incorrect-list">
             {incorrectList}
           </ul>,
         ]
       ) : (
-        <div className='congratulation'>
+        <div className="congratulation">
           <Stars />
           <p>Well done, you&apos;ve answered correctly on all questions.</p>
         </div>

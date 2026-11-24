@@ -1,9 +1,9 @@
-import type { TDataAddedAction } from '../actions/dataAdded';
-import type { TSelectionChangedAction } from '../actions/selectionChanged';
-import type { TSyllabaryAddedAction } from '../actions/syllabaryAdded';
-import type { TSyllabaryChangedAction } from '../actions/syllabaryChanged';
-import type { TWritingAddedAction } from '../actions/writingAdded';
-import type { TWritingChangedAction } from '../actions/writingChanged';
+import type { TDataAddedAction } from "../actions/dataAdded";
+import type { TSelectionChangedAction } from "../actions/selectionChanged";
+import type { TSyllabaryAddedAction } from "../actions/syllabaryAdded";
+import type { TSyllabaryChangedAction } from "../actions/syllabaryChanged";
+import type { TWritingAddedAction } from "../actions/writingAdded";
+import type { TWritingChangedAction } from "../actions/writingChanged";
 
 export type TSyllabarySeriesEntry = {
   id: number;
@@ -28,7 +28,7 @@ export type TWriting = TOptionsSelection;
  * Lista wybranych serii. `data.json` podaje sentinel `"all"` zamiast listy id —
  * strony zamieniają go na `data.map((item) => item.id)`.
  */
-export type TSelection = (number | 'all')[];
+export type TSelection = (number | "all")[];
 
 /** Unia wszystkich akcji dostępnych w store. */
 export type TAction =

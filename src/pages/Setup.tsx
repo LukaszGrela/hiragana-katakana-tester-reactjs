@@ -13,20 +13,20 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import type { ReactElement } from 'react';
-import { connect } from 'react-redux';
+import type { ReactElement } from "react";
+import { connect } from "react-redux";
 
-import selectionChanged from '../actions/selectionChanged';
-import syllabaryChanged from '../actions/syllabaryChanged';
-import writingChanged from '../actions/writingChanged';
-import CheckboxSwitch from '../components/CheckboxSwitch';
-import ListSeries from '../components/ListSeries';
-import SelectionHint from '../components/SelectionHint';
-import type { TRootState } from '../reducers';
-import type { TAppDispatch } from '../store/HKTesterStore';
-import type { TSyllabarySeries } from '../store/types';
+import selectionChanged from "../actions/selectionChanged";
+import syllabaryChanged from "../actions/syllabaryChanged";
+import writingChanged from "../actions/writingChanged";
+import CheckboxSwitch from "../components/CheckboxSwitch";
+import ListSeries from "../components/ListSeries";
+import SelectionHint from "../components/SelectionHint";
+import type { TRootState } from "../reducers";
+import type { TAppDispatch } from "../store/HKTesterStore";
+import type { TSyllabarySeries } from "../store/types";
 
-import './css/Setup.css';
+import "./css/Setup.css";
 
 type TSetupStateProps = {
   fullSelection: number[];
@@ -47,39 +47,39 @@ type TSetupProps = TSetupStateProps & {
 const Setup = (props: TSetupProps): ReactElement => {
   const { dispatch } = props;
   return (
-    <div className='setup'>
-      <div className='wrapper'>
-        <div className='row test-what'>
+    <div className="setup">
+      <div className="wrapper">
+        <div className="row test-what">
           <span>Choose what syllabary option to test:</span>
           <CheckboxSwitch
-            id='test-what-switch'
+            id="test-what-switch"
             labelOn={props.syllabary_label_on}
             labelOff={props.syllabary_label_off}
-            iconOn={'カ'}
-            iconOff={'か'}
+            iconOn={"カ"}
+            iconOff={"か"}
             isChecked={!!props.syllabary_selection}
             onChecked={(newState) => {
               dispatch(syllabaryChanged(newState ? 1 : 0));
             }}
           />
         </div>
-        <div className='row writing'>
+        <div className="row writing">
           <span>Choose what writing option to test:</span>
           <CheckboxSwitch
-            id='writing-switch'
+            id="writing-switch"
             labelOn={props.writing_label_on}
             labelOff={props.writing_label_off}
-            iconOn={'仮名'}
-            iconOff={'Ro'}
+            iconOn={"仮名"}
+            iconOff={"Ro"}
             isChecked={!!props.writing_selection}
             onChecked={(newState) => {
               dispatch(writingChanged(newState ? 1 : 0));
             }}
           />
         </div>
-        <div className='row list-toolbar'>
+        <div className="row list-toolbar">
           <button
-            className='selection-button'
+            className="selection-button"
             onClick={() => {
               if (props.selection.length === 0) {
                 //select all
@@ -88,18 +88,19 @@ const Setup = (props: TSetupProps): ReactElement => {
                 //deselect all
                 dispatch(selectionChanged([]));
               }
-            }}>
-            {props.selection.length === 0 ? 'Select All' : 'Deselect All'}
+            }}
+          >
+            {props.selection.length === 0 ? "Select All" : "Deselect All"}
           </button>
           <SelectionHint
-            className='selection-stats'
-            pattern={'It is selected {k} Kana of {s} series.'}
+            className="selection-stats"
+            pattern={"It is selected {k} Kana of {s} series."}
             selection={props.selection}
             data={props.data}
           />
         </div>
         <ListSeries
-          className='row series-list'
+          className="row series-list"
           data={props.data}
           selection={props.selection}
           onItemClicked={(id, selected) => {
@@ -153,11 +154,11 @@ const mapStateToProps = (state: TRootState): TSetupStateProps => {
     syllabary_label_on:
       syllabary && syllabary.options && syllabary.options.length > 0
         ? syllabary.options[1]
-        : '',
+        : "",
     syllabary_label_off:
       syllabary && syllabary.options && syllabary.options.length > 0
         ? syllabary.options[0]
-        : '',
+        : "",
     syllabary_selection:
       syllabary && syllabary.options && syllabary.options.length > 0
         ? syllabary.selection
@@ -165,11 +166,11 @@ const mapStateToProps = (state: TRootState): TSetupStateProps => {
     writing_label_on:
       writing && writing.options && writing.options.length > 0
         ? writing.options[1]
-        : '',
+        : "",
     writing_label_off:
       writing && writing.options && writing.options.length > 0
         ? writing.options[0]
-        : '',
+        : "",
     writing_selection:
       writing && writing.options && writing.options.length > 0
         ? writing.selection

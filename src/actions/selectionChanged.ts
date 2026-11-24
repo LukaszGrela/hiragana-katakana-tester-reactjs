@@ -13,9 +13,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import type { TSelection } from '../store/types';
+import type { TSelection } from "../store/types";
 
-export const SELECTION_CHANGED = 'SELECTION_CHANGED';
+export const SELECTION_CHANGED = "SELECTION_CHANGED";
 
 export type TSelectionChangedAction = {
   type: typeof SELECTION_CHANGED;

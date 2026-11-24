@@ -13,31 +13,29 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import type { ReactNode } from 'react';
+import type { ReactNode } from "react";
 
-import MoodIcon from '../icons/MoodIcon'
+import MoodIcon from "../icons/MoodIcon";
 
-import './css/IncorrectFeedback.css'
+import "./css/IncorrectFeedback.css";
 
 export type TIncorrectFeedbackProps = {
-    message?: ReactNode;
-    correct?: ReactNode;
+  message?: ReactNode;
+  correct?: ReactNode;
 };
 
-const IncorrectFeedback = ({message, correct}: TIncorrectFeedbackProps)=>{
-
-    return (
-        <div className='feedback incorrect'>
-            
-            <div className='mood'>
-                <MoodIcon className='sad size-medium' />
-                <MoodIcon className='sad size-large' />
-                <MoodIcon className='sad size-medium' />
-            </div>
-            <div className='message'>{message}</div>
-            <div className='correct-answer'>{correct}</div>
-        </div>
-    )
-}
+const IncorrectFeedback = ({ message, correct }: TIncorrectFeedbackProps) => {
+  return (
+    <div className="feedback incorrect">
+      <div className="mood">
+        <MoodIcon className="sad size-medium" />
+        <MoodIcon className="sad size-large" />
+        <MoodIcon className="sad size-medium" />
+      </div>
+      <div className="message">{message}</div>
+      <div className="correct-answer">{correct}</div>
+    </div>
+  );
+};
 
 export default IncorrectFeedback;

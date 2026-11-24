@@ -14,9 +14,9 @@
    limitations under the License.
 */
 
-import { SYLLABARY_DATA_ADDED } from '../actions/syllabaryAdded';
-import { SYLLABARY_CHANGED } from '../actions/syllabaryChanged';
-import type { TAction, TSyllabary } from '../store/types';
+import { SYLLABARY_DATA_ADDED } from "../actions/syllabaryAdded";
+import { SYLLABARY_CHANGED } from "../actions/syllabaryChanged";
+import type { TAction, TSyllabary } from "../store/types";
 
 const syllabaryReducer = (
   state: TSyllabary = { selection: 0, options: [] },

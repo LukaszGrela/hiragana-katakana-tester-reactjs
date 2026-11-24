@@ -1,7 +1,7 @@
 export type TIconProps = {
-    className?: string;
+  className?: string;
 };
 
 export type TMoodIconProps = TIconProps & {
-    isGood?: boolean;
+  isGood?: boolean;
 };

@@ -14,9 +14,9 @@
    limitations under the License.
 */
 
-import { WRITING_DATA_ADDED } from '../actions/writingAdded';
-import { WRITING_CHANGED } from '../actions/writingChanged';
-import type { TAction, TWriting } from '../store/types';
+import { WRITING_DATA_ADDED } from "../actions/writingAdded";
+import { WRITING_CHANGED } from "../actions/writingChanged";
+import type { TAction, TWriting } from "../store/types";
 
 const writingReducer = (
   state: TWriting = { selection: 0, options: [] },

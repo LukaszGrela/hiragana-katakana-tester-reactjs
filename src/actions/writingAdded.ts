@@ -13,9 +13,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import type { TWriting } from '../store/types';
+import type { TWriting } from "../store/types";
 
-export const WRITING_DATA_ADDED = 'WRITING_DATA_ADDED';
+export const WRITING_DATA_ADDED = "WRITING_DATA_ADDED";
 
 export type TWritingAddedAction = {
   type: typeof WRITING_DATA_ADDED;

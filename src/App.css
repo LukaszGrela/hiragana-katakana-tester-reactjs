@@ -1,123 +1,121 @@
 .App {
-    text-align: center;
+  text-align: center;
 }
 
 .app-background {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
-    width: 100vw;
-    height: 100vmax;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  width: 100vw;
+  height: 100vmax;
 
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .layer {
-    position: absolute;
-    background-repeat: no-repeat;
+  position: absolute;
+  background-repeat: no-repeat;
 }
 
 .ground {
-    background-image: url(images/ground.png);
-    width: 2000px;
-    height: 600px;
-    bottom: -240px;
-    left: 50%;
-    transform: translate(-50%, 0);
+  background-image: url(images/ground.png);
+  width: 2000px;
+  height: 600px;
+  bottom: -240px;
+  left: 50%;
+  transform: translate(-50%, 0);
 
-
-    -webkit-transition: all .8s ease;
-    transition: all .8s ease;
+  -webkit-transition: all 0.8s ease;
+  transition: all 0.8s ease;
 }
 .page-game .ground {
-    left: 65%;
+  left: 65%;
 }
 .page-setup .ground {
-    left: 30%;
+  left: 30%;
 }
 .page-about .ground {
-    left: 40%;
+  left: 40%;
 }
 .tree-01 {
-    background-image: url(images/tree-01.png);
-    width: 252px;
-    height: 216px;
-    left: 315px;
-    bottom: 382px;
+  background-image: url(images/tree-01.png);
+  width: 252px;
+  height: 216px;
+  left: 315px;
+  bottom: 382px;
 }
 
 .tree-02 {
-    background-image: url(images/tree-02.png);
-    width: 223px;
-    height: 176px;
-    right: 393px;
-    bottom: 451px;
+  background-image: url(images/tree-02.png);
+  width: 223px;
+  height: 176px;
+  right: 393px;
+  bottom: 451px;
 }
 
 .building-02 {
-    background-image: url(images/building-02.png);
-    width: 97px;
-    height: 262px;
-    right: 675px;
-    bottom: 375px;
+  background-image: url(images/building-02.png);
+  width: 97px;
+  height: 262px;
+  right: 675px;
+  bottom: 375px;
 }
 
 .building-01 {
-    background-image: url(images/building-01.png);
-    width: 175px;
-    height: 185px;
-    left: 620px;
-    bottom: 347px;
+  background-image: url(images/building-01.png);
+  width: 175px;
+  height: 185px;
+  left: 620px;
+  bottom: 347px;
 }
 
 .crane {
-    background-image: url(images/crane.png);
-    width: 50px;
-    height: 27px;
+  background-image: url(images/crane.png);
+  width: 50px;
+  height: 27px;
 }
 
 .crane-01 {
-    left: 855px;
-    bottom: 400px;
+  left: 855px;
+  bottom: 400px;
 }
 
 .sky {
-    width: 1570px;
-    height: 300px;
-    left: 50%;
-    bottom: 15%;
-    transform: translate(-50%, 0);
+  width: 1570px;
+  height: 300px;
+  left: 50%;
+  bottom: 15%;
+  transform: translate(-50%, 0);
 
-
-    -webkit-transition: all .75s ease;
-    transition: all .75s ease;
+  -webkit-transition: all 0.75s ease;
+  transition: all 0.75s ease;
 }
 
 .mobile .sky {
-    bottom: 10%;
+  bottom: 10%;
 }
 
 .page-game .sky {
-    left: 60%;
+  left: 60%;
 }
 
 .page-setup .sky {
-    left: 45%;
+  left: 45%;
 }
 .sun {
-    background-image: url(images/sun.png);
-    width: 204px;
-    height: 204px;
-    left: 40%;
-    top: 0%;
+  background-image: url(images/sun.png);
+  width: 204px;
+  height: 204px;
+  left: 40%;
+  top: 0%;
 }
 
 .mountains {
-    background-image: url(images/mountain-peaks.png);
-    width: 691px;
-    height: 173px;
-    left: 50%;
-    top: 17%;
-    transform: translate(-50%, 0);
+  background-image: url(images/mountain-peaks.png);
+  width: 691px;
+  height: 173px;
+  left: 50%;
+  top: 17%;
+  transform: translate(-50%, 0);
 }

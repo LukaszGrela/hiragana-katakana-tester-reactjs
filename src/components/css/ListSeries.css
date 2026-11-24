@@ -1,53 +1,50 @@
-
-
 .list-series {
-    overflow-x: hidden;
-    overflow-y: scroll;    
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 li.option {
-    margin:0;
-    height: 40px;
-    position: relative;
-    cursor: pointer;
+  margin: 0;
+  height: 40px;
+  position: relative;
+  cursor: pointer;
 }
 li.option:hover {
-    background-color: silver;
+  background-color: silver;
 }
 li.option .kana {
-    position: absolute;
-    top: 0;
-    right: 16px;
-    margin-top: 0px;
+  position: absolute;
+  top: 0;
+  right: 16px;
+  margin-top: 0px;
 
-    font-size: 2.4rem;
-    font-weight: 900;
+  font-size: 2.4rem;
+  font-weight: 900;
 }
 li.option .label {
-    position:absolute;
-    top:0;
-    margin-top: 12px;
-    left: 48px;
-    font-size: 1.4rem;
+  position: absolute;
+  top: 0;
+  margin-top: 12px;
+  left: 48px;
+  font-size: 1.4rem;
 }
 
 li.option svg {
-    display: none;
-    fill: #E3412C;
+  display: none;
+  fill: #e3412c;
 
-    position: absolute;
-    top:0;
-    left: 4px;
-    width: 32px;
-    height: 32px;
-    margin-top: 4px;
-
+  position: absolute;
+  top: 0;
+  left: 4px;
+  width: 32px;
+  height: 32px;
+  margin-top: 4px;
 }
 li.option.selected svg {
-    display: inline-block;
+  display: inline-block;
 }

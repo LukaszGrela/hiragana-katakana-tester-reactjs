@@ -14,8 +14,8 @@
    limitations under the License.
 */
 
-import { SELECTION_CHANGED } from '../actions/selectionChanged';
-import type { TAction, TSelection } from '../store/types';
+import { SELECTION_CHANGED } from "../actions/selectionChanged";
+import type { TAction, TSelection } from "../store/types";
 
 export default function seriesSelectionReducer(
   state: TSelection = [],

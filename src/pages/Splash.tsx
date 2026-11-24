@@ -13,19 +13,19 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import { Component } from 'react';
-import { connect } from 'react-redux';
+import { Component } from "react";
+import { connect } from "react-redux";
 
-import dataAdded from '../actions/dataAdded';
-import selectionChanged from '../actions/selectionChanged';
-import syllabaryAdded from '../actions/syllabaryAdded';
-import syllabaryChanged from '../actions/syllabaryChanged';
-import writingAdded from '../actions/writingAdded';
-import writingChanged from '../actions/writingChanged';
-import type { TAppDispatch } from '../store/HKTesterStore';
-import type { TDataFile } from './types';
+import dataAdded from "../actions/dataAdded";
+import selectionChanged from "../actions/selectionChanged";
+import syllabaryAdded from "../actions/syllabaryAdded";
+import syllabaryChanged from "../actions/syllabaryChanged";
+import writingAdded from "../actions/writingAdded";
+import writingChanged from "../actions/writingChanged";
+import type { TAppDispatch } from "../store/HKTesterStore";
+import type { TDataFile } from "./types";
 
-import './css/Splash.css';
+import "./css/Splash.css";
 
 type TSplashProps = {
   dispatch: TAppDispatch;
@@ -48,7 +48,7 @@ class Splash extends Component<TSplashProps, TSplashState> {
     fetch(`${import.meta.env.BASE_URL}/data/data.json`)
       .then((res) => res.json())
       .then((data: TDataFile) => {
-        console.log('res', data);
+        console.log("res", data);
         const selection = data.selection;
         const syllabary = data.syllabary;
         const writing = data.writing;
@@ -68,15 +68,15 @@ class Splash extends Component<TSplashProps, TSplashState> {
         // -------------------------
       })
       .catch((reason) => {
-        console.error('Splash#componentDidMount', reason);
+        console.error("Splash#componentDidMount", reason);
       });
   }
 
   override render() {
     return (
-      <div className='splash'>
-        <div className='wrapper'>
-          <div className='loading'>Loading...</div>
+      <div className="splash">
+        <div className="wrapper">
+          <div className="loading">Loading...</div>
         </div>
       </div>
     );

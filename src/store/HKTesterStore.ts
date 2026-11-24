@@ -13,10 +13,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import { legacy_createStore, applyMiddleware } from 'redux';
-import { logger } from 'redux-logger';
+import { legacy_createStore, applyMiddleware } from "redux";
+import { logger } from "redux-logger";
 
-import reducer from '../reducers';
+import reducer from "../reducers";
 
 const middleware = applyMiddleware(logger);
 

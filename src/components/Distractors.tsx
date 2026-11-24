@@ -1,4 +1,4 @@
-import './css/Distractors.css';
+import "./css/Distractors.css";
 
 export type TDistractorsProps = {
   answerOptions?: string[];
@@ -19,12 +19,15 @@ const Distractors = ({
       <button
         key={item}
         id={`answer-${index}`}
-        onClick={clickHandler(item, `answer-${index}`)}>
+        onClick={clickHandler(item, `answer-${index}`)}
+      >
         {item}
       </button>
     ));
   return (
-    <div className={`distractors${hideButtonId ? ` hide-${hideButtonId}` : ''}`}>
+    <div
+      className={`distractors${hideButtonId ? ` hide-${hideButtonId}` : ""}`}
+    >
       {generateAnswers(answerOptions)}
     </div>
   );

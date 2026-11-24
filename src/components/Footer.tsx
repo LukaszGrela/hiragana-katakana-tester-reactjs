@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import './css/Footer.css';
+import "./css/Footer.css";
 
 const Footer = () => (
   <footer>GrelaDesign (c) {new Date().getFullYear()}</footer>

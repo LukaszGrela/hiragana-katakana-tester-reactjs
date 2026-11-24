@@ -16,39 +16,47 @@
 */
 .dd-menu {
   z-index: 100001;
-  position: fixed; }
-  .dd-menu.close {
-    opacity: 0;
-    visibility: hidden; }
-  .dd-menu.open {
-    opacity: 1;
-    visibility: visible; }
-  .dd-menu .cloak {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0; }
-  .dd-menu .dd-menu-container {
-    position: fixed;
-    width: 110px;
-    top: 60px;
-    right: 8px;
-    background-color: #fff;
-    box-shadow: 1px 1px 5px #888888; }
-    .dd-menu .dd-menu-container button {
-      display: block;
-      width: 100px !important;
-      margin: 0 auto !important;
-      text-align: left; }
-      .dd-menu .dd-menu-container button svg {
-        margin-right: 8px;
-        display: inline-block;
-        position: relative;
-        top: 5px;
-        fill: #212121 !important; }
-      .dd-menu .dd-menu-container button span.label {
-        margin-bottom: 5px;
-        display: inline-block;
-        position: relative;
-        top: -2px; }
+  position: fixed;
+}
+.dd-menu.close {
+  opacity: 0;
+  visibility: hidden;
+}
+.dd-menu.open {
+  opacity: 1;
+  visibility: visible;
+}
+.dd-menu .cloak {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.dd-menu .dd-menu-container {
+  position: fixed;
+  width: 110px;
+  top: 60px;
+  right: 8px;
+  background-color: #fff;
+  box-shadow: 1px 1px 5px #888888;
+}
+.dd-menu .dd-menu-container button {
+  display: block;
+  width: 100px !important;
+  margin: 0 auto !important;
+  text-align: left;
+}
+.dd-menu .dd-menu-container button svg {
+  margin-right: 8px;
+  display: inline-block;
+  position: relative;
+  top: 5px;
+  fill: #212121 !important;
+}
+.dd-menu .dd-menu-container button span.label {
+  margin-bottom: 5px;
+  display: inline-block;
+  position: relative;
+  top: -2px;
+}

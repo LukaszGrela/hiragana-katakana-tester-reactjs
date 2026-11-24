@@ -17,55 +17,55 @@
 */
 
 .about {
-    width: 80%;
-    margin: 0 auto;
-    min-width: 32rem;
-    max-width: 48rem;
+  width: 80%;
+  margin: 0 auto;
+  min-width: 32rem;
+  max-width: 48rem;
 }
 
 .about .wrapper {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .about_content {
-    min-width: 28rem;
-    padding: 2rem 0.8rem;
-    font-size: 1.6rem;
-    text-align: left;
-    background-image: url(../../images/pattern-320.png);
-    outline: rgba(255, 255, 255, 0.85) solid 0.4rem;
-    outline-offset: 0.4rem;
+  min-width: 28rem;
+  padding: 2rem 0.8rem;
+  font-size: 1.6rem;
+  text-align: left;
+  background-image: url(../../images/pattern-320.png);
+  outline: rgba(255, 255, 255, 0.85) solid 0.4rem;
+  outline-offset: 0.4rem;
 }
 
-@media all and (max-width:32rem) {
-    .about_content {
-        padding: 0.8rem;
-        margin-top: 1rem;
-    }
+@media all and (max-width: 32rem) {
+  .about_content {
+    padding: 0.8rem;
+    margin-top: 1rem;
+  }
 }
 .about .git-source {
-    padding: 1rem 0;
+  padding: 1rem 0;
 }
 
 .about .git-source .git-hub-icon {
-    vertical-align: bottom;
-    width: 2.2rem;
-    height: 2.2rem;
-    padding-right: 0.4rem;
+  vertical-align: bottom;
+  width: 2.2rem;
+  height: 2.2rem;
+  padding-right: 0.4rem;
 }
 
 .about .acknowledgement {
-    font-size: 1.2rem;
-    padding: 0 2rem;
-    padding-top: 2rem;
-    color: #757575;
+  font-size: 1.2rem;
+  padding: 0 2rem;
+  padding-top: 2rem;
+  color: #757575;
 }
 
-@media all and (max-width:32rem) {
-    .about .acknowledgement {
-        padding-top: 0rem;
-    }
+@media all and (max-width: 32rem) {
+  .about .acknowledgement {
+    padding-top: 0rem;
+  }
 }

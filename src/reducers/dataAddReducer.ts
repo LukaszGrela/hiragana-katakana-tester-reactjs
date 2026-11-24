@@ -14,8 +14,8 @@
    limitations under the License.
 */
 
-import { DATA_ADDED } from '../actions/dataAdded';
-import type { TAction, TSyllabarySeries } from '../store/types';
+import { DATA_ADDED } from "../actions/dataAdded";
+import type { TAction, TSyllabarySeries } from "../store/types";
 
 export default function dataAddReducer(
   state: TSyllabarySeries = [],

@@ -13,31 +13,38 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import kanaCounter from '../utils/kanaCounter';
-import type { TSyllabarySeries } from '../store/types';
+import kanaCounter from "../utils/kanaCounter";
+import type { TSyllabarySeries } from "../store/types";
 
 export type TSelectionHintProps = {
-    data: TSyllabarySeries;
-    selection: number[];
-    pattern: string;
-    className?: string;
+  data: TSyllabarySeries;
+  selection: number[];
+  pattern: string;
+  className?: string;
 };
 
-const SelectionHint = ({ selection, data, pattern, className }: TSelectionHintProps) => {
-
-    const { kana, series } = kanaCounter(data, selection);
-    const stats = pattern.replace(/{(k|s)}/gi, (match: string, $1: string) => {
-        switch ($1) {
-            case 'k':
-                return String(kana);
-            case 's':
-                return String(series);
-            default:
-                return match;
-        }
-    })
-    return (<span className={'selection-hint' + (className ? ' '+className:'')}>{stats}</span>);
-
+const SelectionHint = ({
+  selection,
+  data,
+  pattern,
+  className,
+}: TSelectionHintProps) => {
+  const { kana, series } = kanaCounter(data, selection);
+  const stats = pattern.replace(/{(k|s)}/gi, (match: string, $1: string) => {
+    switch ($1) {
+      case "k":
+        return String(kana);
+      case "s":
+        return String(series);
+      default:
+        return match;
+    }
+  });
+  return (
+    <span className={"selection-hint" + (className ? " " + className : "")}>
+      {stats}
+    </span>
+  );
 };
 
 export default SelectionHint;

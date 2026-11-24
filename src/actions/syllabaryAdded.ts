@@ -13,9 +13,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import type { TSyllabary } from '../store/types';
+import type { TSyllabary } from "../store/types";
 
-export const SYLLABARY_DATA_ADDED = 'SYLLABARY_DATA_ADDED';
+export const SYLLABARY_DATA_ADDED = "SYLLABARY_DATA_ADDED";
 
 export type TSyllabaryAddedAction = {
   type: typeof SYLLABARY_DATA_ADDED;

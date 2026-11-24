@@ -14,21 +14,25 @@
    limitations under the License.
 */
 
-import { Component } from 'react';
-import type { TIconProps } from './types';
+import { Component } from "react";
+import type { TIconProps } from "./types";
 
 class ButtonIconNext extends Component<TIconProps> {
-    override state = {}
-    override render() {
-        const className = this.props.className || '';
-        return (
-            <svg xmlns="http://www.w3.org/2000/svg"
-                className={className + ' button-icon-next'}
-                width="24" height="24" viewBox="0 0 24 24">
-                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
-            </svg>
-        );
-    }
+  override state = {};
+  override render() {
+    const className = this.props.className || "";
+    return (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className={className + " button-icon-next"}
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+      >
+        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+      </svg>
+    );
+  }
 }
 
 export default ButtonIconNext;

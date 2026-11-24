@@ -1,51 +1,50 @@
 .popup-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .cloak {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .popup {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 80%;
-    min-width: 30.4rem;
-    height: 30.4rem;
-    background-image: url(../../images/pattern-320.png);
-    background-color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  min-width: 30.4rem;
+  height: 30.4rem;
+  background-image: url(../../images/pattern-320.png);
+  background-color: white;
 
-
-    outline: 0.4rem solid white;
-    outline-offset: 0.4rem;
+  outline: 0.4rem solid white;
+  outline-offset: 0.4rem;
 }
 
 .popup .popup-content {
-    flex: 1;
+  flex: 1;
 }
 
 .popup-buttons {
-    margin: 0 auto;
-    height: 6rem;
+  margin: 0 auto;
+  height: 6rem;
 }
 
 .popup-title {
-    height: 40px;
-    font-size: 2.6rem;
-    margin-top: 0.8rem;
-    font-weight: bold;
+  height: 40px;
+  font-size: 2.6rem;
+  margin-top: 0.8rem;
+  font-weight: bold;
 }
