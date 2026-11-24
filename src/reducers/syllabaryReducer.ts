@@ -13,21 +13,25 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import { WRITING_DATA_ADDED } from "../actions/writingAdded";
-import { WRITING_CHANGED } from "../actions/writingChanged";
 
-const writingReducer = (state = {}, action) => {
+import { SYLLABARY_DATA_ADDED } from '../actions/syllabaryAdded';
+import { SYLLABARY_CHANGED } from '../actions/syllabaryChanged';
+import type { TAction, TSyllabary } from '../store/types';
 
-    switch (action.type) {
-        case WRITING_DATA_ADDED:
-            return action.payload;
-        case WRITING_CHANGED:
-            return Object.assign({}, state, { ...state, selection: action.payload });
-        default:
-            break;
-    }
+const syllabaryReducer = (
+  state: TSyllabary = { selection: 0, options: [] },
+  action: TAction,
+): TSyllabary => {
+  switch (action.type) {
+    case SYLLABARY_DATA_ADDED:
+      return action.payload;
+    case SYLLABARY_CHANGED:
+      return { ...state, selection: action.payload };
+    default:
+      break;
+  }
 
-    return state;
-}
+  return state;
+};
 
-export default writingReducer;
+export default syllabaryReducer;

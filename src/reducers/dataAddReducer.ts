@@ -13,18 +13,21 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import { combineReducers } from "redux";
 
-import dataAddReducer from "./dataAddReducer";
-import seriesSelectionReducer from "./seriesSelectionReducer";
-import syllabaryReducer from "./syllabaryReducer";
-import writingReducer from "./writingReducer";
+import { DATA_ADDED } from '../actions/dataAdded';
+import type { TAction, TSyllabarySeries } from '../store/types';
 
-const reducer = combineReducers({
-    data: dataAddReducer,
-    selection: seriesSelectionReducer,
-    syllabary: syllabaryReducer,
-    writing: writingReducer
-});
+export default function dataAddReducer(
+  state: TSyllabarySeries = [],
+  action: TAction,
+): TSyllabarySeries {
+  switch (action.type) {
+    case DATA_ADDED:
+      return state.concat(action.payload);
 
-export default reducer;
+    default:
+      break;
+  }
+
+  return state;
+}

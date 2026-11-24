@@ -13,17 +13,25 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import { SELECTION_CHANGED } from "../actions/selectionChanged";
 
+import { WRITING_DATA_ADDED } from '../actions/writingAdded';
+import { WRITING_CHANGED } from '../actions/writingChanged';
+import type { TAction, TWriting } from '../store/types';
 
+const writingReducer = (
+  state: TWriting = { selection: 0, options: [] },
+  action: TAction,
+): TWriting => {
+  switch (action.type) {
+    case WRITING_DATA_ADDED:
+      return action.payload;
+    case WRITING_CHANGED:
+      return { ...state, selection: action.payload };
+    default:
+      break;
+  }
 
-export default function seriesSelectionReducer(state = [], action) {
-    switch (action.type) {
-        case SELECTION_CHANGED:
-            return action.payload.concat();
-    
-        default:
-            break;
-    }
-    return state;
-}
+  return state;
+};
+
+export default writingReducer;

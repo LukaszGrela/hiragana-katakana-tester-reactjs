@@ -20,7 +20,7 @@ import reducer from '../reducers';
 
 const middleware = applyMiddleware(logger);
 
-const hkTesterStore = legacy_createStore(reducer, middleware);
+const hkTesterStore = legacy_createStore(reducer, undefined, middleware);
 
 export type TRootState = ReturnType<typeof hkTesterStore.getState>;
 export type TAppDispatch = typeof hkTesterStore.dispatch;

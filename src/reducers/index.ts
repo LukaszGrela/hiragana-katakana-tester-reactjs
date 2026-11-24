@@ -13,21 +13,21 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import { SYLLABARY_DATA_ADDED } from "../actions/syllabaryAdded";
-import { SYLLABARY_CHANGED } from "../actions/syllabaryChanged";
 
-const syllabaryReducer = (state = {}, action) => {
+import { combineReducers } from 'redux';
 
-    switch (action.type) {
-        case SYLLABARY_DATA_ADDED:
-            return action.payload;
-        case SYLLABARY_CHANGED:
-            return Object.assign({}, state, { ...state, selection: action.payload });
-        default:
-            break;
-    }
+import dataAddReducer from './dataAddReducer';
+import seriesSelectionReducer from './seriesSelectionReducer';
+import syllabaryReducer from './syllabaryReducer';
+import writingReducer from './writingReducer';
 
-    return state;
-}
+const reducer = combineReducers({
+  data: dataAddReducer,
+  selection: seriesSelectionReducer,
+  syllabary: syllabaryReducer,
+  writing: writingReducer,
+});
 
-export default syllabaryReducer;
+export type TRootState = ReturnType<typeof reducer>;
+
+export default reducer;

@@ -13,16 +13,21 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import { DATA_ADDED } from "../actions/dataAdded";
 
-export default function dataAddReducer(state=[], action) {
-    switch (action.type) {
-        case DATA_ADDED:
-            const copy = state.concat(action.payload)
-            return copy;
-    
-        default:
-            break;
-    }
-    return state;
+import { SELECTION_CHANGED } from '../actions/selectionChanged';
+import type { TAction, TSelection } from '../store/types';
+
+export default function seriesSelectionReducer(
+  state: TSelection = [],
+  action: TAction,
+): TSelection {
+  switch (action.type) {
+    case SELECTION_CHANGED:
+      return action.payload.concat();
+
+    default:
+      break;
+  }
+
+  return state;
 }
