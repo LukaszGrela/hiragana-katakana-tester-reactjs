@@ -13,12 +13,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import { legacy_createStore, applyMiddleware } from "redux";
-import reducer from '../reducers'
-import { logger } from "redux-logger";
+import { legacy_createStore, applyMiddleware } from 'redux';
+import { logger } from 'redux-logger';
+
+import reducer from '../reducers';
 
 const middleware = applyMiddleware(logger);
 
 const hkTesterStore = legacy_createStore(reducer, middleware);
+
+export type TRootState = ReturnType<typeof hkTesterStore.getState>;
+export type TAppDispatch = typeof hkTesterStore.dispatch;
 
 export default hkTesterStore;
