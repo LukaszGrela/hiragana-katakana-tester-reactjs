@@ -13,7 +13,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import { FC, useEffect } from "react";
+import { type FC, useEffect } from "react";
 
 import "./App.css";
 

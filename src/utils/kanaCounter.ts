@@ -14,7 +14,7 @@
    limitations under the License.
 */
 
-import { TSyllabarySeries } from "../store/types";
+import type { TSyllabarySeries } from "../store/types";
 
 /**
  * Returns count of kana and series

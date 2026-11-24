@@ -33,7 +33,12 @@ import Distractors from "../../components/Distractors";
 import type { TAnsweredQuestion } from "../../components/types";
 import { useAppSelector } from "../../store/hooks";
 import type { TSyllabarySeriesEntry } from "../../store/types";
-import { TCurrentQuestion, TGameProps, TGameState, TQuestion } from "./types";
+import type {
+  TCurrentQuestion,
+  TGameProps,
+  TGameState,
+  TQuestion,
+} from "./types";
 import { resolveSelection } from "./utils";
 
 /** Klucze w `source`, np. `romaji` / `hiragana` / `katakana`. */

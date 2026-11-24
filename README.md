@@ -8,15 +8,15 @@ App to test Hiragana/Katakana syllabary, written in React + TypeScript.
 
 ## Tech stack
 
-| Layer | What is used |
-| --- | --- |
-| UI | React 19 (`createRoot`), React DOM 19 |
-| Language / build | TypeScript 6, Vite 7 |
-| State | Redux 5, React Redux 9, Redux Toolkit 2 (`configureStore`), `redux-logger` |
-| Routing | React Router 7 (`Routes` / `Route element`) |
-| Helpers | `react-responsive`, `bowser` |
-| Tests | Vitest 5, jsdom, Testing Library, MSW 3 |
-| Quality | ESLint 8 + `@typescript-eslint`, `oxfmt` |
+| Layer            | What is used                                                               |
+| ---------------- | -------------------------------------------------------------------------- |
+| UI               | React 19 (`createRoot`), React DOM 19                                      |
+| Language / build | TypeScript 6, Vite 7                                                       |
+| State            | Redux 5, React Redux 9, Redux Toolkit 2 (`configureStore`), `redux-logger` |
+| Routing          | React Router 7 (`Routes` / `Route element`)                                |
+| Helpers          | `react-responsive`, `bowser`                                               |
+| Tests            | Vitest 5, jsdom, Testing Library, MSW 3                                    |
+| Quality          | ESLint 8 + `@typescript-eslint`, `oxfmt`                                   |
 
 ## Requirements
 
@@ -37,14 +37,14 @@ Open http://localhost:5173/hiragana-katakana-tester/ — the app is served from 
 
 ## Scripts
 
-| Command | Description |
-| --- | --- |
-| `npm run dev` | Dev server with HMR |
-| `npm run build` | Production build to `dist/` |
-| `npm run preview` | Preview the production build |
-| `npm run typecheck` | `tsc --noEmit` |
-| `npm run lint` | ESLint, zero warnings allowed |
-| `npm test` | Vitest single run |
+| Command                             | Description                             |
+| ----------------------------------- | --------------------------------------- |
+| `npm run dev`                       | Dev server with HMR                     |
+| `npm run build`                     | Production build to `dist/`             |
+| `npm run preview`                   | Preview the production build            |
+| `npm run typecheck`                 | `tsc --noEmit`                          |
+| `npm run lint`                      | ESLint, zero warnings allowed           |
+| `npm test`                          | Vitest single run                       |
 | `npm run fmt` / `npm run fmt:check` | Format / verify formatting with `oxfmt` |
 
 ## Project structure

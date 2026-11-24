@@ -38,7 +38,11 @@ import "./index.css";
 })(document.getElementsByTagName("html")[0]);
 
 // Render app (React 19 - createRoot replaces the removed ReactDOM.render)
-createRoot(document.getElementById("root")!).render(
+const rootElement = document.getElementById("root");
+if (!rootElement) {
+  throw new Error("Brak elementu #root w index.html");
+}
+createRoot(rootElement).render(
   <Provider store={hkTesterStore}>
     <Router basename="/hiragana-katakana-tester">
       <App />

@@ -1,6 +1,6 @@
-import { NavigateFunction } from "react-router-dom";
-import { TAnsweredQuestion } from "../../components/types";
-import { TSyllabarySeries, TSyllabary, TWriting } from "../../store/types";
+import type { NavigateFunction } from "react-router-dom";
+import type { TAnsweredQuestion } from "../../components/types";
+import type { TSyllabarySeries, TSyllabary, TWriting } from "../../store/types";
 
 export type TQuestion = {
   correct: string;
