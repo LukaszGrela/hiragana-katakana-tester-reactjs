@@ -32,7 +32,7 @@ const App: FC<{ hasData?: boolean }> = ({ hasData }) => {
   }, [location]);
 
   return (
-    <div className={"App page-" + page}>
+    <div className={"App page-" + page} data-testid="App">
       <div className="app-background">
         <div className="layer sky">
           <div className="layer sun"></div>
