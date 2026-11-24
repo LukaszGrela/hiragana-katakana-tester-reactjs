@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { describe, expect, it } from "vitest";
@@ -59,8 +59,8 @@ describe("Setup page", () => {
     expect(container.querySelector(".selection-button")).toHaveTextContent(
       "Select All",
     );
-    expect(container.querySelector(".stats")).toHaveTextContent(
-      "Selected 0 Kana of 3 series.",
+    expect(container.querySelector(".selection-stats")).toHaveTextContent(
+      "It is selected 0 Kana of 0 series.",
     );
     expect(optionItems(container)).toHaveLength(3);
   });
@@ -74,8 +74,8 @@ describe("Setup page", () => {
     expect(container.querySelector(".selection-button")).toHaveTextContent(
       "Deselect All",
     );
-    expect(container.querySelector(".stats")).toHaveTextContent(
-      "Selected 15 Kana of 3 series.",
+    expect(container.querySelector(".selection-stats")).toHaveTextContent(
+      "It is selected 15 Kana of 3 series.",
     );
     expect(container.querySelectorAll("li.option.selected")).toHaveLength(3);
 
@@ -95,8 +95,8 @@ describe("Setup page", () => {
 
     expect(store.getState().selection).toEqual([0]);
     expect(optionItems(container)[0]).toHaveClass("selected");
-    expect(container.querySelector(".stats")).toHaveTextContent(
-      "Selected 5 Kana of 1 series.",
+    expect(container.querySelector(".selection-stats")).toHaveTextContent(
+      "It is selected 5 Kana of 1 series.",
     );
 
     fireEvent.click(optionItems(container)[0]);
@@ -114,7 +114,7 @@ describe("Setup page", () => {
   });
 
   it("switches the writing test to kana", () => {
-    const { container, store } = renderSetup();
+    const { container, store } = renderSetup({ selection: [0, 1, 2] });
 
     const input = container.querySelector(
       ".writing-switch input",
@@ -122,7 +122,7 @@ describe("Setup page", () => {
 
     expect(input.checked).toBe(false);
     expect(container.querySelector(".selection-hint")).toHaveTextContent(
-      "Selected 0 Kana of 3 series.",
+      "It is selected 15 Kana of 3 series.",
     );
 
     fireEvent.click(input);
@@ -157,7 +157,9 @@ describe("Setup page", () => {
     const { container, store } = renderSetup({ selection: ["all"] });
 
     expect(container.querySelectorAll("li.option.selected")).toHaveLength(3);
-    expect(screen.getByText("Selected 15 Kana of 3 series.")).toBeVisible();
+    expect(container.querySelector(".selection-stats")).toHaveTextContent(
+      "It is selected 15 Kana of 3 series.",
+    );
 
     fireEvent.click(container.querySelector(".selection-button") as Element);
 

@@ -34,6 +34,42 @@ export const seriesFixture: TSyllabarySeries = [
   },
 ];
 
+/**
+ * Six series with five kana each. The game draws four distractors per question
+ * from a pool built out of all the data, so the pool has to be big enough not
+ * to be refilled while the five questions are played.
+ */
+export const gameSeriesFixture: TSyllabarySeries = [
+  ...seriesFixture,
+  {
+    id: 3,
+    name: { label: "T", kana: "たちつてと" },
+    source: {
+      romaji: ["ta", "chi", "tsu", "te", "to"],
+      hiragana: ["た", "ち", "つ", "て", "と"],
+      katakana: ["タ", "チ", "ツ", "テ", "ト"],
+    },
+  },
+  {
+    id: 4,
+    name: { label: "N", kana: "なにぬねの" },
+    source: {
+      romaji: ["na", "ni", "nu", "ne", "no"],
+      hiragana: ["な", "に", "ぬ", "ね", "の"],
+      katakana: ["ナ", "ニ", "ヌ", "ネ", "ノ"],
+    },
+  },
+  {
+    id: 5,
+    name: { label: "H", kana: "はひふへほ" },
+    source: {
+      romaji: ["ha", "hi", "fu", "he", "ho"],
+      hiragana: ["は", "ひ", "ふ", "へ", "ほ"],
+      katakana: ["ハ", "ヒ", "フ", "ヘ", "ホ"],
+    },
+  },
+];
+
 export const syllabaryFixture: TSyllabary = {
   selection: 0,
   options: ["Hiragana", "Katakana"],

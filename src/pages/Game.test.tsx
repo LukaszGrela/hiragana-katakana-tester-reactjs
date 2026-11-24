@@ -13,7 +13,7 @@ import writingChanged from "../actions/writingChanged";
 import reducer from "../reducers";
 import type { TSelection } from "../store/types";
 import {
-  seriesFixture,
+  gameSeriesFixture,
   syllabaryFixture,
   writingFixture,
 } from "../test/fixtures";
@@ -46,7 +46,7 @@ const renderGame = ({
 }: TGameOptions = {}) => {
   const store = createStore(reducer);
 
-  store.dispatch(dataAdded(seriesFixture));
+  store.dispatch(dataAdded(gameSeriesFixture));
   store.dispatch(syllabaryAdded(syllabaryFixture));
   store.dispatch(writingAdded(writingFixture));
   store.dispatch(syllabaryChanged(syllabary));
@@ -83,11 +83,11 @@ const answerButtons = (container: HTMLElement) =>
 
 /** The question is romaji, the correct answer is the kana at the same index. */
 const correctAnswerFor = (question: string) => {
-  const index = seriesFixture[0].source.romaji.indexOf(question);
+  const index = gameSeriesFixture[0].source.romaji.indexOf(question);
 
   expect(index).toBeGreaterThanOrEqual(0);
 
-  return seriesFixture[0].source.hiragana[index];
+  return gameSeriesFixture[0].source.hiragana[index];
 };
 
 const clickAnswer = (container: HTMLElement, kana: string) => {
@@ -108,7 +108,7 @@ afterEach(() => {
 });
 
 describe("Game page", () => {
-  it("starts on the first of five questions with four answers", () => {
+  it("starts on the first of five questions with five answers", () => {
     const { container } = renderGame();
 
     const question = questionText(container);
@@ -116,8 +116,8 @@ describe("Game page", () => {
     expect(container.querySelector(".game")).not.toBeNull();
     expect(progressText(container)).toBe("1 / 5");
     expect(scoreText(container)).toBe("0");
-    expect(seriesFixture[0].source.romaji).toContain(question);
-    expect(answerButtons(container)).toHaveLength(4);
+    expect(gameSeriesFixture[0].source.romaji).toContain(question);
+    expect(answerButtons(container)).toHaveLength(5);
     expect(container.querySelector(".next-question-button")).toBeNull();
   });
 
@@ -188,7 +188,7 @@ describe("Game page", () => {
     expect(progressText(container)).toBe("2 / 5");
     expect(container.querySelector(".popup-container")).toBeNull();
     expect(container.querySelector(".game")).not.toHaveClass("correct");
-    expect(answerButtons(container)).toHaveLength(4);
+    expect(answerButtons(container)).toHaveLength(5);
   });
 
   it("hides one wrong answer and disables the hint afterwards", () => {
@@ -286,7 +286,7 @@ describe("Game page", () => {
     expect(progressText(container)).toBe("1 / 5");
     expect(scoreText(container)).toBe("0");
     expect(container.querySelector(".popup-container")).toBeNull();
-    expect(answerButtons(container)).toHaveLength(4);
+    expect(answerButtons(container)).toHaveLength(5);
   });
 
   it("returns to the previous page with the Menu button", () => {
@@ -308,11 +308,11 @@ describe("Game page", () => {
     const { container } = renderGame({ syllabary: 1 });
 
     const question = questionText(container);
-    const index = seriesFixture[0].source.romaji.indexOf(question);
+    const index = gameSeriesFixture[0].source.romaji.indexOf(question);
 
     expect(index).toBeGreaterThanOrEqual(0);
 
-    clickAnswer(container, seriesFixture[0].source.katakana[index]);
+    clickAnswer(container, gameSeriesFixture[0].source.katakana[index]);
 
     expect(scoreText(container)).toBe("1");
     expect(container.querySelector(".game")).toHaveClass("correct");
@@ -322,12 +322,12 @@ describe("Game page", () => {
     const { container } = renderGame({ writing: 1 });
 
     const question = questionText(container);
-    const index = seriesFixture[0].source.hiragana.indexOf(question);
+    const index = gameSeriesFixture[0].source.hiragana.indexOf(question);
 
     expect(index).toBeGreaterThanOrEqual(0);
-    expect(answerButtons(container)).toHaveLength(4);
+    expect(answerButtons(container)).toHaveLength(5);
 
-    clickAnswer(container, seriesFixture[0].source.romaji[index]);
+    clickAnswer(container, gameSeriesFixture[0].source.romaji[index]);
 
     expect(scoreText(container)).toBe("1");
     expect(container.querySelector(".game")).toHaveClass("correct");
