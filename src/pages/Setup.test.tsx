@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { legacy_createStore as createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { describe, expect, it } from "vitest";
 
 import dataAdded from "../actions/dataAdded";
@@ -29,7 +29,7 @@ const renderSetup = ({
   syllabary = 0,
   writing = 0,
 }: TSetupOptions = {}) => {
-  const store = createStore(reducer);
+  const store = configureStore({ reducer });
 
   store.dispatch(dataAdded(seriesFixture));
   store.dispatch(syllabaryAdded(syllabaryFixture));

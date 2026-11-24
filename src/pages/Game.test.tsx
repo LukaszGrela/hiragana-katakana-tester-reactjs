@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { legacy_createStore as createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import dataAdded from "../actions/dataAdded";
@@ -44,7 +44,7 @@ const renderGame = ({
   syllabary = 0,
   writing = 0,
 }: TGameOptions = {}) => {
-  const store = createStore(reducer);
+  const store = configureStore({ reducer });
 
   store.dispatch(dataAdded(gameSeriesFixture));
   store.dispatch(syllabaryAdded(syllabaryFixture));

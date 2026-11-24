@@ -13,18 +13,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import { legacy_createStore, applyMiddleware } from "redux";
-import type { Middleware } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { logger } from "redux-logger";
 
-import reducer, { type TRootState as TReducerState } from "../reducers";
+import reducer from "../reducers";
 
-const loggerMiddleware: Middleware<{}, TReducerState> = logger;
-// Redux 5: `legacy_createStore` jest zamiennikiem przestarzałego `createStore`
-// (pełny następca to `configureStore` z Redux Toolkit).
-const middleware = applyMiddleware<{}, TReducerState>(loggerMiddleware);
-
-const hkTesterStore = legacy_createStore(reducer, undefined, middleware);
+// Redux Toolkit: `configureStore` zastepuje `createStore`/`legacy_createStore`
+// i wlacza domyslne middleware (m.in. thunk) + DevTools.
+// `logger` zostaje na koncu lancucha, jak dotychczas (dev: podglad akcji).
+const hkTesterStore = configureStore({
+  reducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+});
 
 export type TRootState = ReturnType<typeof hkTesterStore.getState>;
 export type TAppDispatch = typeof hkTesterStore.dispatch;

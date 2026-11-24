@@ -1,14 +1,14 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
-import { legacy_createStore as createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { describe, expect, it } from "vitest";
 
 import App from "./App";
 import reducer from "./reducers";
 
 const renderApp = (path = "/") => {
-  const store = createStore(reducer);
+  const store = configureStore({ reducer });
 
   const view = render(
     <Provider store={store}>

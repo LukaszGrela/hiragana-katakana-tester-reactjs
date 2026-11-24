@@ -1,6 +1,6 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { legacy_createStore as createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { describe, expect, it } from "vitest";
 
 import reducer from "../reducers";
@@ -8,7 +8,7 @@ import Splash from "./Splash";
 
 describe("Splash page", () => {
   it("shows the loader before the data arrives", () => {
-    const store = createStore(reducer);
+    const store = configureStore({ reducer });
 
     render(
       <Provider store={store}>
@@ -21,7 +21,7 @@ describe("Splash page", () => {
   });
 
   it("fetches data.json and seeds the store", async () => {
-    const store = createStore(reducer);
+    const store = configureStore({ reducer });
 
     render(
       <Provider store={store}>

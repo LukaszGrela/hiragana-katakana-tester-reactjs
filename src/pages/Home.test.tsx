@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { legacy_createStore as createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { describe, expect, it } from "vitest";
 
 import dataAdded from "../actions/dataAdded";
@@ -32,7 +32,7 @@ const renderHome = ({
   writing = 0,
   data = seriesFixture,
 }: THomeOptions = {}) => {
-  const store = createStore(reducer);
+  const store = configureStore({ reducer });
 
   store.dispatch(dataAdded(data));
   store.dispatch(syllabaryAdded(syllabaryFixture));

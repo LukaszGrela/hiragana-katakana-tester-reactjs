@@ -1,4 +1,4 @@
-import { legacy_createStore as createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import { describe, expect, it } from "vitest";
 
 import dataAdded from "../actions/dataAdded";
@@ -29,7 +29,7 @@ describe("root reducer", () => {
   });
 
   it("applies the whole data.json bootstrap sequence", () => {
-    const store = createStore(reducer);
+    const store = configureStore({ reducer });
 
     store.dispatch(dataAdded(seriesFixture));
     store.dispatch(selectionChanged(["all"]));
@@ -51,7 +51,7 @@ describe("root reducer", () => {
   });
 
   it("updates the writing and syllabary selection", () => {
-    const store = createStore(reducer);
+    const store = configureStore({ reducer });
 
     store.dispatch(syllabaryAdded(syllabaryFixture));
     store.dispatch(writingAdded(writingFixture));
@@ -63,7 +63,7 @@ describe("root reducer", () => {
   });
 
   it("notifies subscribers on every change", () => {
-    const store = createStore(reducer);
+    const store = configureStore({ reducer });
     let calls = 0;
     const unsubscribe = store.subscribe(() => {
       calls += 1;
