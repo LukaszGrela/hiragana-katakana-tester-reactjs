@@ -1,33 +1,50 @@
 {
   "name": "hiragana-katakana-tester-react",
   "private": true,
-  "version": "0.9.3",
+  "version": "0.10.1",
   "homepage": "https://greladesign.co/hiragana-katakana-tester",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "lint": "eslint . --ext js,jsx,ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.14.0",
     "bowser": "^1.9.4",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-redux": "^8.1.2",
-    "react-responsive": "^8.2.0",
-    "react-router-dom": "^5.3.4",
-    "redux": "^4.2.1",
-    "redux-logger": "^3.0.6",
-    "redux-promise-middleware": "^5.0.0",
-    "redux-thunk": "^2.2.0"
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-redux": "^9.3.1",
+    "react-responsive": "^10.0.1",
+    "react-router-dom": "^7.18.5",
+    "redux": "^5.0.1",
+    "redux-logger": "^3.0.6"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.73.0",
+    "@typescript-eslint/parser": "^8.73.0",
     "@vitejs/plugin-react": "^4.7.0",
+    "@vitest/coverage-v8": "^5.1.1",
     "eslint": "^8.55.0",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "vite": "^7.3.2"
+    "jsdom": "^31.0.1",
+    "msw": "^3.0.7",
+    "oxfmt": "^0.79.0",
+    "typescript": "^6.0.3",
+    "vite": "^7.3.2",
+    "vitest": "^5.1.1"
   }
 }
