@@ -14,20 +14,22 @@
    limitations under the License.
 */
 
-import React, { Component } from 'react';
+import { Component } from 'react';
+import type { TIconProps } from './types';
 
-class ButtonIconNext extends Component {
-    state = {}
-    render() {
+class IconArrowBack extends Component<TIconProps> {
+    override state = {}
+    override render() {
         const className = this.props.className || '';
         return (
-            <svg xmlns="http://www.w3.org/2000/svg"
-                className={className + ' button-icon-next'}
-                width="24" height="24" viewBox="0 0 24 24">
-                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+            <svg id='arrow-back' xmlns="http://www.w3.org/2000/svg"
+                className={className + ' arrow-back'}
+                width="18" height="18"
+                viewBox="0 0 18 18">
+                <path d="M15 8.25H5.87l4.19-4.19L9 3 3 9l6 6 1.06-1.06-4.19-4.19H15v-1.5z" />
             </svg>
         );
     }
 }
 
-export default ButtonIconNext;
+export default IconArrowBack;

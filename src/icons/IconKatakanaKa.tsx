@@ -13,8 +13,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import React from 'react';
-const IconKatakanaKa = ({className}) => {
+
+import type { TIconProps } from './types';
+const IconKatakanaKa = ({ className }: TIconProps) => {
     
 
     return (

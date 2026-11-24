@@ -14,11 +14,12 @@
    limitations under the License.
 */
 
-import React, { Component } from 'react';
+import { Component } from 'react';
+import type { TIconProps } from './types';
 
-class IconSettings extends Component {
-    state = {}
-    render() {
+class IconSettings extends Component<TIconProps> {
+    override state = {}
+    override render() {
         const className = this.props.className || '';
         return (
             <svg xmlns="http://www.w3.org/2000/svg"

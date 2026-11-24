@@ -14,21 +14,19 @@
    limitations under the License.
 */
 
-import React, { Component } from 'react';
+import { Component } from 'react';
+import type { TIconProps } from './types';
 
-class IconMenu extends Component {
-    state = {}
-    render() {
-        const className = this.props.className || '';
+class IconInfo extends Component<TIconProps> {
+    override state = {}
+    override render() {
         return (
             <svg xmlns="http://www.w3.org/2000/svg"
-                id='icon-menu'
-                className={className + ' icon-menu'}
-                width="18" height="18" viewBox="0 0 18 18">
-                <path d="M2 13.5h14V12H2v1.5zm0-4h14V8H2v1.5zM2 4v1.5h14V4H2z" />
+                width="24" height="24" viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
             </svg>
         );
     }
 }
 
-export default IconMenu;
+export default IconInfo;

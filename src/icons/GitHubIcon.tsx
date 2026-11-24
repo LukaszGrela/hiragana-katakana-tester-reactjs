@@ -1,5 +1,3 @@
-import React from 'react';
-
 const GitHubIcon = () => (
     <svg version='1'
         className='git-hub-icon'

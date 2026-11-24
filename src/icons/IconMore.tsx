@@ -1,11 +1,12 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
+import type { TIconProps } from './types';
 
-export class IconMore extends Component {
-    constructor(props) {
+export class IconMore extends Component<TIconProps> {
+    constructor(props: TIconProps) {
         super(props);
         this.state = {}
     }
-    render() {
+    override render() {
         return (
             <svg xmlns="http://www.w3.org/2000/svg"
                 width="36" height="36"

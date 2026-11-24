@@ -14,11 +14,12 @@
    limitations under the License.
 */
 
-import React, { Component } from 'react';
+import { Component } from 'react';
+import type { TMoodIconProps } from './types';
 
-class MoodIcon extends Component {
-    state = {}
-    render() {
+class MoodIcon extends Component<TMoodIconProps> {
+    override state = {}
+    override render() {
         
         const className = this.props.className || '';
         return (

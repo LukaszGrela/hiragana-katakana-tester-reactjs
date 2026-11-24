@@ -14,18 +14,23 @@
    limitations under the License.
 */
 
-import React, { Component } from 'react';
+import { Component } from 'react';
+import type { TIconProps } from './types';
 
-class IconInfo extends Component {
-    state = {}
-    render() {
+class IconGrade extends Component<TIconProps> {
+    override state = {}
+    override render() {
+        const className = this.props.className || '';
         return (
             <svg xmlns="http://www.w3.org/2000/svg"
-                width="24" height="24" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" />
+                className={className + ' icon-grade'}
+                id='icon-grade'
+                width="24" height="24"
+                viewBox="0 0 24 24">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
             </svg>
         );
     }
 }
 
-export default IconInfo;
+export default IconGrade;

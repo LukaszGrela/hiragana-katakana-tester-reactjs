@@ -14,22 +14,22 @@
    limitations under the License.
 */
 
-import React, { Component } from 'react';
+import { Component } from 'react';
+import type { TIconProps } from './types';
 
-class IconReplay extends Component {
-    state = {}
-    render() {
+class IconMenu extends Component<TIconProps> {
+    override state = {}
+    override render() {
         const className = this.props.className || '';
         return (
             <svg xmlns="http://www.w3.org/2000/svg"
-                id='icon-replay'
-                className={className + ' icon-replay'}
-                width="24" height="24"
-                viewBox="0 0 24 24">
-                <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z" />
+                id='icon-menu'
+                className={className + ' icon-menu'}
+                width="18" height="18" viewBox="0 0 18 18">
+                <path d="M2 13.5h14V12H2v1.5zm0-4h14V8H2v1.5zM2 4v1.5h14V4H2z" />
             </svg>
         );
     }
 }
 
-export default IconReplay;
+export default IconMenu;

@@ -14,21 +14,23 @@
    limitations under the License.
 */
 
-import React, { Component } from 'react';
+import { Component } from 'react';
+import type { TIconProps } from './types';
 
-class IconArrowBack extends Component {
-    state = {}
-    render() {
+class IconReplay extends Component<TIconProps> {
+    override state = {}
+    override render() {
         const className = this.props.className || '';
         return (
-            <svg id='arrow-back' xmlns="http://www.w3.org/2000/svg"
-                className={className + ' arrow-back'}
-                width="18" height="18"
-                viewBox="0 0 18 18">
-                <path d="M15 8.25H5.87l4.19-4.19L9 3 3 9l6 6 1.06-1.06-4.19-4.19H15v-1.5z" />
+            <svg xmlns="http://www.w3.org/2000/svg"
+                id='icon-replay'
+                className={className + ' icon-replay'}
+                width="24" height="24"
+                viewBox="0 0 24 24">
+                <path d="M12 5V1L7 6l5 5V7c3.31 0 6 2.69 6 6s-2.69 6-6 6-6-2.69-6-6H4c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8z" />
             </svg>
         );
     }
 }
 
-export default IconArrowBack;
+export default IconReplay;
