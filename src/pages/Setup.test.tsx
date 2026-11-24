@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { legacy_createStore as createStore } from "redux";
 import { describe, expect, it } from "vitest";
 
 import dataAdded from "../actions/dataAdded";

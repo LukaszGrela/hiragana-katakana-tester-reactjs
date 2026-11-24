@@ -14,48 +14,61 @@
    limitations under the License.
 */
 import type { ReactElement } from "react";
-import { connect } from "react-redux";
 
 import SelectionHint from "../components/SelectionHint";
-import type { TRootState } from "../reducers";
-import type { TSyllabarySeries } from "../store/types";
+import { useAppSelector } from "../store/hooks";
 import kanaCounter from "../utils/kanaCounter";
 
 import "./css/Home.css";
 
 export type THomeProps = {
-  data: TSyllabarySeries;
-  selection: number[];
-  syllabary: string;
-  writing: string;
-  hasSelection: boolean;
   onNavigation?: (destination: string) => void;
 };
 
-const Home = (props: THomeProps): ReactElement => {
-  const { data, selection } = props;
-  const { kana } = kanaCounter(data, selection);
+const Home = ({ onNavigation }: THomeProps): ReactElement => {
+  const data = useAppSelector((state) => state.data);
+  const selection = useAppSelector((state) => state.selection);
+  const syllabaryOption = useAppSelector((state) => state.syllabary);
+  const writingOption = useAppSelector((state) => state.writing);
+
+  const hasSelection = selection.length > 0;
+  //'all' - convert to list of ID's
+  const selectionIds: number[] =
+    selection.length === 1 && isNaN(Number(selection[0]))
+      ? data.map((item) => item.id)
+      : (selection as number[]);
+
+  const syllabary =
+    syllabaryOption.options.length > 0
+      ? syllabaryOption.options[syllabaryOption.selection]
+      : "";
+  const writing =
+    writingOption.options.length > 0
+      ? writingOption.options[writingOption.selection]
+      : "";
+
+  const { kana } = kanaCounter(data, selectionIds);
   return (
     <div className="home">
       <div className="wrapper">
         <button
           className="start-button"
-          disabled={!props.hasSelection || kana < 5}
+          disabled={!hasSelection || kana < 5}
           onClick={() => {
-            props.onNavigation?.("game");
+            onNavigation?.("game");
           }}
         >
           <span className="button-content-wrapper">
-            <span className="selection-syllabary">{props.syllabary}</span>
+            <span className="selection-syllabary">{syllabary}</span>
             <span className="selection-connect">with</span>
-            <span className="selection-writing">{props.writing}</span>
+            <span className="selection-writing">{writing}</span>
             <span className="selection-sufix">test</span>
             <span className="button-label">START TEST</span>
           </span>
           <SelectionHint
             className="stats"
             pattern={"Selected {k} Kana of {s} series."}
-            selection={selection}
+            selection={selectionIds}
             data={data}
           />
         </button>
@@ -64,35 +77,4 @@ const Home = (props: THomeProps): ReactElement => {
   );
 };
 
-type THomeStateProps = Omit<THomeProps, "onNavigation">;
-
-const mapStateToProps = (state: TRootState): THomeStateProps => {
-  const { syllabary, writing, selection, data } = state;
-
-  let hasSelection = false;
-  let _selection: number[] = selection as number[];
-  if (selection && selection.length > 0) {
-    hasSelection = true;
-  }
-
-  if (selection && selection.length === 1 && isNaN(Number(selection[0]))) {
-    //'all' - convert to list of ID's
-    _selection = data.map((item) => item.id);
-  }
-
-  return {
-    selection: _selection,
-    data: data,
-    syllabary:
-      syllabary && syllabary.options && syllabary.options.length > 0
-        ? syllabary.options[syllabary.selection]
-        : "",
-    writing:
-      writing && writing.options && writing.options.length > 0
-        ? writing.options[writing.selection]
-        : "",
-    hasSelection,
-  };
-};
-
-export default connect(mapStateToProps)(Home);
+export default Home;

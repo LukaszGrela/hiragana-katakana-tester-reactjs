@@ -17,13 +17,13 @@ import { FC, useEffect } from "react";
 
 import "./App.css";
 
-import { connect } from "react-redux";
-
+import { useAppSelector } from "./store/hooks";
 import Splash from "./pages/Splash";
 import AppView from "./pages/AppView";
 import { useLocation, Navigate } from "react-router-dom";
 
-const App: FC<{ hasData?: boolean }> = ({ hasData }) => {
+const App: FC = () => {
+  const hasData = useAppSelector((state) => state.data.length > 0);
   const location = useLocation();
   const page = location.pathname.split("/")[1] || "home";
 
@@ -59,9 +59,4 @@ const App: FC<{ hasData?: boolean }> = ({ hasData }) => {
   );
 };
 
-const mapStateToProps = (state: { data?: unknown[] }) => {
-  return {
-    hasData: state.data && state.data.length > 0,
-  };
-};
-export default connect(mapStateToProps)(App);
+export default App;

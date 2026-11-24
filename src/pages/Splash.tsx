@@ -22,13 +22,17 @@ import syllabaryAdded from "../actions/syllabaryAdded";
 import syllabaryChanged from "../actions/syllabaryChanged";
 import writingAdded from "../actions/writingAdded";
 import writingChanged from "../actions/writingChanged";
-import type { TAppDispatch } from "../store/HKTesterStore";
 import type { TDataFile } from "./types";
 
 import "./css/Splash.css";
 
 type TSplashProps = {
-  dispatch: TAppDispatch;
+  dataAdded: typeof dataAdded;
+  selectionChanged: typeof selectionChanged;
+  syllabaryAdded: typeof syllabaryAdded;
+  syllabaryChanged: typeof syllabaryChanged;
+  writingAdded: typeof writingAdded;
+  writingChanged: typeof writingChanged;
 };
 
 type TSplashState = {
@@ -44,7 +48,14 @@ class Splash extends Component<TSplashProps, TSplashState> {
   }
 
   override componentDidMount() {
-    const { dispatch } = this.props;
+    const {
+      dataAdded: addData,
+      selectionChanged: changeSelection,
+      syllabaryAdded: addSyllabary,
+      syllabaryChanged: changeSyllabary,
+      writingAdded: addWriting,
+      writingChanged: changeWriting,
+    } = this.props;
     fetch(`${import.meta.env.BASE_URL}/data/data.json`)
       .then((res) => res.json())
       .then((data: TDataFile) => {
@@ -57,14 +68,14 @@ class Splash extends Component<TSplashProps, TSplashState> {
         });
 
         // -------------------------
-        dispatch(dataAdded(syllabary_series));
-        dispatch(syllabaryAdded(syllabary));
-        dispatch(writingAdded(writing));
-        dispatch(syllabaryChanged(1));
-        dispatch(writingChanged(0));
-        dispatch(syllabaryChanged(syllabary.selection));
-        dispatch(writingChanged(writing.selection));
-        dispatch(selectionChanged(selection));
+        addData(syllabary_series);
+        addSyllabary(syllabary);
+        addWriting(writing);
+        changeSyllabary(1);
+        changeWriting(0);
+        changeSyllabary(syllabary.selection);
+        changeWriting(writing.selection);
+        changeSelection(selection);
         // -------------------------
       })
       .catch((reason) => {
@@ -83,7 +94,14 @@ class Splash extends Component<TSplashProps, TSplashState> {
   }
 }
 
-const mapDispatchToProps = (dispatch: TAppDispatch) => ({ dispatch });
+const mapDispatchToProps = {
+  dataAdded,
+  selectionChanged,
+  syllabaryAdded,
+  syllabaryChanged,
+  writingAdded,
+  writingChanged,
+};
 
 const SplashConnected = connect(null, mapDispatchToProps)(Splash);
 

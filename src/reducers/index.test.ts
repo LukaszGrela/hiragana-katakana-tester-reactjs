@@ -1,4 +1,4 @@
-import { createStore } from "redux";
+import { legacy_createStore as createStore } from "redux";
 import { describe, expect, it } from "vitest";
 
 import dataAdded from "../actions/dataAdded";

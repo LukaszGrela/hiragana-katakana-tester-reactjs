@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { MemoryRouter } from "react-router-dom";
-import { createStore } from "redux";
+import { legacy_createStore as createStore } from "redux";
 import { describe, expect, it } from "vitest";
 
 import App from "./App";

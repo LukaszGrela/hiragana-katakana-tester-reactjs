@@ -1,7 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
-import { createStore } from "redux";
+import { legacy_createStore as createStore } from "redux";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import dataAdded from "../actions/dataAdded";

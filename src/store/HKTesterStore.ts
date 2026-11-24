@@ -14,11 +14,15 @@
    limitations under the License.
 */
 import { legacy_createStore, applyMiddleware } from "redux";
+import type { Middleware } from "redux";
 import { logger } from "redux-logger";
 
-import reducer from "../reducers";
+import reducer, { type TRootState as TReducerState } from "../reducers";
 
-const middleware = applyMiddleware(logger);
+const loggerMiddleware: Middleware<{}, TReducerState> = logger;
+// Redux 5: `legacy_createStore` jest zamiennikiem przestarzałego `createStore`
+// (pełny następca to `configureStore` z Redux Toolkit).
+const middleware = applyMiddleware<{}, TReducerState>(loggerMiddleware);
 
 const hkTesterStore = legacy_createStore(reducer, undefined, middleware);
 
