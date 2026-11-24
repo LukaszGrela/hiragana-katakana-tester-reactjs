@@ -1,10 +1,19 @@
-import React, { Component } from 'react';
-
 import './css/Distractors.css';
 
-const Distractors = ({ answerOptions, hideButtonId, handleClick }) => {
-  const clickHandler = (item, id) => () => handleClick && handleClick(item, id);
-  const generateAnswers = options =>
+export type TDistractorsProps = {
+  answerOptions?: string[];
+  hideButtonId?: string;
+  handleClick?: (item: string, id: string) => void;
+};
+
+const Distractors = ({
+  answerOptions,
+  hideButtonId,
+  handleClick,
+}: TDistractorsProps) => {
+  const clickHandler = (item: string, id: string) => () =>
+    handleClick && handleClick(item, id);
+  const generateAnswers = (options?: string[]) =>
     options &&
     options.map((item, index) => (
       <button

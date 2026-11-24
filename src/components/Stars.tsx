@@ -1,5 +1,3 @@
-import React from 'react';
-
 import IconGrade from '../icons/IconGrade';
 import './css/Stars.css'
 

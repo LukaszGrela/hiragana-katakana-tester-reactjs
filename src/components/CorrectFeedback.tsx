@@ -13,12 +13,16 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import React from 'react';
+import type { ReactNode } from 'react';
 
 import './css/CorrectFeedback.css';
 import Stars from './Stars';
 
-const CorrectFeedback = ({ message }) => (
+export type TCorrectFeedbackProps = {
+  message?: ReactNode;
+};
+
+const CorrectFeedback = ({ message }: TCorrectFeedbackProps) => (
   <div className='feedback correct'>
     <Stars />
     <div className='message'>{message}</div>

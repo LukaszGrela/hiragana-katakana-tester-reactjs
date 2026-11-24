@@ -13,13 +13,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import React from 'react';
+import type { ReactNode } from 'react';
 
 import MoodIcon from '../icons/MoodIcon'
 
 import './css/IncorrectFeedback.css'
 
-const IncorrectFeedback = ({message, correct})=>{
+export type TIncorrectFeedbackProps = {
+    message?: ReactNode;
+    correct?: ReactNode;
+};
+
+const IncorrectFeedback = ({message, correct}: TIncorrectFeedbackProps)=>{
 
     return (
         <div className='feedback incorrect'>

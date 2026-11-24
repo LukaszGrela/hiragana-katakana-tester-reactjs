@@ -13,17 +13,22 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import React from 'react';
+import type { ReactElement } from 'react';
 
 import Stars from './Stars';
+import type { TAnsweredQuestion } from './types';
 
 import './css/GameOver.css';
 
-const GameOver = ({ data }) => {
+export type TGameOverProps = {
+  data: TAnsweredQuestion[];
+};
+
+const GameOver = ({ data }: TGameOverProps) => {
   const incorrect = data.filter((item) => {
     return !item.userAnswer.isCorrect;
   });
-  let incorrectList = null;
+  let incorrectList: ReactElement[] | null = null;
   if (incorrect && incorrect.length > 0) {
     // generate list
     incorrectList = incorrect.map((item, index) => {

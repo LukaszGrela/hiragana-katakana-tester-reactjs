@@ -13,19 +13,25 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import React, { Component } from 'react';
-
 import IconTick from '../icons/TickIcon';
+import type { TSelection, TSyllabarySeries } from '../store/types';
 
 import './css/ListSeries.css';
 
-export const ListSeries = props => {
+export type TListSeriesProps = {
+  data?: TSyllabarySeries;
+  selection?: TSelection;
+  className?: string;
+  onItemClicked?: (id: number, selected: boolean) => void;
+};
+
+export const ListSeries = (props: TListSeriesProps) => {
   const generateOptions = () => {
     const { data, selection } = props;
 
     if (data && selection) {
       const allSelected =
-        selection.length > 0 && isNaN(parseInt(selection, 10));
+        selection.length > 0 && isNaN(parseInt(String(selection), 10));
       return data.map((series, index) => {
         const { id, name } = series;
         let selected = allSelected || selection.indexOf(id) !== -1;

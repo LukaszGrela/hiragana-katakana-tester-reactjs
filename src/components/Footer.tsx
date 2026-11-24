@@ -13,11 +13,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import React, { Component } from 'react';
-
 import './css/Footer.css';
 
-const Footer = props => (
+const Footer = () => (
   <footer>GrelaDesign (c) {new Date().getFullYear()}</footer>
 );
 

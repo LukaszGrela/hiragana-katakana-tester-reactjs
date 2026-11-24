@@ -13,24 +13,14 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import React from 'react';
-import kanaCounter from '../utils/kanaCounter';
 
-const SelectionHint = ({ selection, data, pattern, className }) => {
-
-    const { kana, series } = kanaCounter(data, selection);
-    const stats = pattern.replace(/{(k|s)}/gi, (match, $1, index) => {
-        switch ($1) {
-            case 'k':
-                return kana;
-            case 's':
-                return series;
-            default:
-                return match;
-        }
-    })
-    return (<span className={'selection-hint' + (className ? ' '+className:'')}>{stats}</span>);
-
+/** Pytanie z listy odpowiedzi przekazywanej do `GameOver`. */
+export type TAnsweredQuestion = {
+  question: string;
+  correct: string;
+  answerOptions?: string[];
+  userAnswer: {
+    isCorrect: boolean;
+    answer?: string;
+  };
 };
-
-export default SelectionHint;
