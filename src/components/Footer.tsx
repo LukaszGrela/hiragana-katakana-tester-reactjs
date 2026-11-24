@@ -16,7 +16,13 @@
 import "./css/Footer.css";
 
 const Footer = () => (
-  <footer>GrelaDesign (c) {new Date().getFullYear()}</footer>
+  <footer>
+    <span>GrelaDesign (c) {new Date().getFullYear()}</span>
+    <span className="GrelaDesign_info">
+      <span className="GrelaDesign_version">{__APP_VERSION__}</span>
+      <span className="GrelaDesign_commit">({__APP_COMMIT__})</span>
+    </span>
+  </footer>
 );
 
 export default Footer;
