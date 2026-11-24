@@ -13,30 +13,45 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-
-import React, { Component } from 'react';
-import { useLocation, useNavigate, Routes, Route } from 'react-router-dom';
+import { Component, type FC, type ReactElement } from 'react';
+import {
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+  type Location,
+  type NavigateFunction,
+} from 'react-router-dom';
 import { MediaQuery } from 'react-responsive';
-import NoMatch from './NoMatch';
-import Home from './Home';
-import Footer from '../components/Footer';
 
-import IconKatakanaKa from '../icons/IconKatakanaKa';
-import IconHiraganaKa from '../icons/IconHiraganaKa';
+import Footer from '../components/Footer';
 import IconArrowBack from '../icons/IconArrowBack';
-import IconSettings from '../icons/IconSettings';
+import IconHiraganaKa from '../icons/IconHiraganaKa';
 import IconInfo from '../icons/IconInfo';
+import IconKatakanaKa from '../icons/IconKatakanaKa';
 import IconMore from '../icons/IconMore';
+import IconSettings from '../icons/IconSettings';
 
 import About from './About';
 import Game from './Game';
+import Home from './Home';
+import NoMatch from './NoMatch';
 import Setup from './Setup';
 
 import './css/AppView.css';
 import './css/DropDown.css';
 
-export class AppView extends Component {
-  constructor(props) {
+export type TAppViewProps = {
+  location: Location;
+  navigate: NavigateFunction;
+};
+
+export type TAppViewState = {
+  ddMenuOpen: boolean;
+};
+
+export class AppView extends Component<TAppViewProps, TAppViewState> {
+  constructor(props: TAppViewProps) {
     super(props);
     this.state = {
       ddMenuOpen: false,
@@ -48,14 +63,15 @@ export class AppView extends Component {
     this.handleNavigationAction = this.handleNavigationAction.bind(this);
   }
 
-  componentDidMount() {
+  override componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown);
   }
-  componentWillUnmount() {
+
+  override componentWillUnmount() {
     document.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  handleNavigationAction(id = '/') {
+  handleNavigationAction(id: string = '/'): void {
     let to = '/';
     switch (id) {
       case 'config':
@@ -73,34 +89,34 @@ export class AppView extends Component {
         break;
     }
     this.setState(
-      (_) => ({
+      () => ({
         // hide state
         ddMenuOpen: false,
       }),
-      (_) => {
+      () => {
         // state change applied - navigate
         this.props.navigate(to);
       }
     );
   }
 
-  handleDropDown = () => {
-    this.setState((_) => ({ ddMenuOpen: true }));
+  handleDropDown = (): void => {
+    this.setState(() => ({ ddMenuOpen: true }));
   };
 
-  handleKeyDown = (event) => {
+  handleKeyDown = (event: KeyboardEvent): void => {
     const { keyCode: code } = event;
     if (this.state.ddMenuOpen && code === 27) {
       // Escape
       event.preventDefault();
-      this.setState((_) => ({ ddMenuOpen: false }));
+      this.setState(() => ({ ddMenuOpen: false }));
     }
   };
 
   /**
    * @returns {JSX.Element | null} Returns fragment to be placed in the headers left slot
    */
-  getHeaderLeftSlotFragment() {
+  getHeaderLeftSlotFragment(): ReactElement | null {
     const { location } = this.props;
 
     if (location.pathname !== '/') {
@@ -117,7 +133,8 @@ export class AppView extends Component {
       return null;
     }
   }
-  getSettingsButton = (label) => (
+
+  getSettingsButton = (label?: string): ReactElement => (
     <button
       key={'settings-btn'}
       className='button-settings'
@@ -129,16 +146,17 @@ export class AppView extends Component {
       {label && <span className='label'>{label}</span>}
     </button>
   );
+
   /**
    * @returns {JSX.Element | null} Returns fragment to be placed in the headers right slot
    */
-  getHeaderRightSlotFragment() {
+  getHeaderRightSlotFragment(): ReactElement | ReactElement[] | null {
     const { location } = this.props;
 
     if (location.pathname === '/') {
       return [
         <MediaQuery key={'media-query'} minDeviceWidth={410}>
-          {(matches) => {
+          {(matches: boolean) => {
             if (matches) {
               /* normal */
               return [
@@ -177,7 +195,8 @@ export class AppView extends Component {
       return null;
     }
   }
-  render() {
+
+  override render() {
     return (
       <div className='app-view'>
         <div className='header'>
@@ -218,16 +237,16 @@ export class AppView extends Component {
         >
           <div
             className='cloak'
-            onClick={(_) => {
+            onClick={() => {
               console.log('cick');
-              this.setState((_) => ({ ddMenuOpen: false }));
+              this.setState(() => ({ ddMenuOpen: false }));
             }}
           ></div>
           <div className='dd-menu-container'>
             <button
               key={'about-btn'}
               className='button-about'
-              onClick={(_) => {
+              onClick={() => {
                 this.handleNavigationAction('about');
               }}
             >
@@ -246,8 +265,10 @@ export class AppView extends Component {
  * React Router v7 exposes navigation through hooks, so inject the location
  * object and the navigate function into the class component.
  */
-const withNavigation = (WrappedComponent) => {
-  const WithNavigation = (props) => {
+const withNavigation = <P extends object>(
+  WrappedComponent: React.ComponentType<P & TAppViewProps>
+): FC<P> => {
+  const WithNavigation: FC<P> & { displayName?: string } = (props) => {
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -256,9 +277,12 @@ const withNavigation = (WrappedComponent) => {
     );
   };
 
-  WithNavigation.displayName = `withNavigation(${
-    WrappedComponent.displayName || WrappedComponent.name || 'Component'
-  })`;
+  const wrappedName =
+    (WrappedComponent as { displayName?: string; name?: string }).displayName ||
+    (WrappedComponent as { displayName?: string; name?: string }).name ||
+    'Component';
+
+  WithNavigation.displayName = `withNavigation(${wrappedName})`;
 
   return WithNavigation;
 };

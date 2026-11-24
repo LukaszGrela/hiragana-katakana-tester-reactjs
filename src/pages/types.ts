@@ -13,14 +13,18 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import React, { Component } from 'react';
 
-const NoMatch = () => (
-  <div className="no-match 404">
-    <div className="wrapper">
-      <div>404 Not Found!</div>
-    </div>
-  </div>
-);
+import type {
+  TSyllabary,
+  TSyllabarySeries,
+  TSelection,
+  TWriting,
+} from '../store/types';
 
-export default NoMatch;
+/** Kształt pliku `public/data/data.json` wczytywanego przez `Splash`. */
+export type TDataFile = {
+  selection: TSelection;
+  syllabary: TSyllabary;
+  writing: TWriting;
+  syllabary_series: TSyllabarySeries;
+};

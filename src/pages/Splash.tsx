@@ -13,31 +13,42 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import { Component } from "react";
-import { connect } from "react-redux";
-import dataAdded from "../actions/dataAdded";
-import selectionChanged from "../actions/selectionChanged";
-import syllabaryAdded from "../actions/syllabaryAdded";
-import syllabaryChanged from "../actions/syllabaryChanged";
-import writingAdded from "../actions/writingAdded";
-import writingChanged from "../actions/writingChanged";
+import { Component } from 'react';
+import { connect } from 'react-redux';
 
-import "./css/Splash.css";
+import dataAdded from '../actions/dataAdded';
+import selectionChanged from '../actions/selectionChanged';
+import syllabaryAdded from '../actions/syllabaryAdded';
+import syllabaryChanged from '../actions/syllabaryChanged';
+import writingAdded from '../actions/writingAdded';
+import writingChanged from '../actions/writingChanged';
+import type { TAppDispatch } from '../store/HKTesterStore';
+import type { TDataFile } from './types';
 
-class Splash extends Component {
-  constructor(props) {
+import './css/Splash.css';
+
+type TSplashProps = {
+  dispatch: TAppDispatch;
+};
+
+type TSplashState = {
+  isLoading: boolean;
+};
+
+class Splash extends Component<TSplashProps, TSplashState> {
+  constructor(props: TSplashProps) {
     super(props);
     this.state = {
       isLoading: true,
     };
   }
 
-  componentDidMount() {
+  override componentDidMount() {
     const { dispatch } = this.props;
     fetch(`${import.meta.env.BASE_URL}/data/data.json`)
       .then((res) => res.json())
-      .then((data) => {
-        console.log("res", data);
+      .then((data: TDataFile) => {
+        console.log('res', data);
         const selection = data.selection;
         const syllabary = data.syllabary;
         const writing = data.writing;
@@ -57,21 +68,23 @@ class Splash extends Component {
         // -------------------------
       })
       .catch((reason) => {
-        console.error("Splash#componentDidMount", reason);
+        console.error('Splash#componentDidMount', reason);
       });
   }
 
-  render() {
+  override render() {
     return (
-      <div className="splash">
-        <div className="wrapper">
-          <div className="loading">Loading...</div>
+      <div className='splash'>
+        <div className='wrapper'>
+          <div className='loading'>Loading...</div>
         </div>
       </div>
     );
   }
 }
 
-const SplashConnected = connect()(Splash);
+const mapDispatchToProps = (dispatch: TAppDispatch) => ({ dispatch });
+
+const SplashConnected = connect(null, mapDispatchToProps)(Splash);
 
 export default SplashConnected;

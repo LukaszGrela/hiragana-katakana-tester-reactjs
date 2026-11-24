@@ -13,15 +13,26 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-
-import React, { Component } from 'react';
+import type { ReactElement } from 'react';
 import { connect } from 'react-redux';
-import SelectionHint from '../components/SelectionHint';
 
-import './css/Home.css';
+import SelectionHint from '../components/SelectionHint';
+import type { TRootState } from '../reducers';
+import type { TSyllabarySeries } from '../store/types';
 import kanaCounter from '../utils/kanaCounter';
 
-const Home = (props) => {
+import './css/Home.css';
+
+export type THomeProps = {
+  data: TSyllabarySeries;
+  selection: number[];
+  syllabary: string;
+  writing: string;
+  hasSelection: boolean;
+  onNavigation?: (destination: string) => void;
+};
+
+const Home = (props: THomeProps): ReactElement => {
   const { data, selection } = props;
   const { kana } = kanaCounter(data, selection);
   return (
@@ -32,8 +43,7 @@ const Home = (props) => {
           disabled={!props.hasSelection || kana < 5}
           onClick={() => {
             props.onNavigation && props.onNavigation('game');
-          }}
-        >
+          }}>
           <span className='button-content-wrapper'>
             <span className='selection-syllabary'>{props.syllabary}</span>
             <span className='selection-connect'>with</span>
@@ -52,16 +62,19 @@ const Home = (props) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
+
+type THomeStateProps = Omit<THomeProps, 'onNavigation'>;
+
+const mapStateToProps = (state: TRootState): THomeStateProps => {
   const { syllabary, writing, selection, data } = state;
 
-  let hasSelection = false,
-    _selection = selection;
+  let hasSelection = false;
+  let _selection: number[] = selection as number[];
   if (selection && selection.length > 0) {
     hasSelection = true;
   }
 
-  if (selection && selection.length === 1 && isNaN(selection[0])) {
+  if (selection && selection.length === 1 && isNaN(Number(selection[0]))) {
     //'all' - convert to list of ID's
     _selection = data.map((item) => item.id);
   }
@@ -80,4 +93,5 @@ const mapStateToProps = (state) => {
     hasSelection,
   };
 };
+
 export default connect(mapStateToProps)(Home);

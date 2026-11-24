@@ -13,19 +13,38 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-
-import React from 'react';
+import type { ReactElement } from 'react';
 import { connect } from 'react-redux';
-import CheckboxSwitch from '../components/CheckboxSwitch';
-import ListSeries from '../components/ListSeries';
+
 import selectionChanged from '../actions/selectionChanged';
 import syllabaryChanged from '../actions/syllabaryChanged';
 import writingChanged from '../actions/writingChanged';
+import CheckboxSwitch from '../components/CheckboxSwitch';
+import ListSeries from '../components/ListSeries';
+import SelectionHint from '../components/SelectionHint';
+import type { TRootState } from '../reducers';
+import type { TAppDispatch } from '../store/HKTesterStore';
+import type { TSyllabarySeries } from '../store/types';
 
 import './css/Setup.css';
-import SelectionHint from '../components/SelectionHint';
 
-const Setup = (props) => {
+type TSetupStateProps = {
+  fullSelection: number[];
+  selection: number[];
+  data: TSyllabarySeries;
+  syllabary_label_on: string;
+  syllabary_label_off: string;
+  syllabary_selection: number;
+  writing_label_on: string;
+  writing_label_off: string;
+  writing_selection: number;
+};
+
+type TSetupProps = TSetupStateProps & {
+  dispatch: TAppDispatch;
+};
+
+const Setup = (props: TSetupProps): ReactElement => {
   const { dispatch } = props;
   return (
     <div className='setup'>
@@ -69,8 +88,7 @@ const Setup = (props) => {
                 //deselect all
                 dispatch(selectionChanged([]));
               }
-            }}
-          >
+            }}>
             {props.selection.length === 0 ? 'Select All' : 'Deselect All'}
           </button>
           <SelectionHint
@@ -89,13 +107,13 @@ const Setup = (props) => {
 
             if (selected) {
               // deselect
-              let index = newSelection.indexOf(parseInt(id, 10));
+              let index = newSelection.indexOf(id);
 
               if (index >= 0) {
                 newSelection.splice(index, 1);
               }
             } else {
-              newSelection.push(parseInt(id, 10));
+              newSelection.push(id);
             }
 
             dispatch(selectionChanged(newSelection));
@@ -106,12 +124,12 @@ const Setup = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: TRootState): TSetupStateProps => {
   const { syllabary, writing, selection, data } = state;
-  let _selection = selection;
-  let _fullSelection = [];
+  let _selection: number[] = selection as number[];
+  let _fullSelection: number[] = [];
 
-  if (selection && selection.length === 1 && isNaN(selection[0])) {
+  if (selection && selection.length === 1 && isNaN(Number(selection[0]))) {
     //'all' - convert to list of ID's
     _selection = data.map((item) => item.id);
   }
@@ -159,4 +177,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(Setup);
+const mapDispatchToProps = (dispatch: TAppDispatch) => ({ dispatch });
+
+export default connect(mapStateToProps, mapDispatchToProps)(Setup);

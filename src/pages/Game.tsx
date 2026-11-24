@@ -13,8 +13,10 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-import React, { Component } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Component, type FC } from 'react';
+import { connect } from 'react-redux';
+import { useNavigate, type NavigateFunction } from 'react-router-dom';
+
 import { shuffle } from '../utils/math';
 
 import IconMenu from '../icons/IconMenu';
@@ -29,12 +31,54 @@ import CorrectFeedback from '../components/CorrectFeedback';
 import IncorrectFeedback from '../components/IncorrectFeedback';
 import GameOver from '../components/GameOver';
 import Distractors from '../components/Distractors';
-import { connect } from 'react-redux';
+import type { TAnsweredQuestion } from '../components/types';
+import type { TRootState } from '../reducers';
+import type {
+  TSyllabary,
+  TSyllabarySeries,
+  TSyllabarySeriesEntry,
+  TWriting,
+} from '../store/types';
 
-class Game extends Component {
-  answeredList = [];
+export type TQuestion = {
+  correct: string;
+  question: string;
+  distractors: string[];
+};
 
-  constructor(props) {
+export type TCurrentQuestion = TQuestion & {
+  answerOptions?: string[];
+  userAnswer?: TAnsweredQuestion['userAnswer'];
+};
+
+export type TGameState = {
+  questions: TQuestion[];
+  current: Partial<TCurrentQuestion>;
+  index: number;
+  score: number;
+  correct: boolean | null;
+  selectedBtnId: string | null;
+  gameOver: boolean;
+  hintUsed: boolean;
+  hideButtonId: string | null;
+  showPopup?: boolean;
+};
+
+export type TGameProps = {
+  selection: number[];
+  data: TSyllabarySeries;
+  syllabary: TSyllabary;
+  writing: TWriting;
+  navigate: NavigateFunction;
+};
+
+/** Klucze w `source`, np. `romaji` / `hiragana` / `katakana`. */
+type TSourceKey = keyof TSyllabarySeriesEntry['source'];
+
+class Game extends Component<TGameProps, TGameState> {
+  answeredList: TAnsweredQuestion[] = [];
+
+  constructor(props: TGameProps) {
     super(props);
 
     this.state = {
@@ -52,30 +96,31 @@ class Game extends Component {
     this.validateAnswer = this.validateAnswer.bind(this);
   }
 
-  componentDidMount() {
+  override componentDidMount() {
     this.restart();
   }
 
-  generateQuestionPool() {
+  generateQuestionPool(): TQuestion[] | undefined {
     const { selection, data, syllabary, writing } = this.props;
 
     if (data && syllabary && writing) {
       const whatToTest = writing.selection; //romaji-0
-      const romajiLabel = writing.options[0].toLowerCase();
-      const syllabaryChosen =
-        syllabary.options[syllabary.selection].toLowerCase();
+      const romajiLabel = writing.options[0].toLowerCase() as TSourceKey;
+      const syllabaryChosen = syllabary.options[
+        syllabary.selection
+      ].toLowerCase() as TSourceKey;
 
       // collect distractors
-      let distractors = [];
+      let distractors: string[] = [];
       data.filter((item) => {
         if (whatToTest === 1) {
           // test kana
-          item.source[romajiLabel].forEach((element, index) => {
+          item.source[romajiLabel].forEach((element) => {
             distractors.push(element);
           });
         } else {
           // test romaji
-          item.source[syllabaryChosen].forEach((element, index) => {
+          item.source[syllabaryChosen].forEach((element) => {
             distractors.push(element);
           });
         }
@@ -85,16 +130,16 @@ class Game extends Component {
 
       const distractorsCopy = distractors.concat();
 
-      let questions = [];
-      data.forEach((item, i) => {
+      const questions: TQuestion[] = [];
+      data.forEach((item) => {
         // test from which source:
         // pytamy o kana czy romaji
         // jak kana to z ktorego syllabariusza - romaji bedzie w opcjach odpowiedzi
         // jak romaji to z ktorego syllabariusza wziasc odpowiedzi
 
         if (selection.indexOf(item.id) !== -1) {
-          let question;
-          let chosenDistractors = [];
+          let question: TQuestion;
+          let chosenDistractors: string[] = [];
 
           if (whatToTest === 1) {
             // test kana
@@ -106,9 +151,13 @@ class Game extends Component {
                   distractors = shuffle(distractors);
                 }
                 if (distractors[0] !== element) {
-                  chosenDistractors.push(distractors.shift());
+                  chosenDistractors.push(distractors.shift() as string);
                 } else {
-                  chosenDistractors.push(distractors.splice(1, 1));
+                  // Oryginalna implementacja wkładała wynik splice() (tablicę)
+                  // jako jeden element — zachowane 1:1, stąd rzutowanie.
+                  chosenDistractors.push(
+                    distractors.splice(1, 1) as unknown as string
+                  );
                 }
               }
 
@@ -131,9 +180,13 @@ class Game extends Component {
                   distractors = shuffle(distractors);
                 }
                 if (distractors[0] !== element) {
-                  chosenDistractors.push(distractors.shift());
+                  chosenDistractors.push(distractors.shift() as string);
                 } else {
-                  chosenDistractors.push(distractors.splice(1, 1));
+                  // Oryginalna implementacja wkładała wynik splice() (tablicę)
+                  // jako jeden element — zachowane 1:1, stąd rzutowanie.
+                  chosenDistractors.push(
+                    distractors.splice(1, 1) as unknown as string
+                  );
                 }
               }
 
@@ -155,9 +208,9 @@ class Game extends Component {
     }
   }
 
-  getNextQuestionData(next) {
+  getNextQuestionData(next: TQuestion): TCurrentQuestion {
     // clone the question
-    let copy = Object.assign({}, next);
+    const copy: TCurrentQuestion = { ...next, answerOptions: [] };
     // randomise answer options
     let list = copy.distractors.concat(copy.correct);
     list = shuffle(list);
@@ -166,7 +219,7 @@ class Game extends Component {
     return copy;
   }
 
-  nextQuestion(start = false) {
+  nextQuestion(start: boolean = false): void {
     const { questions, index } = this.state;
 
     const next = start ? 0 : index + 1;
@@ -190,17 +243,17 @@ class Game extends Component {
     }
   }
 
-  gameOver() {
+  gameOver(): void {
     this.setState({ gameOver: true });
   }
 
-  goMenu() {
+  goMenu(): void {
     const { navigate } = this.props;
     navigate(-1);
   }
 
-  restart() {
-    const questions = this.generateQuestionPool();
+  restart(): void {
+    const questions = this.generateQuestionPool() ?? [];
     this.setState(
       {
         questions: questions,
@@ -220,13 +273,13 @@ class Game extends Component {
     );
   }
 
-  showHint() {
+  showHint(): void {
     this.hideRandomDistractor();
   }
 
-  hideRandomDistractor() {
+  hideRandomDistractor(): void {
     const {
-      current: { correct, answerOptions },
+      current: { correct, answerOptions = [] },
     } = this.state;
     let i = -1;
     do {
@@ -236,9 +289,9 @@ class Game extends Component {
     this.setState(() => ({ hintUsed: true, hideButtonId: 'answer-' + i }));
   }
 
-  validateAnswer(answer, btnId) {
+  validateAnswer(answer: string, btnId: string): void {
     const { current } = this.state;
-    let copy = Object.assign({}, current);
+    const copy = { ...current };
 
     if (copy.correct === answer) {
       // score
@@ -246,7 +299,7 @@ class Game extends Component {
       copy.userAnswer = {
         isCorrect: true,
       };
-      this.answeredList.push(copy);
+      this.answeredList.push(copy as TAnsweredQuestion);
       this.setState({
         score: this.state.score + 1,
         correct: true,
@@ -258,12 +311,12 @@ class Game extends Component {
         isCorrect: false,
         answer: answer,
       };
-      this.answeredList.push(copy);
+      this.answeredList.push(copy as TAnsweredQuestion);
       this.setState({ correct: false, selectedBtnId: btnId, showPopup: true });
     }
   }
 
-  render() {
+  override render() {
     const {
       questions,
       current,
@@ -302,9 +355,8 @@ class Game extends Component {
             <div className='score tr'>{score}</div>
           </div>
           <Distractors
-            correct={current.correct}
             answerOptions={current.answerOptions}
-            hideButtonId={hideButtonId}
+            hideButtonId={hideButtonId ?? undefined}
             handleClick={(item, id) => {
               if (this.state.correct === null) {
                 this.validateAnswer(item, id);
@@ -341,12 +393,14 @@ class Game extends Component {
                   ) : (
                     <IncorrectFeedback
                       message={'Incorrect!'}
-                      correct={[
-                        'Correct answer is: ',
-                        <span key='span-answer' className='answer'>
-                          {current.correct}
-                        </span>,
-                      ]}
+                      correct={
+                        [
+                          'Correct answer is: ',
+                          <span key='span-answer' className='answer'>
+                            {current.correct}
+                          </span>,
+                        ] as const
+                      }
                     />
                   )}
                 </div>
@@ -398,12 +452,15 @@ class Game extends Component {
     );
   }
 }
-const mapStateToProps = (state) => {
+
+type TGameStateProps = Omit<TGameProps, 'navigate'>;
+
+const mapStateToProps = (state: TRootState): TGameStateProps => {
   const { syllabary, writing, selection, data } = state;
 
-  let _selection = selection;
+  let _selection: number[] = selection as number[];
 
-  if (selection && selection.length === 1 && isNaN(selection[0])) {
+  if (selection && selection.length === 1 && isNaN(Number(selection[0]))) {
     //'all' - convert to list of ID's
     _selection = data.map((item) => item.id);
   }
@@ -415,18 +472,36 @@ const mapStateToProps = (state) => {
     writing,
   };
 };
-const withNavigation = (WrappedComponent) => {
-  const WithNavigation = (props) => {
+
+/**
+ * React Router v7 exposes navigation through hooks, so inject the navigate
+ * function into the connected class component.
+ */
+const withNavigation = <P extends object>(
+  WrappedComponent: React.ComponentType<P & { navigate: NavigateFunction }>
+): FC<P> => {
+  const WithNavigation: FC<P> & { displayName?: string } = (props) => {
     const navigate = useNavigate();
 
     return <WrappedComponent {...props} navigate={navigate} />;
   };
 
-  WithNavigation.displayName = `withNavigation(${
-    WrappedComponent.displayName || WrappedComponent.name || 'Component'
-  })`;
+  const wrappedName =
+    (WrappedComponent as { displayName?: string; name?: string }).displayName ||
+    (WrappedComponent as { displayName?: string; name?: string }).name ||
+    'Component';
+
+  WithNavigation.displayName = `withNavigation(${wrappedName})`;
 
   return WithNavigation;
 };
 
-export default withNavigation(connect(mapStateToProps)(Game));
+const ConnectedGame = connect<
+  TGameStateProps,
+  Record<string, never>,
+  { navigate: NavigateFunction },
+  TRootState
+>(mapStateToProps)(Game);
+
+/** Strona `/game` nie ma własnych propsów — `navigate` wstrzykuje HOC. */
+export default withNavigation<Record<string, never>>(ConnectedGame);
